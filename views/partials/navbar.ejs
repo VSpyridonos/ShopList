@@ -1,0 +1,47 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/">ShopList</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Αρχική</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/products">Προϊόντα</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/categories">Κατηγορίες</a>
+                </li>
+                <li>
+                    <form class="d-flex">
+                        <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <% if(!currentUser) {%>
+                <li>
+                    <a class="nav-link" href="/login">Σύνδεση</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/register">Εγγραφή</a>
+                </li>
+                <% } else { %>
+                <li>
+                    <a class="nav-link" href="/logout">Αποσύνδεση</a>
+                </li>
+                <% } %>
+                <li>
+                    <a class="btn btn-warning" href="/list">Η Λίστα μου</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>

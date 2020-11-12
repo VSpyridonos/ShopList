@@ -1,0 +1,31 @@
+<% layout('layouts/boilerplate.ejs') %>
+
+<h1>Η Λίστα μου</h1>
+<p><%= list %></p>
+<ul>
+    <% let sum = 0.0 %>
+    <% for (let product of list.products) { %>
+    <% if (product.countedWithQuantity){ %>
+    <li><%= product.title %>, Ποσότητα: <%= product.quantity %> τεμάχια,
+        Κατάστημα: <%= product.shopSelected.title %>
+        <% for (let pr of product.price2) {%>
+        <% if (pr.shop.toString() == product.shopSelected._id.toString()){ %>
+        , Τιμή τεμαχίου: <%= pr.price %>
+        , Συνολική Τιμή Προϊόντος: <%= parseFloat(pr.price)*parseFloat(product.quantity) %>
+        <% sum = parseFloat(sum) + parseFloat(pr.price)*parseFloat(product.quantity) %>
+        <% }} %>
+    </li>
+    <% }else { %>
+    <li><%= product.title %>, Βάρος: <%= product.weight %> κιλά
+        Κατάστημα: <%= product.shopSelected.title%>
+        <% for (let pr of product.price2) {%>
+        <% if (pr.shop.toString() == product.shopSelected._id.toString()){ %>
+        , Τιμή κιλού: <%= pr.price %>
+        , Συνολική Τιμή Προϊόντος: <%= (parseFloat(pr.price)*parseFloat(product.weight)).toFixed(2) %>
+        <% sum = parseFloat(sum) + (parseFloat(pr.price)*parseFloat(product.weight)).toFixed(2) %>
+        <% }} %>
+    </li>
+    <% }} %>
+</ul>
+
+Συνολική Τιμή Λίστας: <%= sum %>

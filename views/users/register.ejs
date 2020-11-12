@@ -1,0 +1,41 @@
+<% layout('layouts/boilerplate') %>
+<h1>Κάντε Εγγραφή</h1>
+<form action="/register" method="POST" class="validated-form" novalidate>
+    <div class="mb-3">
+        <label class="form-label" for="username">Όνομα Χρήστη</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+        <div class="valid-feedback">
+            Όλα καλά!
+        </div>
+        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+            Παρακαλώ εισάγετε Όνομα Χρήστη.
+        </div>
+
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+        <div class="valid-feedback">
+            Όλα καλά!
+        </div>
+        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+            Παρακαλώ εισάγετε Email.
+        </div>
+
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="password">Κωδικός</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+        <div class="valid-feedback">
+            Όλα καλά!
+        </div>
+        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+            Παρακαλώ εισάγετε Κωδικό.
+        </div>
+
+    </div>
+    <button class="btn btn-success btn-lg">Εγγραφή</button>
+
+</form>

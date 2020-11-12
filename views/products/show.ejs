@@ -1,0 +1,116 @@
+<% layout('layouts/boilerplate.ejs') %>
+<link rel="stylesheet" href="/stylesheets/stars.css">
+
+<h1>Λεπτομέρειες Προϊόντος</h1>
+
+
+
+
+<div class="card mb-8" style="width: auto; height: auto;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="<%= tempPath %>" style="height: auto; width: auto; max-width: 430px; max-height: 430px;"=>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h2 class="card-title"><%= product.title %></h2>
+                <br>
+                <form action="/list" method="POST" class="validated-form" novalidate>
+                    <h3>Επιλέξτε Κατάστημα:</h3>
+                    <select class="form-select" name="shopSelect" multiple aria-label="multiple select example"
+                        required>
+                        <h4><% for (let sp of product.price2){ %></h4>
+                        <option value="<%= sp.shop._id%>"> <%= sp.shop.title%>: <%= sp.price%>&euro;</option>
+                        <% } %>
+
+                    </select>
+                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                        Παρακαλώ επιλέξτε κατάστημα.
+                    </div>
+
+                    <div class="input-group def-number-input number-input mt-5">
+
+                        <% if (product.countedWithQuantity) {%>
+                        <label class="form-label" for="qty"><b>Επιλέξτε τεμάχια: </b></label>
+                        <input type="number" id="qty" class="form-control mx-2" name="quantity" value=1 min="1"
+                            required>
+                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                            Παρακαλώ επιλέξτε τεμάχια (μόνο θετικές τιμές).
+                        </div>
+                        <% }else { %>
+                        <label class="form-label" for="kg">Επιλέξτε κιλά: </label>
+                        <input type="number" id="kg" class="form-control mx-2" name="weight" value=0.1 min="0.1"
+                            step="0.1" required>
+                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                            Παρακαλώ επιλέξτε κιλά (μόνο θετικές τιμές).
+                        </div>
+                        <% } %>
+
+                    </div>
+                    <div class="mt-3">
+                        <button class="btn btn-primary mt-3 btn-lg">Προσθήκη στη Λίστα</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="col-8 mt-5">
+    <hr>
+    <% if (currentUser) { %>
+    <h2>Κάντε μια Αξιολόγηση για το Προϊόν:</h2>
+
+    <form action="/products/<%=product._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
+        <div class="mb-3">
+            <fieldset class="starability-basic">
+                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked
+                    aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+        </div>
+</div>
+<div class="mb-3">
+    <label class="form-label" for="body">Κείμενο αξιολόγησης:</label>
+    <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3"></textarea>
+</div>
+<button class="btn btn-info mb-5">Υποβολή Αξιολόγησης</button>
+</form>
+<% } %>
+
+<hr>
+<h2>Αξιολογήσεις:</h2>
+<% for(let review of product.reviews) { %> <div class="card mb-3 ">
+    <div class="card-body">
+        <p class="starability-result" data-rating="<%= review.rating %>">
+            Βαθμολογία: <%= review.rating %> stars
+        </p>
+        <h6 class="card-subtitle mb-2 text-muted">Από: <%= review.author.username %> </h6>
+        <p class="card-text"><%= review.body %></p>
+        <% if (currentUser && currentUser.equals(review.author)) { %>
+        <form action="/products/<%=product._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-sm btn-danger">Διαγραφή Αξιολόγησης</button>
+        </form>
+        <% } %>
+    </div>
+</div>
+<% } %>
+</div>
+
+
+
+
+<footer class="mt-3">
+    <a href="/products">Όλα τα Προϊόντα</a>
+</footer>
