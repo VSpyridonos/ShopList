@@ -111,15 +111,17 @@ module.exports.addProductToList = async (req, res) => {
 
     shopSelected = await Shop.findOne({ _id: req.body.shopSelect })
     await Product.findByIdAndUpdate(currentProduct._id, { shopSelected: shopSelected });
-    // await Product.findByIdAndUpdate(currentProduct._id, { shopSelected: req.body.shopSelect }).populate({
-    //     path: 'shopSelected',
-    //     populate: 'Shop'
-    // }).populate('Shop');
+
+    /*
     console.log("AUTO EINAI TO PROION POU VAZW STI LISTA ", currentProduct._id)
     console.log('AUTO EINAI ENA PROION TIS LISTAS', list.products)
     console.log('APOTELESMA', list.products.includes(currentProduct._id))
     console.log('AUTO EINAI TO SHOP', list.products)
     //await list.products.unshift(currentProduct);
+
+    */
+
+
     await list.save();
 
     //console.log('AUTO EINAI TO', req.body.quantity);
