@@ -11,29 +11,30 @@
                     <a class="nav-link active" aria-current="page" href="/">Αρχική</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/products">Προϊόντα</a>
+                    <a class="nav-link active" href="/products">Προϊόντα</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/categories">Κατηγορίες</a>
+                    <a class="nav-link active" href="/categories">Κατηγορίες</a>
                 </li>
                 <li>
                     <form class="d-flex">
-                        <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <input class="form-control mr-2" type="search" placeholder="Αναζήτηση Προϊόντος"
+                            aria-label="Αναζήτηση">
+                        <button class="btn btn-outline-success" type="submit">Αναζήτηση</button>
                     </form>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <% if(!currentUser) {%>
                 <li>
-                    <a class="nav-link" href="/login">Σύνδεση</a>
+                    <a class="nav-link active" href="/login">Σύνδεση</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="/register">Εγγραφή</a>
+                    <a class="nav-link active" href="/register">Εγγραφή</a>
                 </li>
                 <% } else { %>
                 <li>
-                    <a class="nav-link" href="/logout">Αποσύνδεση</a>
+                    <a class="nav-link active" href="/logout">Αποσύνδεση</a>
                 </li>
                 <% } %>
                 <li>

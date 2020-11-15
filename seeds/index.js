@@ -52,7 +52,7 @@ const seedDB = async () => {
         subcategories: ['Φρούτα', 'Λαχανικά']
     })
     const s1 = new Shop({
-        title: "Μασούτης Σεισμόπληκτα",
+        title: "Μασούτης",
         organization: "Μασούτης",
         address: "Ράντομ οδός 23",
         latitude: 124,
@@ -60,7 +60,7 @@ const seedDB = async () => {
 
     })
     const s2 = new Shop({
-        title: "My market Πλατανάκια",
+        title: "My market",
         organization: "My market",
         address: "Ράντομ οδός 29",
         latitude: 129,
