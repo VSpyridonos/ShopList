@@ -17,6 +17,7 @@
     "ejs-mate": "^3.0.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "locus": "^2.0.4",
     "method-override": "^3.0.0",
     "mongoose": "^5.10.11",
     "morgan": "^1.10.0",

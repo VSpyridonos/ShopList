@@ -33,5 +33,9 @@ router.get('/:id/edit', isLoggedIn, catchAsync(products.renderEditForm));
 
 router.post('/list', catchAsync(products.addProductToList))
 
+router.get('/search', (req, res) => {
+    console.log(req.query);
+})
+
 
 module.exports = router;
