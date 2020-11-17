@@ -5,6 +5,9 @@ const Category = require('../models/category');
 const Price = require('../models/price');
 const List = require('../models/list');
 const User = require('../models/user');
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: 'pk.eyJ1IjoidnNweXIiLCJhIjoiY2toa3VvbmR3MXBrZTJzcXFzdTRobjh2eiJ9.NEuCHT7ZvhtJbjhDiLCbYg' });
 
 mongoose.connect('mongodb://localhost:27017/shopList', {
     useNewUrlParser: true,
@@ -32,7 +35,7 @@ const seedDB = async () => {
         category: ['Γαλακτοκομικά & Είδη Ψυγείου', 'Γάλατα'],
         countedWithQuantity: true,
         foundIn: ['Μασούτης', 'My market'],
-        image: '/home/user/Desktop/thesis/images/nounou.jpg'
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1605545290/ShopList/%CE%9D%CE%BF%CF%85%CE%BD%CE%BF%CF%8D_Family_%CE%93%CE%AC%CE%BB%CE%B1_3_6_1lt._hx8mfv.jpg'
 
     })
     const p2 = new Product({
@@ -41,7 +44,7 @@ const seedDB = async () => {
         category: ['Φρούτα & Λαχανικά', 'Φρούτα'],
         countedWithQuantity: false,
         foundIn: ['Μασούτης', 'My market'],
-        image: '/home/user/Desktop/thesis/images/mila.png'
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1605545316/ShopList/Zagorin_%CE%9C%CE%AE%CE%BB%CE%B1_%CE%96%CE%B1%CE%B3%CE%BF%CF%81%CE%AC%CF%82_%CE%A0%CE%B7%CE%BB%CE%AF%CE%BF%CF%85_%CE%A0%CE%9F%CE%A0_%CE%9A%CF%8C%CE%BA%CE%BA%CE%B9%CE%BD%CE%B1_cfwa3z.png'
     })
     const c1 = new Category({
         title: 'Γαλακτοκομικά & Είδη Ψυγείου',
@@ -51,22 +54,36 @@ const seedDB = async () => {
         title: 'Φρούτα & Λαχανικά',
         subcategories: ['Φρούτα', 'Λαχανικά']
     })
+
+    const geoData1 = await geocoder.reverseGeocode({
+        query: [20.843095, 39.644506],
+        limit: 1
+    })
+    const geoData2 = await geocoder.reverseGeocode({
+        query: [20.859119, 39.658021],
+        limit: 1
+    })
+
     const s1 = new Shop({
         title: "Μασούτης",
-        organization: "Μασούτης",
+        organization: null,
         address: "Ράντομ οδός 23",
         latitude: 124,
-        longitude: 125
+        longitude: 125,
+        geometry: { type: 'Point', coordinates: [20.843286, 39.644403] }
 
     })
     const s2 = new Shop({
         title: "My market",
-        organization: "My market",
+        organization: null,
         address: "Ράντομ οδός 29",
         latitude: 129,
-        longitude: 145
+        longitude: 145,
+        geometry: { type: 'Point', coordinates: [20.859119, 39.658021] }
 
     })
+
+
 
     const list = new List({})
 

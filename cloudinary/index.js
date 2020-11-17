@@ -10,7 +10,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary,
     params: {
-        folder: 'thesis',
+        folder: 'ShopList',
         allowedFormats: ['jpeg', 'jpg', 'png']
     }
 });

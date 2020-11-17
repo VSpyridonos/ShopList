@@ -9,7 +9,18 @@ const ShopSchema = new Schema({
     organization: String,
     address: String,
     latitude: Number,
-    longitude: Number
+    longitude: Number,
+    geometry: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    }
 
 });
 

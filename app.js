@@ -22,6 +22,7 @@ const userRoutes = require('./routes/users');
 const productRoutes = require('./routes/products');
 const reviewRoutes = require('./routes/reviews');
 const listRoutes = require('./routes/list');
+const shopRoutes = require('./routes/shops');
 
 
 
@@ -91,6 +92,7 @@ app.use('/', userRoutes);
 app.use('/products', productRoutes);
 app.use('/products/:id/reviews', reviewRoutes);
 app.use('/list', listRoutes);
+app.use('/shops', shopRoutes);
 
 app.get('/', (req, res) => {
     res.render('home');
