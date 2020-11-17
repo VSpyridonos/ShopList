@@ -3,6 +3,9 @@ const Price = require('../models/price');
 const Shop = require('../models/shop');
 const User = require('../models/user');
 const List = require('../models/list')
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
 module.exports.showList = async (req, res, next) => {
     const list = await List.findOne({ owner: req.user._id }).populate({
@@ -37,7 +40,6 @@ module.exports.showList = async (req, res, next) => {
     let myMarketTotal = 0;
 
     //console.log('%j', list)
-    //console.log(list.products[0].price2[0].shop)
 
 
     for (let product of list.products) {
@@ -66,13 +68,13 @@ module.exports.showList = async (req, res, next) => {
             }
         }
     }
-    //     //console.log(`MILA: varos: ${product.weight}, timi: ${product.weight * product.price2.find(x => x.shop)}`)
-    //     console.log(product.price2.shop)
-    // }
-    console.log("MASOUTIS SYNOLIKA: ", masoutisTotal);
-    console.log("MYMARKET SYNOLIKA: ", myMarketTotal);
 
-    res.render('list', { list, masoutisTotal, myMarketTotal });
+    const shops = await Shop.find()
+
+    // Pinakas pou tha vazw ola ta koina katastimata twn proiontwn tis listas
+    let commonShops = []
+
+    res.render('list', { list, masoutisTotal, myMarketTotal, shops });
 };
 
 module.exports.updateList = async (req, res, next) => {

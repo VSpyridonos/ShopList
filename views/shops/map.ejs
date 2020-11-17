@@ -11,13 +11,14 @@
 
 
 <div>
-    <%= typeof shops[0].geometry %>
+    <%= shops%>
 
 </div>
 
 <script>
     const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-    const allShops = '<%- JSON.stringify(shops[0]) %>'
+    const allShops = <%- JSON.stringify(shops) %>
+    const theList = <%- JSON.stringify(list) %>
 
 </script>
 
