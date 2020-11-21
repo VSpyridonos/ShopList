@@ -7,11 +7,22 @@
     <% for (let product of list.products) { %>
     <% if (product.countedWithQuantity){ %>
     <li><%= product.title %>, Ποσότητα: <%= product.quantity %> τεμάχια
+        <div class="btn-group">
+            <a class="btn btn-sm btn-success my-1" href='/list/increaseQuantity/<%=product._id %>'>+ 1</a>
+            <a class="btn btn-sm btn-danger my-1" href='/list/decreaseQuantity/<%=product._id %>'>- 1</a>
+        </div>
     </li>
+    
+    
     <% }else { %>
-    <li><%= product.title %>, Βάρος: <%= product.weight %> κιλά
-    </li>
-    <% }} %>
+        <li><%= product.title %>, Βάρος: <%= product.weight.toFixed(2) %> κιλά
+            <div class="btn-group">
+                <a class="btn btn-sm btn-success my-1" href='/list/increaseWeight/<%=product._id %>'>+ 0.1</a>
+                <a class="btn btn-sm btn-danger my-1" href='/list/decreaseWeight/<%=product._id %>'>- 0.1</a>
+            </div>
+        </li>
+        
+        <% }} %>
 </ul>
 
 <br>
@@ -36,8 +47,8 @@
     const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
     const allShops = <%- JSON.stringify(shops) %>
     const theList = <%- JSON.stringify(list) %>
-    const masoutisT = <%- JSON.stringify(masoutisTotal) %>
-    const myMarketT = <%- JSON.stringify(myMarketTotal) %>
+    const masoutisT = <%- JSON.stringify(masoutisTotal.toFixed(2)) %>
+    const myMarketT = <%- JSON.stringify(myMarketTotal.toFixed(2)) %>
     const masoutisHasAll = <%- JSON.stringify(masoutisHasAllProducts) %>
     const myMarketHasAll = <%- JSON.stringify(myMarketHasAllProducts) %>
 </script>

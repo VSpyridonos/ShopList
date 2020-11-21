@@ -106,6 +106,35 @@ module.exports.openUrl = (req, res) => {
     res.redirect(url);
 }
 
-module.exports.reduceQuantity = async (req, res, next) => {
+module.exports.increaseQuantity = async (req, res, next) => {
+    const product = await Product.findByIdAndUpdate(req.params.id, { $inc: { quantity: 1 } });
 
+    res.redirect('/list');
+}
+
+module.exports.increaseWeight = async (req, res, next) => {
+    const product = await Product.findByIdAndUpdate(req.params.id, { $inc: { weight: 0.1 } });
+
+    res.redirect('/list');
+}
+
+module.exports.decreaseQuantity = async (req, res, next) => {
+    const product = await Product.findById(req.params.id)
+    if (product.quantity >= 2) {
+        product.quantity--;
+        await product.save();
+    }
+    // const product = await Product.findByIdAndUpdate(id, { $inc: { quantity: -1 } });
+
+    res.redirect('/list');
+}
+
+module.exports.decreaseWeight = async (req, res, next) => {
+    const product = await Product.findById(req.params.id)
+    if (product.weight >= 0.2) {
+        product.weight -= 0.1;
+        await product.save();
+    }
+
+    res.redirect('/list');
 }

@@ -19,8 +19,14 @@ router.route('/')
     .get(isLoggedIn, catchAsync(list.showList))
     .post(isLoggedIn, catchAsync(products.addProductToList))
 
-router.get('/reduce/:id', catchAsync(list.reduceQuantity));
 
-router.get('/:url', list.openUrl);
+router.get('/increaseQuantity/:id', catchAsync(list.increaseQuantity));
+
+router.get('/increaseWeight/:id', catchAsync(list.increaseWeight));
+
+
+router.get('/decreaseQuantity/:id', catchAsync(list.decreaseQuantity));
+
+router.get('/decreaseWeight/:id', catchAsync(list.decreaseWeight));
 
 module.exports = router;

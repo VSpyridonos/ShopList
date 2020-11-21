@@ -34,7 +34,6 @@ const seedDB = async () => {
         price: ['Μασούτης: 1.56', 'My market: 1.02'],
         category: ['Γαλακτοκομικά & Είδη Ψυγείου', 'Γάλατα'],
         countedWithQuantity: true,
-        foundIn: ['Μασούτης', 'My market'],
         image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1605545290/ShopList/%CE%9D%CE%BF%CF%85%CE%BD%CE%BF%CF%8D_Family_%CE%93%CE%AC%CE%BB%CE%B1_3_6_1lt._hx8mfv.jpg'
 
     })
@@ -43,7 +42,6 @@ const seedDB = async () => {
         price: ['Μασούτης: 1.99', 'My market: 2.05'],
         category: ['Φρούτα & Λαχανικά', 'Φρούτα'],
         countedWithQuantity: false,
-        foundIn: ['Μασούτης', 'My market'],
         image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1605545316/ShopList/Zagorin_%CE%9C%CE%AE%CE%BB%CE%B1_%CE%96%CE%B1%CE%B3%CE%BF%CF%81%CE%AC%CF%82_%CE%A0%CE%B7%CE%BB%CE%AF%CE%BF%CF%85_%CE%A0%CE%9F%CE%A0_%CE%9A%CF%8C%CE%BA%CE%BA%CE%B9%CE%BD%CE%B1_cfwa3z.png'
     })
 
