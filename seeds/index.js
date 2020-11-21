@@ -46,6 +46,14 @@ const seedDB = async () => {
         foundIn: ['Μασούτης', 'My market'],
         image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1605545316/ShopList/Zagorin_%CE%9C%CE%AE%CE%BB%CE%B1_%CE%96%CE%B1%CE%B3%CE%BF%CF%81%CE%AC%CF%82_%CE%A0%CE%B7%CE%BB%CE%AF%CE%BF%CF%85_%CE%A0%CE%9F%CE%A0_%CE%9A%CF%8C%CE%BA%CE%BA%CE%B9%CE%BD%CE%B1_cfwa3z.png'
     })
+
+    const p3 = new Product({
+        title: 'Μπανάνες Dole Εισαγωγής Χύμα',
+        category: ['Φρούτα & Λαχανικά', 'Φρούτα'],
+        countedWithQuantity: false,
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1605973471/ShopList/%CE%9C%CF%80%CE%B1%CE%BD%CE%AC%CE%BD%CE%B5%CF%82_Dole_%CE%95%CE%B9%CF%83%CE%B1%CE%B3%CF%89%CE%B3%CE%AE%CF%82_%CE%A7%CF%8D%CE%BC%CE%B1_nltuo9.jpg'
+    })
+
     const c1 = new Category({
         title: 'Γαλακτοκομικά & Είδη Ψυγείου',
         subcategories: ['Γάλα', 'Τυρί', 'Αυγά']
@@ -66,20 +74,36 @@ const seedDB = async () => {
 
     const s1 = new Shop({
         title: "Μασούτης",
-        organization: null,
-        address: "Ράντομ οδός 23",
-        latitude: 124,
-        longitude: 125,
+        organization: "Μασούτης",
+        address: "Παναγιώτη Ασημακόπουλου 2, Κάτω Νεοχωρόπουλο 455 00",
+        site: "eshop.masoutis.gr/",
         geometry: { type: 'Point', coordinates: [20.843286, 39.644403] }
 
     })
     const s2 = new Shop({
         title: "My market",
-        organization: null,
-        address: "Ράντομ οδός 29",
-        latitude: 129,
-        longitude: 145,
+        organization: "My market",
+        address: "Λεωφόρος Αρχιεπισκόπου Μακαρίου &, Ikkou 45, Ioannina 452 21",
+        site: "eshop.mymarket.gr/",
         geometry: { type: 'Point', coordinates: [20.859119, 39.658021] }
+
+    })
+
+    const s3 = new Shop({
+        title: "Μασούτης",
+        organization: "Μασούτης",
+        address: "Λεωφ. Γεωρ. Παπανδρέου 26-28, Ιωάννινα 454 44",
+        site: "eshop.masoutis.gr/",
+        geometry: { type: 'Point', coordinates: [20.849560732880143, 39.67280342773821] }
+
+    })
+
+    const s4 = new Shop({
+        title: "My market",
+        organization: "My market",
+        address: "Ιωαννίνων 4, Ανατολή 452 21",
+        site: "eshop.mymarket.gr/",
+        geometry: { type: 'Point', coordinates: [20.863529489470906, 39.641368251044] }
 
     })
 
@@ -93,8 +117,11 @@ const seedDB = async () => {
     await c2.save();
     await s1.save();
     await s2.save();
+    await s3.save();
+    await s4.save();
     await list.save();
 
+    // Gala kai Mila
     const pr1 = new Price({
         price: 1.56,
         shop: s1._id,
@@ -119,16 +146,61 @@ const seedDB = async () => {
         date: 2020 - 04 - 04
     })
 
+    const pr5 = new Price({
+        price: 1.56,
+        shop: s3._id,
+        date: 2020 - 04 - 04
+    })
+
+    const pr6 = new Price({
+        price: 1.99,
+        shop: s3._id,
+        date: 2020 - 04 - 03
+    })
+
+    const pr7 = new Price({
+        price: 1.02,
+        shop: s4._id,
+        date: 2020 - 04 - 03
+    })
+
+    const pr8 = new Price({
+        price: 2.05,
+        shop: s4._id,
+        date: 2020 - 04 - 04
+    })
+
+    // Mpananes
+    const pr9 = new Price({
+        price: 1.59,
+        shop: s2._id,
+        date: 2020 - 04 - 04
+    })
+
+    const pr10 = new Price({
+        price: 1.59,
+        shop: s4._id,
+        date: 2020 - 04 - 04
+    })
+
     await pr1.save();
     await pr2.save();
     await pr3.save();
     await pr4.save();
+    await pr5.save();
+    await pr6.save();
+    await pr7.save();
+    await pr8.save();
+    await pr9.save();
+    await pr10.save();
 
-    p1.price2.push(pr1, pr2);
-    p2.price2.push(pr3, pr4);
+    p1.price2.push(pr1, pr2, pr5, pr7);
+    p2.price2.push(pr3, pr4, pr6, pr8);
+    p3.price2.push(pr9, pr10);
     await p1.save();
     await p2.save();
-    console.log(p1, p2)
+    await p3.save()
+    console.log(p1, p2, p3)
 
 
 

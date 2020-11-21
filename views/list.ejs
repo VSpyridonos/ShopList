@@ -1,52 +1,45 @@
 <% layout('layouts/boilerplate.ejs') %>
 
 <h1>Η Λίστα μου</h1>
-<p><%= list %></p>
+
 <ul>
     <% let sum = 0.0 %>
     <% for (let product of list.products) { %>
     <% if (product.countedWithQuantity){ %>
-    <li><%= product.title %>, Ποσότητα: <%= product.quantity %> τεμάχια,
-        Κατάστημα: <%= product.shopSelected.title %>
-        <% for (let pr of product.price2) {%>
-        <% if (pr.shop.toString() == product.shopSelected._id.toString()){ %>
-        , Τιμή τεμαχίου: <%= pr.price %>
-        , Συνολική Τιμή Προϊόντος: <%= parseFloat(pr.price)*parseFloat(product.quantity) %>
-        <% sum = parseFloat(sum) + parseFloat(pr.price)*parseFloat(product.quantity) %>
-        <% }} %>
+    <li><%= product.title %>, Ποσότητα: <%= product.quantity %> τεμάχια
     </li>
     <% }else { %>
     <li><%= product.title %>, Βάρος: <%= product.weight %> κιλά
-        Κατάστημα: <%= product.shopSelected.title%>
-        <% for (let pr of product.price2) {%>
-        <% if (pr.shop.toString() == product.shopSelected._id.toString()){ %>
-        , Τιμή κιλού: <%= pr.price %>
-        , Συνολική Τιμή Προϊόντος: <%= (parseFloat(pr.price)*parseFloat(product.weight)).toFixed(2) %>
-        <% sum = parseFloat(sum) + (parseFloat(pr.price)*parseFloat(product.weight)).toFixed(2) %>
-        <% }} %>
     </li>
     <% }} %>
 </ul>
 
 <br>
 <hr>
-Συνολική Τιμή Μασούτης: <%= masoutisTotal %>
+Συνολική Τιμή στα καταστήματα Μασούτης: <%= masoutisTotal.toFixed(2) %>
+<% if (!masoutisHasAllProducts) { %>
+<strong> (Το κατάστημα δε διαθέτει όλα τα προϊόντα της λίστας!)</strong>
+<% } %>
 <hr>
-Συνολική Τιμή My market: <%= myMarketTotal %>
+Συνολική Τιμή στα καταστήματα My market: <%= myMarketTotal.toFixed(2) %>
+<% if (!myMarketHasAllProducts) { %>
+<strong> (Το κατάστημα δε διαθέτει όλα τα προϊόντα της λίστας!)</strong>
+<% } %>
+<hr>
 
-<br><br><br>
-<div id='map' style='width: 400px; height: 300px;'></div>
+<br><br>
+<h2>Χάρτης καταστημάτων που διαθέτουν όλα τα προϊόντα της λίστας:</h2>
+<div id='map' class="my-3" style='width: 400px; height: 300px;'></div>
 
-
-<div>
-    <%= shops%>
-
-</div>
 
 <script>
     const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
     const allShops = <%- JSON.stringify(shops) %>
-
+    const theList = <%- JSON.stringify(list) %>
+    const masoutisT = <%- JSON.stringify(masoutisTotal) %>
+    const myMarketT = <%- JSON.stringify(myMarketTotal) %>
+    const masoutisHasAll = <%- JSON.stringify(masoutisHasAllProducts) %>
+    const myMarketHasAll = <%- JSON.stringify(myMarketHasAllProducts) %>
 </script>
 
 

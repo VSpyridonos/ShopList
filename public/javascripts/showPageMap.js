@@ -11,9 +11,28 @@ let map = new mapboxgl.Map({
 
 
 for (let shop of allShops) {
-    new mapboxgl.Marker()
-        .setLngLat(shop.geometry.coordinates)
-        //.setLngLat(allShops[0].geometry.coordinates[0], allShops[0].geometry.coordinates[1])
-        .addTo(map)
+    let total = 0;
+    let hasAll;
+    if (shop.organization === "Μασούτης") {
+        total = masoutisT;
+        hasAll = masoutisHasAll;
+    } else if (shop.organization === "My market") {
+        total = myMarketT;
+        hasAll = myMarketHasAll;
+    }
+
+    if (hasAll) {
+        new mapboxgl.Marker()
+            .setLngLat(shop.geometry.coordinates)
+            .setPopup(
+                new mapboxgl.Popup({ offset: 25 })
+                    .setHTML(
+                        `<h3><a href="${shop.site}"><strong>${shop.title}</strong></a></h3>
+                     <h6>${shop.address}</h6>
+                     <h3><strong>${total}&euro;</strong></h3>`
+                    )
+            )
+            .addTo(map)
+    }
 
 }

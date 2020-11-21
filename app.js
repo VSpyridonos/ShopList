@@ -122,6 +122,14 @@ app.get('/home/user/Desktop/thesis/images/:name', function (req, res) {
     tempPath = "";
 })
 
+app.get('/eshop.masoutis.gr/', function (req, res) {
+    res.redirect('https://eshop.masoutis.gr/')
+})
+
+app.get('/eshop.mymarket.gr/', function (req, res) {
+    res.redirect('https://eshop.mymarket.gr/')
+})
+
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('Η σελίδα δε βρέθηκε!', 404))

@@ -6,8 +6,9 @@
     <div class="card" mb-3>
         <div class="row">
             <div class="col-md-2">
-                <img class="img-fluid" width=auto height=auto
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_Cat_Face_Shot.jpg/220px-Domestic_Cat_Face_Shot.jpg">
+                <% if (product.image) { %>
+                <img class="img-fluid" width=auto height=auto src="<%= product.image %> ">
+                <% } %>
             </div>
             <div class="col-md-8">
                 <div class="card-body">

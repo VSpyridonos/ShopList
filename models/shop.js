@@ -8,8 +8,7 @@ const ShopSchema = new Schema({
     title: String,
     organization: String,
     address: String,
-    latitude: Number,
-    longitude: Number,
+    site: String,
     geometry: {
         type: {
             type: String,

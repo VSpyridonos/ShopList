@@ -16,17 +16,12 @@
                 <h2 class="card-title"><%= product.title %></h2>
                 <br>
                 <form action="/list" method="POST" class="validated-form" novalidate>
-                    <h3>Επιλέξτε Κατάστημα:</h3>
-                    <select class="form-select" name="shopSelect" multiple aria-label="multiple select example"
-                        required>
-                        <h4><% for (let sp of product.price2){ %></h4>
-                        <option value="<%= sp.shop._id%>"> <%= sp.shop.title%>: <%= sp.price%>&euro;</option>
+                    <h3>Διαθέσιμο στα εξής καταστήματα:</h3>
+                    <ul class="list-group">
+                        <% for (let sp of product.price2){ %>
+                        <li class="list-group-item list-group-item-dark"><%= sp.shop.title%>: <%= sp.price%>&euro;</li>
                         <% } %>
-
-                    </select>
-                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                        Παρακαλώ επιλέξτε κατάστημα.
-                    </div>
+                    </ul>
 
                     <div class="input-group def-number-input number-input mt-5">
 

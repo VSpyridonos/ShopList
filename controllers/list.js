@@ -41,6 +41,11 @@ module.exports.showList = async (req, res, next) => {
 
     //console.log('%j', list)
 
+    let masoutisCounter = 0;
+    let myMarketCounter = 0;
+
+    let masoutisHasAllProducts = true;
+    let myMarketHasAllProducts = true;
 
     for (let product of list.products) {
         for (let price of product.price2) {
@@ -51,9 +56,11 @@ module.exports.showList = async (req, res, next) => {
                 if (String(price.shop) == String(masoutis._id)) {
 
                     masoutisTotal += price.price * product.quantity;
+                    masoutisCounter++;
                 } else if (String(price.shop) == String(myMarket._id)) {
 
                     myMarketTotal += price.price * product.quantity;
+                    myMarketCounter++;
                 }
 
             } else {
@@ -61,12 +68,26 @@ module.exports.showList = async (req, res, next) => {
                 if (String(price.shop) == String(masoutis._id)) {
 
                     masoutisTotal += price.price * product.weight;
+                    masoutisCounter++;
                 } else if (String(price.shop) == String(myMarket._id)) {
 
                     myMarketTotal += price.price * product.weight;
+                    myMarketCounter++;
                 }
             }
         }
+    }
+
+    if (masoutisCounter === list.products.length) {
+        masoutisHasAllProducts = true;
+    } else {
+        masoutisHasAllProducts = false;
+    }
+
+    if (myMarketCounter === list.products.length) {
+        myMarketHasAllProducts = true;
+    } else {
+        myMarketHasAllProducts = false;
     }
 
     const shops = await Shop.find()
@@ -74,9 +95,17 @@ module.exports.showList = async (req, res, next) => {
     // Pinakas pou tha vazw ola ta koina katastimata twn proiontwn tis listas
     let commonShops = []
 
-    res.render('list', { list, masoutisTotal, myMarketTotal, shops });
+    res.render('list', { list, masoutisTotal, myMarketTotal, masoutisHasAllProducts, myMarketHasAllProducts, shops });
 };
 
 module.exports.updateList = async (req, res, next) => {
     const x = 5;
+}
+
+module.exports.openUrl = (req, res) => {
+    res.redirect(url);
+}
+
+module.exports.reduceQuantity = async (req, res, next) => {
+
 }

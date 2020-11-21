@@ -19,4 +19,8 @@ router.route('/')
     .get(isLoggedIn, catchAsync(list.showList))
     .post(isLoggedIn, catchAsync(products.addProductToList))
 
+router.get('/reduce/:id', catchAsync(list.reduceQuantity));
+
+router.get('/:url', list.openUrl);
+
 module.exports = router;
