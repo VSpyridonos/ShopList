@@ -22,11 +22,16 @@ router.route('/')
 
 router.get('/increaseQuantity/:id', catchAsync(list.increaseQuantity));
 
-router.get('/increaseWeight/:id', catchAsync(list.increaseWeight));
+router.get('/increaseWeightByALittle/:id', catchAsync(list.increaseWeightByALittle));
 
+router.get('/increaseWeightByALot/:id', catchAsync(list.increaseWeightByALot));
 
 router.get('/decreaseQuantity/:id', catchAsync(list.decreaseQuantity));
 
-router.get('/decreaseWeight/:id', catchAsync(list.decreaseWeight));
+router.get('/decreaseWeightByALittle/:id', catchAsync(list.decreaseWeightByALittle));
+
+router.get('/decreaseWeightByALot/:id', catchAsync(list.decreaseWeightByALot));
+
+router.get('/removeProduct/:id', catchAsync(list.removeProduct));
 
 module.exports = router;

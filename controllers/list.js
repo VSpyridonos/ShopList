@@ -112,8 +112,14 @@ module.exports.increaseQuantity = async (req, res, next) => {
     res.redirect('/list');
 }
 
-module.exports.increaseWeight = async (req, res, next) => {
+module.exports.increaseWeightByALittle = async (req, res, next) => {
     const product = await Product.findByIdAndUpdate(req.params.id, { $inc: { weight: 0.1 } });
+
+    res.redirect('/list');
+}
+
+module.exports.increaseWeightByALot = async (req, res, next) => {
+    const product = await Product.findByIdAndUpdate(req.params.id, { $inc: { weight: 1.0 } });
 
     res.redirect('/list');
 }
@@ -129,12 +135,35 @@ module.exports.decreaseQuantity = async (req, res, next) => {
     res.redirect('/list');
 }
 
-module.exports.decreaseWeight = async (req, res, next) => {
+module.exports.decreaseWeightByALittle = async (req, res, next) => {
     const product = await Product.findById(req.params.id)
     if (product.weight >= 0.2) {
         product.weight -= 0.1;
         await product.save();
     }
+
+    res.redirect('/list');
+}
+
+module.exports.decreaseWeightByALot = async (req, res, next) => {
+    const product = await Product.findById(req.params.id)
+    if (product.weight >= 1.0) {
+        product.weight -= 1.0;
+        await product.save();
+    }
+
+    res.redirect('/list');
+}
+
+module.exports.removeProduct = async (req, res, next) => {
+    //const product = await Product.findById(req.params.id);
+    const { id } = req.params;
+    const list = await List.findOne({ owner: req.user._id });
+    list.products.pull({ _id: id });
+
+    await list.save();
+    console.log(list);
+
 
     res.redirect('/list');
 }

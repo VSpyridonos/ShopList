@@ -2,27 +2,69 @@
 
 <h1>Η Λίστα μου</h1>
 
+<br>
+<% if(list.products.length === 0) {%>
+<strong><i>Η Λίστα σας είναι κενή!</i></strong>
+<% } %>
+
 <ul>
     <% let sum = 0.0 %>
     <% for (let product of list.products) { %>
     <% if (product.countedWithQuantity){ %>
-    <li><%= product.title %>, Ποσότητα: <%= product.quantity %> τεμάχια
-        <div class="btn-group">
-            <a class="btn btn-sm btn-success my-1" href='/list/increaseQuantity/<%=product._id %>'>+ 1</a>
-            <a class="btn btn-sm btn-danger my-1" href='/list/decreaseQuantity/<%=product._id %>'>- 1</a>
-        </div>
-    </li>
-    
-    
-    <% }else { %>
-        <li><%= product.title %>, Βάρος: <%= product.weight.toFixed(2) %> κιλά
-            <div class="btn-group">
-                <a class="btn btn-sm btn-success my-1" href='/list/increaseWeight/<%=product._id %>'>+ 0.1</a>
-                <a class="btn btn-sm btn-danger my-1" href='/list/decreaseWeight/<%=product._id %>'>- 0.1</a>
+    <div class="card">
+        <li>
+            <div class="card-body">
+                <% if (product.image) { %>
+                <img class="img-fluid" style="max-width: 80px; max-height: 80px;"
+                    src="<%= product.image %> ">
+                <% } %>
+                <%= product.title %>, Ποσότητα: <%= product.quantity %> τεμάχια
+                <div class="btn-group">
+
+                    <a class="btn btn-sm btn-success my-1" href='/list/increaseQuantity/<%=product._id %>'
+                        role="button">+
+                        1</a>
+                    <a class="btn btn-sm btn-danger my-1 role=" button""
+                        href='/list/decreaseQuantity/<%=product._id %>'>-
+                        1</a>
+                    <a class="btn btn-warning my-1 mx-3" href='/list/removeProduct/<%=product._id %>'
+                        role="button">Διαγραφή</a>
+                </div>
             </div>
         </li>
-        
-        <% }} %>
+    </div>
+
+
+
+
+    <% }else { %>
+
+    <div class="card">
+        <li>
+            <div class="card-body">
+                <% if (product.image) { %>
+                <img class="img-fluid" style="max-width: 80px; max-height: 80px;"
+                    src="<%= product.image %> ">
+                <% } %>
+                <%= product.title %>, Βάρος: <%= product.weight.toFixed(2) %> κιλά
+                <div class="btn-group">
+                    <a class="btn btn-sm btn-success my-1" href='/list/increaseWeightByALot/<%=product._id %>'
+                        role="button">+ 1.0</a>
+                    <a class="btn btn-sm btn-success my-1" href='/list/increaseWeightByALittle/<%=product._id %>'
+                        role="button">+ 0.1</a>
+                    <a class="btn btn-sm btn-danger my-1" href='/list/decreaseWeightByALittle/<%=product._id %>'
+                        role="button">- 0.1</a>
+                    <a class="btn btn-sm btn-danger my-1" href='/list/decreaseWeightByALot/<%=product._id %>'
+                        role="button">- 1.0</a>
+                    <a class="btn btn-warning my-1 mx-3" href='/list/removeProduct/<%=product._id %>'
+                        role="button">Διαγραφή</a>
+                </div>
+        </li>
+    </div>
+
+
+
+    <% }} %>
 </ul>
 
 <br>
