@@ -6,7 +6,7 @@ const List = require('../models/list')
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
-import { Loader } from "@googlemaps/js-api-loader"
+const googleMapsKey = process.env.GOOGLE_MAPS_API_KEY;
 
 module.exports.showList = async (req, res, next) => {
     const list = await List.findOne({ owner: req.user._id }).populate({
@@ -96,7 +96,7 @@ module.exports.showList = async (req, res, next) => {
     // Pinakas pou tha vazw ola ta koina katastimata twn proiontwn tis listas
     let commonShops = []
 
-    res.render('list', { list, masoutisTotal, myMarketTotal, masoutisHasAllProducts, myMarketHasAllProducts, shops });
+    res.render('list', { list, masoutisTotal, myMarketTotal, masoutisHasAllProducts, myMarketHasAllProducts, shops, googleMapsKey });
 };
 
 module.exports.updateList = async (req, res, next) => {

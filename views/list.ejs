@@ -1,5 +1,9 @@
 <% layout('layouts/boilerplate.ejs') %>
 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=googleMapsKey%>&callback=initMap&libraries=&v=weekly"
+    defer></script>
+
 <h1>Η Λίστα μου</h1>
 
 <br>
@@ -15,8 +19,7 @@
         <li>
             <div class="card-body">
                 <% if (product.image) { %>
-                <img class="img-fluid" style="max-width: 80px; max-height: 80px;"
-                    src="<%= product.image %> ">
+                <img class="img-fluid" style="max-width: 80px; max-height: 80px;" src="<%= product.image %> ">
                 <% } %>
                 <%= product.title %>, Ποσότητα: <%= product.quantity %> τεμάχια
                 <div class="btn-group">
@@ -43,8 +46,7 @@
         <li>
             <div class="card-body">
                 <% if (product.image) { %>
-                <img class="img-fluid" style="max-width: 80px; max-height: 80px;"
-                    src="<%= product.image %> ">
+                <img class="img-fluid" style="max-width: 80px; max-height: 80px;" src="<%= product.image %> ">
                 <% } %>
                 <%= product.title %>, Βάρος: <%= product.weight.toFixed(2) %> κιλά
                 <div class="btn-group">
@@ -85,8 +87,27 @@
 <div id='map' class="my-3" style='width: 400px; height: 300px;'></div>
 
 
+
+<!-- <script>
+    function myMap() {
+        var mapProp = {
+            center: new google.maps.LatLng(51.508742, -0.120850),
+            zoom: 5,
+        };
+        var map = new google.maps.Map(document.getElementById("map"), mapProp);
+    }
+</script> -->
+
+
+
+
+
+
+
+
 <script>
     const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+    const gkey = <%- JSON.stringify(googleMapsKey) %>
     const allShops = <%- JSON.stringify(shops) %>
     const theList = <%- JSON.stringify(list) %>
     const masoutisT = <%- JSON.stringify(masoutisTotal.toFixed(2)) %>
@@ -94,6 +115,23 @@
     const masoutisHasAll = <%- JSON.stringify(masoutisHasAllProducts) %>
     const myMarketHasAll = <%- JSON.stringify(myMarketHasAllProducts) %>
 </script>
+
+
+
+
+<!-- <script>
+        function initMap() {
+            const myLatLng = { lat: 39.6655, lng: 20.8559 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 8,
+                center: { myLatLng },
+            });
+
+        }
+</script> -->
+
+
+
 
 
 
