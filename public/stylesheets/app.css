@@ -1,5 +1,5 @@
 .nounderline {
-    text-decoration: none !important
+    text-decoration: none !important;
 }
 
 body {
@@ -23,10 +23,17 @@ body {
     bottom: 0;
     left: 0;
     z-index: 100; /* Behind the navbar */
-    padding: 48px 0 0; /* Height of navbar */
+    padding: 45px 0 0; /* Height of navbar */
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
   }
-  
+
+  .sidebar-heading {
+    font-size: 1.5rem;;
+  }
+
+  /*
+    IRRELEVANT APO DW KAI KATW 
+  */
   @media (max-width: 767.98px) {
     .sidebar {
       top: 5rem;
@@ -61,8 +68,5 @@ body {
     color: inherit;
   }
   
-  .sidebar-heading {
-    font-size: .75rem;
-    text-transform: uppercase;
-  }
+  
   

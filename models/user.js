@@ -9,7 +9,18 @@ const UserSchema = new Schema({
         required: true,
         unique: true
     },
-    list: Schema.Types.ObjectId
+    list: Schema.Types.ObjectId,
+    address: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    }
 });
 
 UserSchema.plugin(passportLocalMongoose);

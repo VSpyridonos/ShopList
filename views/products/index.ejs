@@ -19,7 +19,7 @@
                     <p class="card-text">
                         <small class="text-muted">Διαθέσιμο σε: </small>
                         <% for (let s of product.price2) { %>
-                        <small class="text-muted"> <%= s %>, </small>
+                        <small class="text-muted"> <%= s.organization %>, </small>
                         <% } %>
                     </p>
 
@@ -29,7 +29,7 @@
 
             </div>
             <div class="col-md-2 mt-4">
-                <a class="btn btn-primary btn-lg btn-block" href="products/<%= product._id%>">Δες Προϊόν</a>
+                <a class="btn btn-primary btn-lg btn-block" href="products/<%= product._id%>">Δείτε Προϊόν</a>
             </div>
 
         </div>

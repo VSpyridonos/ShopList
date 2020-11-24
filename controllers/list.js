@@ -6,6 +6,7 @@ const List = require('../models/list')
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
+import { Loader } from "@googlemaps/js-api-loader"
 
 module.exports.showList = async (req, res, next) => {
     const list = await List.findOne({ owner: req.user._id }).populate({

@@ -52,24 +52,9 @@ const seedDB = async () => {
         image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1605973471/ShopList/%CE%9C%CF%80%CE%B1%CE%BD%CE%AC%CE%BD%CE%B5%CF%82_Dole_%CE%95%CE%B9%CF%83%CE%B1%CE%B3%CF%89%CE%B3%CE%AE%CF%82_%CE%A7%CF%8D%CE%BC%CE%B1_nltuo9.jpg'
     })
 
-    const c1 = new Category({
-        title: 'Γαλακτοκομικά & Είδη Ψυγείου',
-        subcategories: ['Γάλα', 'Τυρί', 'Αυγά']
-    })
-    const c2 = new Category({
-        title: 'Φρούτα & Λαχανικά',
-        subcategories: ['Φρούτα', 'Λαχανικά']
-    })
 
-    const geoData1 = await geocoder.reverseGeocode({
-        query: [20.843095, 39.644506],
-        limit: 1
-    })
-    const geoData2 = await geocoder.reverseGeocode({
-        query: [20.859119, 39.658021],
-        limit: 1
-    })
 
+    // MASOUTIS
     const s1 = new Shop({
         title: "Μασούτης",
         organization: "Μασούτης",
@@ -78,14 +63,7 @@ const seedDB = async () => {
         geometry: { type: 'Point', coordinates: [20.843286, 39.644403] }
 
     })
-    const s2 = new Shop({
-        title: "My market",
-        organization: "My market",
-        address: "Λεωφόρος Αρχιεπισκόπου Μακαρίου &, Ikkou 45, Ioannina 452 21",
-        site: "eshop.mymarket.gr/",
-        geometry: { type: 'Point', coordinates: [20.859119, 39.658021] }
 
-    })
 
     const s3 = new Shop({
         title: "Μασούτης",
@@ -93,6 +71,81 @@ const seedDB = async () => {
         address: "Λεωφ. Γεωρ. Παπανδρέου 26-28, Ιωάννινα 454 44",
         site: "eshop.masoutis.gr/",
         geometry: { type: 'Point', coordinates: [20.849560732880143, 39.67280342773821] }
+
+    })
+
+    const s5 = new Shop({
+        title: "Μασούτης",
+        organization: "Μασούτης",
+        address: "Νικοπόλεως 95 - 97, Ιωάννινα 452 21",
+        site: "eshop.masoutis.gr/",
+        geometry: { type: 'Point', coordinates: [20.864957043995826, 39.64518525630644] }
+
+    })
+
+    const s6 = new Shop({
+        title: "Μασούτης",
+        organization: "Μασούτης",
+        address: "Νικοπόλεως 95 - 97, Ιωάννινα 452 21",
+        site: "eshop.masoutis.gr/",
+        geometry: { type: 'Point', coordinates: [20.864957043995826, 39.64518525630644] }
+
+    })
+
+    const s7 = new Shop({
+        title: "Μασούτης",
+        organization: "Μασούτης",
+        address: "Νικοπόλεως 95 - 97, Ιωάννινα 452 21",
+        site: "eshop.masoutis.gr/",
+        geometry: { type: 'Point', coordinates: [20.864957043995826, 39.64518525630644] }
+
+    })
+
+    const s8 = new Shop({
+        title: "Μασούτης",
+        organization: "Μασούτης",
+        address: "Μ. Αλεξανδρου & Κ. Παλαιολογου Ανατολη, Ioannina 452 22",
+        site: "eshop.masoutis.gr/",
+        geometry: { type: 'Point', coordinates: [20.860322180648616, 39.63434293334608] }
+
+    })
+
+    const s9 = new Shop({
+        title: "Μασούτης",
+        organization: "Μασούτης",
+        address: "Μαρίκας Κοτοπούλη 66 – 68, Ιωάννινα 454 45",
+        site: "eshop.masoutis.gr/",
+        geometry: { type: 'Point', coordinates: [20.838053676777147, 39.67932595765891] }
+
+    })
+
+    const s10 = new Shop({
+        title: "Μασούτης",
+        organization: "Μασούτης",
+        address: "Ρήγα Φεραίου 2, Ιωάννινα 455 00",
+        site: "eshop.masoutis.gr/",
+        geometry: { type: 'Point', coordinates: [20.823400238154644, 39.682826414786476] }
+
+    })
+
+    const s11 = new Shop({
+        title: "Μασούτης",
+        organization: "Μασούτης",
+        address: "Ε.Ο. Άρτας Ιωαννίνων 68, Ιωάννινα 452 21",
+        site: "eshop.masoutis.gr/",
+        geometry: { type: 'Point', coordinates: [20.858090576586346, 39.63070466029011] }
+
+    })
+
+
+
+    // MY MARKET
+    const s2 = new Shop({
+        title: "My market",
+        organization: "My market",
+        address: "Λεωφόρος Αρχιεπισκόπου Μακαρίου &, Ikkou 45, Ioannina 452 21",
+        site: "eshop.mymarket.gr/",
+        geometry: { type: 'Point', coordinates: [20.859119, 39.658021] }
 
     })
 
@@ -105,18 +158,43 @@ const seedDB = async () => {
 
     })
 
+    const s12 = new Shop({
+        title: "My market",
+        organization: "My market",
+        address: "2ο χλμ. Ιωαννίνων-Άρτας, Ioannina 454 45",
+        site: "eshop.mymarket.gr/",
+        geometry: { type: 'Point', coordinates: [20.850537469821724, 39.644780825602254] }
+
+    })
+
+    const s13 = new Shop({
+        title: "My market",
+        organization: "My market",
+        address: "Εθνική Οδός Ηγουμενίτσας - Ιωαννίνων - Νέα Ζωή, Ιωάννινα, Νέα Ζωή 455 00",
+        site: "eshop.mymarket.gr/",
+        geometry: { type: 'Point', coordinates: [20.820136838154642, 39.68520296477326] }
+
+    })
+
 
 
     const list = new List({})
 
     await p1.save();
     await p2.save();
-    await c1.save();
-    await c2.save();
     await s1.save();
     await s2.save();
     await s3.save();
     await s4.save();
+    await s5.save();
+    await s6.save();
+    await s7.save();
+    await s8.save();
+    await s9.save();
+    await s10.save();
+    await s11.save();
+    await s12.save();
+    await s13.save();
     await list.save();
 
     // Gala kai Mila
@@ -144,29 +222,29 @@ const seedDB = async () => {
         date: 2020 - 04 - 04
     })
 
-    const pr5 = new Price({
-        price: 1.56,
-        shop: s3._id,
-        date: 2020 - 04 - 04
-    })
+    // const pr5 = new Price({
+    //     price: 1.56,
+    //     shop: s3._id,
+    //     date: 2020 - 04 - 04
+    // })
 
-    const pr6 = new Price({
-        price: 1.99,
-        shop: s3._id,
-        date: 2020 - 04 - 03
-    })
+    // const pr6 = new Price({
+    //     price: 1.99,
+    //     shop: s3._id,
+    //     date: 2020 - 04 - 03
+    // })
 
-    const pr7 = new Price({
-        price: 1.02,
-        shop: s4._id,
-        date: 2020 - 04 - 03
-    })
+    // const pr7 = new Price({
+    //     price: 1.02,
+    //     shop: s4._id,
+    //     date: 2020 - 04 - 03
+    // })
 
-    const pr8 = new Price({
-        price: 2.05,
-        shop: s4._id,
-        date: 2020 - 04 - 04
-    })
+    // const pr8 = new Price({
+    //     price: 2.05,
+    //     shop: s4._id,
+    //     date: 2020 - 04 - 04
+    // })
 
     // Mpananes
     const pr9 = new Price({
@@ -175,30 +253,33 @@ const seedDB = async () => {
         date: 2020 - 04 - 04
     })
 
-    const pr10 = new Price({
-        price: 1.59,
-        shop: s4._id,
-        date: 2020 - 04 - 04
-    })
+    // const pr10 = new Price({
+    //     price: 1.59,
+    //     shop: s4._id,
+    //     date: 2020 - 04 - 04
+    // })
 
     await pr1.save();
     await pr2.save();
     await pr3.save();
     await pr4.save();
-    await pr5.save();
-    await pr6.save();
-    await pr7.save();
-    await pr8.save();
+    // await pr5.save();
+    // await pr6.save();
+    // await pr7.save();
+    // await pr8.save();
     await pr9.save();
-    await pr10.save();
+    //await pr10.save();
 
-    p1.price2.push(pr1, pr2, pr5, pr7);
-    p2.price2.push(pr3, pr4, pr6, pr8);
-    p3.price2.push(pr9, pr10);
+    p1.price2.push(pr1, pr2);
+    p2.price2.push(pr3, pr4);
+    p3.price2.push(pr9);
     await p1.save();
     await p2.save();
-    await p3.save()
-    console.log(p1, p2, p3)
+    await p3.save();
+
+    const masoutisShops = await Shop.find({ organization: "Μασούτης" })
+
+    console.log(masoutisShops);
 
 
 
