@@ -12,6 +12,7 @@
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.11.1",
     "@mapbox/mapbox-sdk": "^0.11.0",
+    "axios": "^0.21.0",
     "cloudinary": "^1.23.0",
     "connect-flash": "^0.1.1",
     "dotenv": "^8.2.0",

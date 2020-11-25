@@ -60,7 +60,8 @@ const seedDB = async () => {
         organization: "Μασούτης",
         address: "Παναγιώτη Ασημακόπουλου 2, Κάτω Νεοχωρόπουλο 455 00",
         site: "eshop.masoutis.gr/",
-        geometry: { type: 'Point', coordinates: [20.843286, 39.644403] }
+        geometry: { type: 'Point', coordinates: [20.843286, 39.644403] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606328667/ShopList/masoutis_x825ww.png'
 
     })
 
@@ -70,7 +71,8 @@ const seedDB = async () => {
         organization: "Μασούτης",
         address: "Λεωφ. Γεωρ. Παπανδρέου 26-28, Ιωάννινα 454 44",
         site: "eshop.masoutis.gr/",
-        geometry: { type: 'Point', coordinates: [20.849560732880143, 39.67280342773821] }
+        geometry: { type: 'Point', coordinates: [20.849560732880143, 39.67280342773821] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606328667/ShopList/masoutis_x825ww.png'
 
     })
 
@@ -79,7 +81,8 @@ const seedDB = async () => {
         organization: "Μασούτης",
         address: "Νικοπόλεως 95 - 97, Ιωάννινα 452 21",
         site: "eshop.masoutis.gr/",
-        geometry: { type: 'Point', coordinates: [20.864957043995826, 39.64518525630644] }
+        geometry: { type: 'Point', coordinates: [20.864957043995826, 39.64518525630644] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606328667/ShopList/masoutis_x825ww.png'
 
     })
 
@@ -88,7 +91,8 @@ const seedDB = async () => {
         organization: "Μασούτης",
         address: "Νικοπόλεως 95 - 97, Ιωάννινα 452 21",
         site: "eshop.masoutis.gr/",
-        geometry: { type: 'Point', coordinates: [20.864957043995826, 39.64518525630644] }
+        geometry: { type: 'Point', coordinates: [20.864957043995826, 39.64518525630644] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606328667/ShopList/masoutis_x825ww.png'
 
     })
 
@@ -97,7 +101,8 @@ const seedDB = async () => {
         organization: "Μασούτης",
         address: "Νικοπόλεως 95 - 97, Ιωάννινα 452 21",
         site: "eshop.masoutis.gr/",
-        geometry: { type: 'Point', coordinates: [20.864957043995826, 39.64518525630644] }
+        geometry: { type: 'Point', coordinates: [20.864957043995826, 39.64518525630644] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606328667/ShopList/masoutis_x825ww.png'
 
     })
 
@@ -106,7 +111,8 @@ const seedDB = async () => {
         organization: "Μασούτης",
         address: "Μ. Αλεξανδρου & Κ. Παλαιολογου Ανατολη, Ioannina 452 22",
         site: "eshop.masoutis.gr/",
-        geometry: { type: 'Point', coordinates: [20.860322180648616, 39.63434293334608] }
+        geometry: { type: 'Point', coordinates: [20.860322180648616, 39.63434293334608] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606328667/ShopList/masoutis_x825ww.png'
 
     })
 
@@ -115,7 +121,8 @@ const seedDB = async () => {
         organization: "Μασούτης",
         address: "Μαρίκας Κοτοπούλη 66 – 68, Ιωάννινα 454 45",
         site: "eshop.masoutis.gr/",
-        geometry: { type: 'Point', coordinates: [20.838053676777147, 39.67932595765891] }
+        geometry: { type: 'Point', coordinates: [20.838053676777147, 39.67932595765891] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606328667/ShopList/masoutis_x825ww.png'
 
     })
 
@@ -124,7 +131,8 @@ const seedDB = async () => {
         organization: "Μασούτης",
         address: "Ρήγα Φεραίου 2, Ιωάννινα 455 00",
         site: "eshop.masoutis.gr/",
-        geometry: { type: 'Point', coordinates: [20.823400238154644, 39.682826414786476] }
+        geometry: { type: 'Point', coordinates: [20.823400238154644, 39.682826414786476] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606328667/ShopList/masoutis_x825ww.png'
 
     })
 
@@ -133,7 +141,8 @@ const seedDB = async () => {
         organization: "Μασούτης",
         address: "Ε.Ο. Άρτας Ιωαννίνων 68, Ιωάννινα 452 21",
         site: "eshop.masoutis.gr/",
-        geometry: { type: 'Point', coordinates: [20.858090576586346, 39.63070466029011] }
+        geometry: { type: 'Point', coordinates: [20.858090576586346, 39.63070466029011] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606328667/ShopList/masoutis_x825ww.png'
 
     })
 
@@ -145,7 +154,8 @@ const seedDB = async () => {
         organization: "My market",
         address: "Λεωφόρος Αρχιεπισκόπου Μακαρίου &, Ikkou 45, Ioannina 452 21",
         site: "eshop.mymarket.gr/",
-        geometry: { type: 'Point', coordinates: [20.859119, 39.658021] }
+        geometry: { type: 'Point', coordinates: [20.859119, 39.658021] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606330840/ShopList/myMarket_zgz0e0.jpg'
 
     })
 
@@ -154,7 +164,8 @@ const seedDB = async () => {
         organization: "My market",
         address: "Ιωαννίνων 4, Ανατολή 452 21",
         site: "eshop.mymarket.gr/",
-        geometry: { type: 'Point', coordinates: [20.863529489470906, 39.641368251044] }
+        geometry: { type: 'Point', coordinates: [20.863529489470906, 39.641368251044] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606330840/ShopList/myMarket_zgz0e0.jpg'
 
     })
 
@@ -163,7 +174,8 @@ const seedDB = async () => {
         organization: "My market",
         address: "2ο χλμ. Ιωαννίνων-Άρτας, Ioannina 454 45",
         site: "eshop.mymarket.gr/",
-        geometry: { type: 'Point', coordinates: [20.850537469821724, 39.644780825602254] }
+        geometry: { type: 'Point', coordinates: [20.850537469821724, 39.644780825602254] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606330840/ShopList/myMarket_zgz0e0.jpg'
 
     })
 
@@ -172,7 +184,8 @@ const seedDB = async () => {
         organization: "My market",
         address: "Εθνική Οδός Ηγουμενίτσας - Ιωαννίνων - Νέα Ζωή, Ιωάννινα, Νέα Ζωή 455 00",
         site: "eshop.mymarket.gr/",
-        geometry: { type: 'Point', coordinates: [20.820136838154642, 39.68520296477326] }
+        geometry: { type: 'Point', coordinates: [20.820136838154642, 39.68520296477326] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606330840/ShopList/myMarket_zgz0e0.jpg'
 
     })
 

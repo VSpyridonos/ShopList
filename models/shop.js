@@ -19,7 +19,8 @@ const ShopSchema = new Schema({
             type: [Number],
             required: true
         }
-    }
+    },
+    image: String
 
 });
 

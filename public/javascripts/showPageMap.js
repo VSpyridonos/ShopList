@@ -1,5 +1,7 @@
-mapboxgl.accessToken = mapToken;
-const googleMapsKey = process.env.GOOGLE_MAPS_API_KEY;
+//mapboxgl.accessToken = mapToken;
+//const googleMapsKey = process.env.GOOGLE_MAPS_API_KEY;
+//const axios = require('axios');
+//const User = require('../../models/user');
 
 
 
@@ -21,13 +23,15 @@ const googleMapsKey = process.env.GOOGLE_MAPS_API_KEY;
 //     });
 // });
 
-// let map;
-
+//let map;
+//let geocoder;
 function initMap() {
+    let geocoder = new google.maps.Geocoder();
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 39.6655, lng: 20.8559 },
-        zoom: 8,
+        zoom: 12,
     });
+    console.log(userAddress)
 
     for (let shop of allShops) {
         let total = 0;
@@ -43,18 +47,77 @@ function initMap() {
         if (hasAll) {
             var marker = new google.maps.Marker({
                 position: { lat: shop.geometry.coordinates[1], lng: shop.geometry.coordinates[0] },
-                title: `${shop.title} ${total}`,
+                title: `${shop.title} ${total}€`,
+                icon: shop.image
             });
             marker.setMap(map);
         }
+
+
     }
+    function codeAddress() {
+        geocoder.geocode({ address: userAddress }, function (results, status) {
+            if (status == 'OK') {
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location,
+                    title: userAddress,
+                    icon: 'http://maps.google.com/mapfiles/kml/pal3/icon48.png'
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+        console.log("TEST2")
+    }
+
+    codeAddress();
+    console.log("TEST3")
+
+    // console.log("TEST2")
+
+    // await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+    //     params: {
+    //         address: req.user.address,
+    //         key: gkey
+    //     }
+    // })
+    //     .then(function (response) {
+    //         console.log(response);
+
+    //         let lat = response.data.results[0].geometry.location.lat;
+    //         let lng = response.data.results[0].geometry.location.lng;
+
+    //         var marker = new google.maps.Marker({
+    //             position: { lat: response.data.results[0].geometry.location.lat, lng: response.data.results[0].geometry.location.lng },
+    //             title: `${req.user.address}`,
+    //         });
+    //         marker.setMap(map);
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     });
+    // console.log("TEST3")
 }
 
+// function codeAddress() {
+//     geocoder.geocode({ 'address': req.user.address }, function (results, status) {
+//         if (status == 'OK') {
+//             var marker = new google.maps.Marker({
+//                 map: map,
+//                 position: results[0].geometry.location
+//             });
+//         } else {
+//             alert('Geocode was not successful for the following reason: ' + status);
+//         }
+//     });
+// }
 
 
 
 
-initMap()
+initMap();
+//codeAddress();
 
 
 

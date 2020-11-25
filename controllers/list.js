@@ -94,9 +94,9 @@ module.exports.showList = async (req, res, next) => {
     const shops = await Shop.find()
 
     // Pinakas pou tha vazw ola ta koina katastimata twn proiontwn tis listas
-    let commonShops = []
+    let currentUserAddress = req.user.address;
 
-    res.render('list', { list, masoutisTotal, myMarketTotal, masoutisHasAllProducts, myMarketHasAllProducts, shops, googleMapsKey });
+    res.render('list', { list, masoutisTotal, myMarketTotal, masoutisHasAllProducts, myMarketHasAllProducts, shops, googleMapsKey, currentUserAddress });
 };
 
 module.exports.updateList = async (req, res, next) => {

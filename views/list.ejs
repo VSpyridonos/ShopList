@@ -11,6 +11,7 @@
 <strong><i>Η Λίστα σας είναι κενή!</i></strong>
 <% } %>
 
+
 <ul>
     <% let sum = 0.0 %>
     <% for (let product of list.products) { %>
@@ -105,15 +106,19 @@
 
 
 
+
+
 <script>
     const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-    const gkey = <%- JSON.stringify(googleMapsKey) %>
+    const gkey = '<%-process.env.GOOGLE_MAPS_API_KEY%>';
+    const userAddress = <%-JSON.stringify(currentUserAddress) %>
     const allShops = <%- JSON.stringify(shops) %>
     const theList = <%- JSON.stringify(list) %>
     const masoutisT = <%- JSON.stringify(masoutisTotal.toFixed(2)) %>
     const myMarketT = <%- JSON.stringify(myMarketTotal.toFixed(2)) %>
     const masoutisHasAll = <%- JSON.stringify(masoutisHasAllProducts) %>
     const myMarketHasAll = <%- JSON.stringify(myMarketHasAllProducts) %>
+    const geocoder = new google.maps.Geocoder();
 </script>
 
 
@@ -135,6 +140,7 @@
 
 
 
-
 <script src='/javascripts/showPageMap.js'>
+
 </script>
+
