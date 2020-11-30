@@ -25,13 +25,31 @@
 
 //let map;
 //let geocoder;
+
+// const matrixOptions = {
+//     origins: ["41.8848274,-87.6320859", "41.878729,-87.6301087", "41.8855277,-87.6440611"], // technician locations
+//     destinations: ["233 S Wacker Dr, Chicago, IL 60606"], // customer address
+//     travelMode: 'DRIVING',
+//     unitSystem: google.maps.UnitSystem.IMPERIAL
+// };
+
+
 function initMap() {
     let geocoder = new google.maps.Geocoder();
+    let matrixOptions = {
+        origins: [String], // technician locations
+        destinations: [String], // customer address
+        travelMode: 'DRIVING',
+        unitSystem: google.maps.UnitSystem.METRIC
+    };
+
+    dests = []
+    allMarkers = []
+
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 39.6655, lng: 20.8559 },
         zoom: 12,
     });
-    console.log(userAddress)
 
     for (let shop of allShops) {
         let total = 0;
@@ -42,19 +60,31 @@ function initMap() {
         } else if (shop.organization === "My market") {
             total = myMarketT;
             hasAll = myMarketHasAll;
+        } else if (shop.organization === "ΑΒ Βασιλόπουλος") {
+            total = vasilopoulosT;
+            hasAll = vasilopoulosHasAll;
         }
 
         if (hasAll) {
             var marker = new google.maps.Marker({
                 position: { lat: shop.geometry.coordinates[1], lng: shop.geometry.coordinates[0] },
-                title: `${shop.title} ${total}€`,
+                title: `${shop.title}\nΣύνολο: ${total}€`,
                 icon: shop.image
             });
+            allMarkers.push(marker);
             marker.setMap(map);
+
+            // Vale ta coords tou kathe shop sto dests
+            dests.push(`${shop.geometry.coordinates[1]},${shop.geometry.coordinates[0]}`)
+
         }
 
 
     }
+
+    // destinations = pinakas me ola ta destinations
+    matrixOptions.destinations = dests;
+
     function codeAddress() {
         geocoder.geocode({ address: userAddress }, function (results, status) {
             if (status == 'OK') {
@@ -64,17 +94,52 @@ function initMap() {
                     title: userAddress,
                     icon: 'http://maps.google.com/mapfiles/kml/pal3/icon48.png'
                 });
+
+
+                const service = new google.maps.DistanceMatrixService(); // instantiate Distance Matrix service
+                matrixOptions.origins = [String(userAddress)]
+
+                console.log(matrixOptions.origins[0])
+
+                // Call Distance Matrix service
+                service.getDistanceMatrix(matrixOptions, callback);
+
+                // Callback function used to process Distance Matrix response
+                function callback(response, status) {
+                    if (status !== "OK") {
+                        alert("Error with distance matrix");
+                        return;
+                    }
+                    console.log('response = ', response);
+                    let i = 0;
+                    for (let marker of allMarkers) {
+                        marker.setTitle(`
+                         ${marker.title}\nΑπόσταση:  ${response.rows[0].elements[i].distance.text}\nΧρόνος: ${response.rows[0].elements[i].duration.text}`);
+                        i++;
+                        console.log(`${response.rows[0].elements[i].distance.text}`)
+                    }
+                }
+
+
+
+
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
         });
+
+
         console.log("TEST2")
     }
 
     codeAddress();
     console.log("TEST3")
 
-    // console.log("TEST2")
+
+
+
+
+
 
     // await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
     //     params: {

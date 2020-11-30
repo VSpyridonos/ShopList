@@ -36,17 +36,21 @@ module.exports.showList = async (req, res, next) => {
 
     const masoutis = await Shop.findOne({ title: 'Μασούτης' });
     const myMarket = await Shop.findOne({ title: 'My market' });
+    const vasilopoulos = await Shop.findOne({ title: 'ΑΒ Βασιλόπουλος' });
 
     let masoutisTotal = 0;
     let myMarketTotal = 0;
+    let vasilopoulosTotal = 0;
 
     //console.log('%j', list)
 
     let masoutisCounter = 0;
     let myMarketCounter = 0;
+    let vasilopoulosCounter = 0;
 
     let masoutisHasAllProducts = true;
     let myMarketHasAllProducts = true;
+    let vasilopoulosHasAllProducts = true;
 
     for (let product of list.products) {
         for (let price of product.price2) {
@@ -58,10 +62,16 @@ module.exports.showList = async (req, res, next) => {
 
                     masoutisTotal += price.price * product.quantity;
                     masoutisCounter++;
+
                 } else if (String(price.shop) == String(myMarket._id)) {
 
                     myMarketTotal += price.price * product.quantity;
                     myMarketCounter++;
+
+                } else if (String(price.shop) == String(vasilopoulos._id)) {
+
+                    vasilopoulosTotal += price.price * product.quantity;
+                    vasilopoulosCounter++;
                 }
 
             } else {
@@ -70,10 +80,16 @@ module.exports.showList = async (req, res, next) => {
 
                     masoutisTotal += price.price * product.weight;
                     masoutisCounter++;
+
                 } else if (String(price.shop) == String(myMarket._id)) {
 
                     myMarketTotal += price.price * product.weight;
                     myMarketCounter++;
+
+                } else if (String(price.shop) == String(vasilopoulos._id)) {
+
+                    vasilopoulosTotal += price.price * product.weight;
+                    vasilopoulosCounter++;
                 }
             }
         }
@@ -91,12 +107,18 @@ module.exports.showList = async (req, res, next) => {
         myMarketHasAllProducts = false;
     }
 
+    if (vasilopoulosCounter === list.products.length) {
+        vasilopoulosHasAllProducts = true;
+    } else {
+        vasilopoulosHasAllProducts = false;
+    }
+
     const shops = await Shop.find()
 
     // Pinakas pou tha vazw ola ta koina katastimata twn proiontwn tis listas
     let currentUserAddress = req.user.address;
 
-    res.render('list', { list, masoutisTotal, myMarketTotal, masoutisHasAllProducts, myMarketHasAllProducts, shops, googleMapsKey, currentUserAddress });
+    res.render('list', { list, masoutisTotal, myMarketTotal, vasilopoulosTotal, masoutisHasAllProducts, myMarketHasAllProducts, vasilopoulosHasAllProducts, shops, googleMapsKey, currentUserAddress });
 };
 
 module.exports.updateList = async (req, res, next) => {

@@ -82,6 +82,11 @@
 <strong> (Το κατάστημα δε διαθέτει όλα τα προϊόντα της λίστας!)</strong>
 <% } %>
 <hr>
+Συνολική Τιμή στα καταστήματα ΑΒ Βασιλόπουλος: <%= vasilopoulosTotal.toFixed(2) %>
+<% if (!vasilopoulosHasAllProducts) { %>
+<strong> (Το κατάστημα δε διαθέτει όλα τα προϊόντα της λίστας!)</strong>
+<% } %>
+<hr>
 
 <br><br>
 <h2>Χάρτης καταστημάτων που διαθέτουν όλα τα προϊόντα της λίστας:</h2>
@@ -116,9 +121,12 @@
     const theList = <%- JSON.stringify(list) %>
     const masoutisT = <%- JSON.stringify(masoutisTotal.toFixed(2)) %>
     const myMarketT = <%- JSON.stringify(myMarketTotal.toFixed(2)) %>
+    const vasilopoulosT = <%- JSON.stringify(vasilopoulosTotal.toFixed(2)) %>
     const masoutisHasAll = <%- JSON.stringify(masoutisHasAllProducts) %>
     const myMarketHasAll = <%- JSON.stringify(myMarketHasAllProducts) %>
+    const vasilopoulosHasAll = <%- JSON.stringify(vasilopoulosHasAllProducts) %>
     const geocoder = new google.maps.Geocoder();
+    const service = new google.maps.DistanceMatrixService();
 </script>
 
 

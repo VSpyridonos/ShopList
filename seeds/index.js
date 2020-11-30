@@ -189,6 +189,17 @@ const seedDB = async () => {
 
     })
 
+    // ΑΒ Βασιλόπουλος
+    const s14 = new Shop({
+        title: "ΑΒ Βασιλόπουλος",
+        organization: "ΑΒ Βασιλόπουλος",
+        address: "Αγίας Μαρίνας 24, Ιωάννινα 452 21",
+        site: "https://www.ab.gr/",
+        geometry: { type: 'Point', coordinates: [20.854867550847167, 39.66358922960993] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606766504/ShopList/ABvasilopoulos_sdgzac.jpg'
+
+    })
+
 
 
     const list = new List({})
@@ -208,9 +219,10 @@ const seedDB = async () => {
     await s11.save();
     await s12.save();
     await s13.save();
+    await s14.save();
     await list.save();
 
-    // Gala kai Mila
+    // Γάλα
     const pr1 = new Price({
         price: 1.56,
         shop: s1._id,
@@ -223,6 +235,13 @@ const seedDB = async () => {
         date: 2020 - 04 - 03
     })
 
+    const pr5 = new Price({
+        price: 1.58,
+        shop: s14._id,
+        date: 2020 - 11 - 30
+    })
+
+    // Μήλα
     const pr3 = new Price({
         price: 1.99,
         shop: s1._id,
@@ -233,6 +252,12 @@ const seedDB = async () => {
         price: 2.05,
         shop: s2._id,
         date: 2020 - 04 - 04
+    })
+
+    const pr6 = new Price({
+        price: 2.01,
+        shop: s14._id,
+        date: 2020 - 11 - 30
     })
 
     // const pr5 = new Price({
@@ -266,6 +291,12 @@ const seedDB = async () => {
         date: 2020 - 04 - 04
     })
 
+    const pr10 = new Price({
+        price: 1.60,
+        shop: s14._id,
+        date: 2020 - 11 - 30
+    })
+
     // const pr10 = new Price({
     //     price: 1.59,
     //     shop: s4._id,
@@ -276,16 +307,16 @@ const seedDB = async () => {
     await pr2.save();
     await pr3.save();
     await pr4.save();
-    // await pr5.save();
-    // await pr6.save();
+    await pr5.save();
+    await pr6.save();
     // await pr7.save();
     // await pr8.save();
     await pr9.save();
-    //await pr10.save();
+    await pr10.save();
 
-    p1.price2.push(pr1, pr2);
-    p2.price2.push(pr3, pr4);
-    p3.price2.push(pr9);
+    p1.price2.push(pr1, pr2, pr5);
+    p2.price2.push(pr3, pr4, pr6);
+    p3.price2.push(pr9, pr10);
     await p1.save();
     await p2.save();
     await p3.save();
