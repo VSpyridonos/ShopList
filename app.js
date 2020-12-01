@@ -98,12 +98,6 @@ app.get('/', (req, res) => {
     res.render('home');
 })
 
-katigories = { 'Φρούτα & Λαχανικά': [String], 'Κρέας & Ψάρι': [String], 'Γαλακτοκομικά & Είδη Ψυγείου': [String], 'Είδη Κατάψυξης': [String], 'Είδη Οικιακής': [String], 'Είδη Παντοπωλείου': [String], 'Τρόφιμα': [String], 'Κάβα': [String], 'Κατοικίδια': [String], 'Υγιεινή': [String] }
-
-app.get('/categories', async (req, res) => {
-    const categories = await Category.find({});
-    res.render('categories', { katigories });
-})
 
 app.get('/categories/:cat', async (req, res) => {
     const products = await Product.find({ category: req.params.cat });
@@ -111,16 +105,6 @@ app.get('/categories/:cat', async (req, res) => {
     res.render('categories', { products, chosenCategory });
 })
 
-
-
-
-
-
-app.get('/home/user/Desktop/thesis/images/:name', function (req, res) {
-
-    res.sendFile(tempPath);
-    tempPath = "";
-})
 
 app.get('/eshop.masoutis.gr/', function (req, res) {
     res.redirect('https://eshop.masoutis.gr/')

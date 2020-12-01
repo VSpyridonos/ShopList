@@ -58,3 +58,16 @@ module.exports.logout = (req, res) => {
     req.flash('success', "Αντίο!");
     res.redirect('/');
 };
+
+module.exports.showAccount = (req, res) => {
+    let currentUser = req.user;
+    res.render('users/account', { currentUser });
+}
+
+module.exports.changeAddress = async (req, res, next) => {
+    let newAddress = req.body.address;
+    const theUser = await User.findByIdAndUpdate(req.user._id, { address: newAddress });
+    await theUser.save();
+    req.flash('success', "Η Διεύθυνσή σας άλλαξε με επιτυχία!");
+    res.redirect('/account')
+}

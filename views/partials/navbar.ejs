@@ -13,9 +13,6 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/products">Προϊόντα</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/categories">Κατηγορίες</a>
-                </li>
                 <li>
                     <form action="/products" class="d-flex" method="get">
                         <input class="form-control mr-2" type="text" placeholder="Αναζήτηση Προϊόντος" name="search"
@@ -33,6 +30,9 @@
                     <a class="nav-link active" href="/register">Εγγραφή</a>
                 </li>
                 <% } else { %>
+                <li>
+                    <a class="nav-link active" href="/account">Λογαριασμός</a>
+                </li>
                 <li>
                     <a class="nav-link active" href="/logout">Αποσύνδεση</a>
                 </li>

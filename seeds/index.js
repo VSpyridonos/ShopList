@@ -200,6 +200,46 @@ const seedDB = async () => {
 
     })
 
+    const s15 = new Shop({
+        title: "ΑΒ Βασιλόπουλος",
+        organization: "ΑΒ Βασιλόπουλος",
+        address: "Αρχιεπισκόπου Μακαρίου, Λεωφ. Γεωρ. Γεννηματά, Ιωάννινα 452 21",
+        site: "https://www.ab.gr/",
+        geometry: { type: 'Point', coordinates: [20.85907325379558, 39.66193478762813] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606766504/ShopList/ABvasilopoulos_sdgzac.jpg'
+
+    })
+
+    const s16 = new Shop({
+        title: "ΑΒ Βασιλόπουλος",
+        organization: "ΑΒ Βασιλόπουλος",
+        address: "Λεωφ. Γράμμου 28, Ιωάννινα 454 45",
+        site: "https://www.ab.gr/",
+        geometry: { type: 'Point', coordinates: [20.83467362965838, 39.684909155780616] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606766504/ShopList/ABvasilopoulos_sdgzac.jpg'
+
+    })
+
+    const s17 = new Shop({
+        title: "ΑΒ Βασιλόπουλος",
+        organization: "ΑΒ Βασιλόπουλος",
+        address: "Ιατροπούλου 5, Πλατεία Μετσόβου, Metsovo 442 00",
+        site: "https://www.ab.gr/",
+        geometry: { type: 'Point', coordinates: [21.186020130264872, 39.78322212408017] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606766504/ShopList/ABvasilopoulos_sdgzac.jpg'
+
+    })
+
+    const s18 = new Shop({
+        title: "ΑΒ Βασιλόπουλος",
+        organization: "ΑΒ Βασιλόπουλος",
+        address: "Αγίας Μαρίνας 24, Ιωάννινα 452 21",
+        site: "https://www.ab.gr/",
+        geometry: { type: 'Point', coordinates: [20.854867550847167, 39.66358922960993] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1606766504/ShopList/ABvasilopoulos_sdgzac.jpg'
+
+    })
+
 
 
     const list = new List({})
@@ -220,6 +260,10 @@ const seedDB = async () => {
     await s12.save();
     await s13.save();
     await s14.save();
+    await s15.save();
+    await s16.save();
+    await s17.save();
+    await s18.save();
     await list.save();
 
     // Γάλα

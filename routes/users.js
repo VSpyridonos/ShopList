@@ -14,6 +14,10 @@ router.route('/login')
     .get(users.renderLogin)
     .post(passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), users.login)
 
+router.route('/account')
+    .get(users.showAccount)
+    .post(users.changeAddress)
+
 router.get('/logout', users.logout);
 
 
