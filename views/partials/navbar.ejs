@@ -4,41 +4,41 @@
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/">ShopList</a>
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/"><i class="fa fa-shopping-cart"></i> ShopList</a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Αρχική</a>
+                    <a class="nav-link active" aria-current="page" href="/"><i class="fa fa-home"></i> Αρχική</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/products">Προϊόντα</a>
+                    <a class="nav-link active" href="/products"><i class="fa fa-shopping-basket"></i> Προϊόντα</a>
                 </li>
                 <li>
                     <form action="/products" class="d-flex" method="get">
                         <input class="form-control mr-2" type="text" placeholder="Αναζήτηση Προϊόντος" name="search"
                             aria-label="Αναζήτηση">
-                        <button class="btn btn-outline-success" type="submit">Αναζήτηση</button>
+                        <button class="btn btn-success" type="submit"><i class="fa fa-search">Αναζήτηση</i></button>
                     </form>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <% if(!currentUser) {%>
                 <li>
-                    <a class="nav-link active" href="/login">Σύνδεση</a>
+                    <a class="nav-link active" href="/login"><i class="fa fa-sign-in"></i> Σύνδεση</a>
                 </li>
                 <li>
-                    <a class="nav-link active" href="/register">Εγγραφή</a>
+                    <a class="nav-link active" href="/register"><i class="fa fa-pencil"></i> Εγγραφή</a>
                 </li>
                 <% } else { %>
                 <li>
-                    <a class="nav-link active" href="/account">Λογαριασμός</a>
+                    <a class="nav-link active" href="/account"><i class="fa fa-user"></i> Λογαριασμός</a>
                 </li>
                 <li>
-                    <a class="nav-link active" href="/logout">Αποσύνδεση</a>
+                    <a class="nav-link active" href="/logout"> <i class="fa fa-sign-out"></i> Αποσύνδεση</a>
                 </li>
                 <% } %>
                 <li>
-                    <a class="btn btn-warning" href="/list">Η Λίστα μου</a>
+                    <a class="btn btn-warning" href="/list"><i class="fa fa-list-alt"></i> Η Λίστα μου</a>
                 </li>
 
             </ul>
