@@ -69,8 +69,14 @@ function initMap() {
             var marker = new google.maps.Marker({
                 position: { lat: shop.geometry.coordinates[1], lng: shop.geometry.coordinates[0] },
                 title: `${shop.title}\nΣύνολο: ${total}€`,
-                icon: shop.image
+                icon: shop.image,
+                url: `${shop.site}`
             });
+
+            google.maps.event.addListener(marker, 'click', function () {
+                window.location.href = this.url;
+            });
+
             allMarkers.push(marker);
             marker.setMap(map);
 
@@ -114,7 +120,8 @@ function initMap() {
                     let i = 0;
                     for (let marker of allMarkers) {
                         marker.setTitle(`
-                         ${marker.title}\nΑπόσταση:  ${response.rows[0].elements[i].distance.text}\nΧρόνος: ${response.rows[0].elements[i].duration.text}`);
+                         ${marker.title}\nΑπόσταση:  ${response.rows[0].elements[i].distance.text}\nΧρόνος: ${response.rows[0].elements[i].duration.text}\n\nΚάντε κλικ για να κατευθυνθείτε στον ιστότοπο του καταστήματος
+                         `);
                         i++;
                         console.log(`${response.rows[0].elements[i].distance.text}`)
                     }
