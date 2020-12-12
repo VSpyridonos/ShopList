@@ -90,7 +90,7 @@
 
 <br><br>
 <h2>Χάρτης καταστημάτων που διαθέτουν όλα τα προϊόντα της λίστας:</h2>
-<div id='map' class="my-3" style='width: 400px; height: 300px;'></div>
+<div id='map' class="my-3" style='width: 600px; height: 400px;'></div>
 
 
 
@@ -116,7 +116,7 @@
 <script>
     const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
     const gkey = '<%-process.env.GOOGLE_MAPS_API_KEY%>';
-    const userAddress = <%-JSON.stringify(currentUserAddress) %>
+    const userAddress = <%- JSON.stringify(currentUserAddress) %>
     const allShops = <%- JSON.stringify(shops) %>
     const theList = <%- JSON.stringify(list) %>
     const masoutisT = <%- JSON.stringify(masoutisTotal.toFixed(2)) %>
@@ -151,4 +151,3 @@
 <script src='/javascripts/showPageMap.js'>
 
 </script>
-
