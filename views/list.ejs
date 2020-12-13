@@ -72,17 +72,17 @@
 
 <br>
 <hr>
-Συνολική Τιμή στα καταστήματα Μασούτης: <%= masoutisTotal.toFixed(2) %>
+Συνολική Τιμή στα καταστήματα Μασούτης: <%= masoutisTotal.toFixed(2) %> €
 <% if (!masoutisHasAllProducts) { %>
 <strong> (Το κατάστημα δε διαθέτει όλα τα προϊόντα της λίστας!)</strong>
 <% } %>
 <hr>
-Συνολική Τιμή στα καταστήματα My market: <%= myMarketTotal.toFixed(2) %>
+Συνολική Τιμή στα καταστήματα My market: <%= myMarketTotal.toFixed(2) %> €
 <% if (!myMarketHasAllProducts) { %>
 <strong> (Το κατάστημα δε διαθέτει όλα τα προϊόντα της λίστας!)</strong>
 <% } %>
 <hr>
-Συνολική Τιμή στα καταστήματα ΑΒ Βασιλόπουλος: <%= vasilopoulosTotal.toFixed(2) %>
+Συνολική Τιμή στα καταστήματα ΑΒ Βασιλόπουλος: <%= vasilopoulosTotal.toFixed(2) %> €
 <% if (!vasilopoulosHasAllProducts) { %>
 <strong> (Το κατάστημα δε διαθέτει όλα τα προϊόντα της λίστας!)</strong>
 <% } %>
@@ -122,11 +122,14 @@
     const masoutisT = <%- JSON.stringify(masoutisTotal.toFixed(2)) %>
     const myMarketT = <%- JSON.stringify(myMarketTotal.toFixed(2)) %>
     const vasilopoulosT = <%- JSON.stringify(vasilopoulosTotal.toFixed(2)) %>
+    const sklavenitisT = <%- JSON.stringify(sklavenitisTotal.toFixed(2)) %>
     const masoutisHasAll = <%- JSON.stringify(masoutisHasAllProducts) %>
     const myMarketHasAll = <%- JSON.stringify(myMarketHasAllProducts) %>
     const vasilopoulosHasAll = <%- JSON.stringify(vasilopoulosHasAllProducts) %>
+    const sklavenitisHasAll = <%- JSON.stringify(sklavenitisHasAllProducts) %>
     const geocoder = new google.maps.Geocoder();
     const service = new google.maps.DistanceMatrixService();
+    
 </script>
 
 
@@ -144,10 +147,17 @@
 </script> -->
 
 
+<hr>
+<h2 class='mt-5'>Προτεινόμενο κατάστημα για τα ψώνια σας: </h2>
+<img id="recommendationImage" class="img-fluid" style="width: 50px; height: 50px;">
+<h4 id="recommendationTitle"></span>
+<h5 id="recommendationAddress"></span>
 
 
 
 
-<script src='/javascripts/showPageMap.js'>
-
+<script src='/javascripts/showPageMap.js'> 
 </script>
+
+
+

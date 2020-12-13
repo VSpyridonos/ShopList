@@ -1,3 +1,6 @@
+let testShop = []
+let results = []
+
 function initMap() {
     let geocoder = new google.maps.Geocoder();
     let matrixOptions = {
@@ -9,14 +12,6 @@ function initMap() {
 
     let dests = [];
     let allMarkers = [];
-    let shopObject = {
-        title: String,
-        price: Number,
-        address: String,
-        distance: String,
-        duration: String,
-        result: Number
-    }
     let shopInfo = [];
 
     map = new google.maps.Map(document.getElementById("map"), {
@@ -37,12 +32,15 @@ function initMap() {
         } else if (shop.organization === "ΑΒ Βασιλόπουλος") {
             total = vasilopoulosT;
             hasAll = vasilopoulosHasAll;
+        } else if (shop.organization === "Σκλαβενίτης") {
+            total = sklavenitisT;
+            hasAll = sklavenitisHasAll;
         }
 
         if (hasAll) {
             var marker = new google.maps.Marker({
                 position: { lat: shop.geometry.coordinates[1], lng: shop.geometry.coordinates[0] },
-                title: `${shop.title}\nΣύνολο: ${total}€`,
+                title: `${shop.title}\nΔιεύθυνση: ${shop.address}\nΣύνολο: ${total} €`,
                 icon: shop.image,
                 url: `${shop.site}`
             });
@@ -53,11 +51,13 @@ function initMap() {
 
             allMarkers.push(marker);
             marker.setMap(map);
-            shopInfo[i] = {
+            let shopObject = {
                 title: shop.title,
                 price: total,
-                address: shop.address
+                address: shop.address,
+                image: shop.image
             }
+            shopInfo.push(shopObject)
             i++;
 
             // Vale ta coords tou kathe shop sto dests
@@ -72,6 +72,8 @@ function initMap() {
     matrixOptions.destinations = dests;
 
     let biasedUserAddress = userAddress + ' Ιωάννινα';
+    let shopInfo2 = []
+    //let results = []
 
     function codeAddress() {
         geocoder.geocode({ address: biasedUserAddress }, function (results, status) {
@@ -87,7 +89,6 @@ function initMap() {
                 const service = new google.maps.DistanceMatrixService(); // instantiate Distance Matrix service
                 matrixOptions.origins = [String(userAddress)]
 
-                console.log(matrixOptions.origins[0])
 
                 // Call Distance Matrix service
                 service.getDistanceMatrix(matrixOptions, callback);
@@ -98,7 +99,6 @@ function initMap() {
                         alert("Error with distance matrix");
                         return;
                     }
-                    console.log('response = ', response);
                     let i = 0;
                     for (let marker of allMarkers) {
                         marker.setTitle(`
@@ -106,9 +106,44 @@ function initMap() {
                          `);
 
                         // Prosthetw ta stoixeia sta objects
-                        shopInfo[i].distance = `${response.rows[0].elements[i].distance.text}`;
-                        shopInfo[i].duration = `${response.rows[0].elements[i].duration.text}`;
+
+                        shopObject = {
+                            title: shopInfo[i].title,
+                            price: shopInfo[i].price,
+                            address: shopInfo[i].address,
+                            image: shopInfo[i].image,
+                            distance: `${response.rows[0].elements[i].distance.text}`,
+                            duration: `${response.rows[0].elements[i].duration.text}`
+                        }
+
+                        shopInfo2.push(shopObject);
+
                         i++;
+
+                        if (i == shopInfo.length) {
+                            for (let sh of shopInfo2) {
+                                let result = parseInt(sh.price) * 0.8 + parseInt(sh.duration.slice(0, 2).trim()) * 0.2;
+                                results.push(result)
+                            }
+                        }
+                        let min = 1000;
+                        let index = 0;
+                        for (let i = 0; i < results.length; i++) {
+                            if (results[i] < min) {
+                                min = results[i];
+                                index = i;
+                            }
+                        }
+                        window.onload = function () {
+
+                            document.getElementById("recommendationImage").src = shopInfo2[index].image;
+
+                            document.getElementById("recommendationTitle").innerHTML = `${shopInfo2[index].title}`;
+
+                            document.getElementById("recommendationAddress").innerHTML = `Διεύθυνση: ${shopInfo2[index].address}`;
+
+                        }
+
 
                     }
                 }
@@ -117,16 +152,19 @@ function initMap() {
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
+
+
         });
+
+
+
 
 
 
     }
 
     codeAddress();
-    for (let sh of shopInfo) {
-        console.log(sh)
-    }
+
 
 }
 

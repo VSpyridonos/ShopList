@@ -240,6 +240,26 @@ const seedDB = async () => {
 
     })
 
+    // Σκλαβενίτης
+    const s19 = new Shop({
+        title: "Σκλαβενίτης",
+        organization: "Σκλαβενίτης",
+        address: "Λεωφ. Γράμμου, Λεωφ. Δημοκρατίας και, Ιωάννινα 454 45",
+        site: "https://www.sklavenitis.gr/",
+        geometry: { type: 'Point', coordinates: [20.831048825234813, 39.68669487151341] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1607885552/ShopList/sklavenitis_o14bux.png'
+
+    })
+
+    const s20 = new Shop({
+        title: "Σκλαβενίτης",
+        organization: "Σκλαβενίτης",
+        address: "Ε.Ο. Ιωαννίνων - Δωδώνης, 455 00",
+        site: "https://www.sklavenitis.gr/",
+        geometry: { type: 'Point', coordinates: [20.850771352392186, 39.634789518311905] },
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1607885552/ShopList/sklavenitis_o14bux.png'
+
+    })
 
 
     const list = new List({})
@@ -264,6 +284,8 @@ const seedDB = async () => {
     await s16.save();
     await s17.save();
     await s18.save();
+    await s19.save();
+    await s20.save();
     await list.save();
 
     // Γάλα
@@ -285,6 +307,12 @@ const seedDB = async () => {
         date: 2020 - 11 - 30
     })
 
+    const pr11 = new Price({
+        price: 1.15,
+        shop: s19._id,
+        date: 2020 - 12 - 13
+    })
+
     // Μήλα
     const pr3 = new Price({
         price: 1.99,
@@ -303,6 +331,13 @@ const seedDB = async () => {
         shop: s14._id,
         date: 2020 - 11 - 30
     })
+
+    const pr12 = new Price({
+        price: 2.00,
+        shop: s19._id,
+        date: 2020 - 12 - 13
+    })
+
 
     // const pr5 = new Price({
     //     price: 1.56,
@@ -341,6 +376,12 @@ const seedDB = async () => {
         date: 2020 - 11 - 30
     })
 
+    const pr13 = new Price({
+        price: 1.58,
+        shop: s19._id,
+        date: 2020 - 12 - 13
+    })
+
     // const pr10 = new Price({
     //     price: 1.59,
     //     shop: s4._id,
@@ -357,17 +398,16 @@ const seedDB = async () => {
     // await pr8.save();
     await pr9.save();
     await pr10.save();
+    await pr11.save();
+    await pr12.save();
+    await pr13.save();
 
-    p1.price2.push(pr1, pr2, pr5);
-    p2.price2.push(pr3, pr4, pr6);
-    p3.price2.push(pr9, pr10);
+    p1.price2.push(pr1, pr2, pr5, pr11);
+    p2.price2.push(pr3, pr4, pr6, pr12);
+    p3.price2.push(pr9, pr10, pr13);
     await p1.save();
     await p2.save();
     await p3.save();
-
-    const masoutisShops = await Shop.find({ organization: "Μασούτης" })
-
-    console.log(masoutisShops);
 
 
 
