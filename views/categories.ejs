@@ -1,43 +1,53 @@
 <% layout('layouts/boilerplate.ejs') %>
 
-<h1><%= chosenCategory %></h1>
-<ul class="mt-4">
-    <%for (let product of products) { %>
-    <div class="card" mb-3>
-        <div class="row">
-            <div class="col-md-2">
-                <% if (product.image) { %>
-                <img class="img-fluid" width=auto height=auto src="<%= product.image %> ">
-                <% } %>
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="../products/<%= product._id%>"><%= product.title%></a></h5>
-                    <p><%= product.category %></p>
-                    <p class="card-text">
-                        <small class="text-muted">Διαθέσιμο σε: </small>
-                        <% for (let s of product.foundIn) { %>
-                        <small class="text-muted"> <%= s %>, </small>
-                        <% } %>
-                    </p>
+    <h1>
+        <%= chosenCategory %>
+    </h1>
+    <ul class="mt-4">
+        <%for (let product of products) { %>
+            <div class="card" mb-3>
+                <div class="row">
+                    <div class="col-md-2">
+                        <% if (product.image) { %>
+                            <img class="img-fluid" width=auto height=auto src="<%= product.image %> ">
+                            <% } %>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="../products/<%= product._id%>">
+                                    <%= product.title%>
+                                </a></h5>
+                            <p>
+                                <%= product.category %>
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">Διαθέσιμο σε: </small>
+                                <% for (let s of product.foundIn) { %>
+                                    <small class="text-muted">
+                                        <%= s %>,
+                                    </small>
+                                    <% } %>
+                            </p>
 
+
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-2 mt-4">
+                        <a class="btn btn-primary btn-lg btn-block" href="products/<%= product._id%>">Δες Προϊόν</a>
+                    </div>
 
                 </div>
-
-
             </div>
-            <div class="col-md-2 mt-4">
-                <a class="btn btn-primary btn-lg btn-block" href="products/<%= product._id%>">Δες Προϊόν</a>
-            </div>
+            <% } %>
 
-        </div>
+
+
+
+    </ul>
+
+    <div class="mt-3">
+        <a href="/products" onclick="location.href = document.referrer; return false;"><i class="fa fa-arrow-left"></i>
+            Πίσω</a>
     </div>
-    <% } %>
-
-
-
-
-</ul>
-
-<br><br><br><br><br><br><br>
-<a href="../">Αρχική Σελίδα</a>

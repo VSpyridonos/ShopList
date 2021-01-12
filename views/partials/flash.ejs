@@ -1,13 +1,13 @@
-<% if(success && success.length) {%>
-<div class="alert alert-success alert-dismissable fade show" role="alert">
-    <%= success %>
-    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-</div>
-<% } %>
+<% if (success && success.length) {%>
+    <div class="alert alert-success alert-dismissable fade show" role="alert">
+        <%= success %>
+            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% } %>
 
-<% if(error && error.length) {%>
-<div class="alert alert-danger alert-dismissable fade show" role="alert">
-    <%= error %>
-    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-</div>
-<% } %>
+        <% if (error && error.length) {%>
+            <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                <%= error %>
+                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% } %>

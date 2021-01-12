@@ -22,10 +22,12 @@ body {
     top: 0;
     bottom: 0;
     left: 0;
-    z-index: 100; /* Behind the navbar */
+    z-index: 1; /* Behind the navbar */
     padding: 45px 0 0; /* Height of navbar */
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    background-color: #bcc5d6;
   }
+
 
   .sidebar-heading {
     font-size: 1.5rem;;
@@ -66,6 +68,10 @@ body {
   .sidebar .nav-link:hover .feather,
   .sidebar .nav-link.active .feather {
     color: inherit;
+  }
+
+  .footer {
+    z-index: 2;
   }
   
   

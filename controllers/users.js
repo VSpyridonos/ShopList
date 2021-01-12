@@ -1,9 +1,5 @@
 const User = require('../models/user');
 const List = require('../models/list');
-const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
-const mapBoxToken = process.env.MAPBOX_TOKEN;
-const geocoder = mbxGeocoding({ accessToken: 'pk.eyJ1IjoidnNweXIiLCJhIjoiY2toa3VvbmR3MXBrZTJzcXFzdTRobjh2eiJ9.NEuCHT7ZvhtJbjhDiLCbYg' });
-const axios = require('axios');
 const googleMapsKey = process.env.GOOGLE_MAPS_API_KEY;
 
 module.exports.renderRegister = (req, res) => {
@@ -13,11 +9,6 @@ module.exports.renderRegister = (req, res) => {
 module.exports.register = async (req, res, next) => {
     try {
         const { email, username, password, address } = req.body;
-        // const geoData = await geocoder.forwardGeocode({
-        //     query: address,
-        //     limit: 1
-        // }).send()
-        // theAddress = geoData.body.features[0].geometry;
         const user = new User({ email, username, address });
         const registeredUser = await User.register(user, password);
         req.login(registeredUser, err => {
