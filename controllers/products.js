@@ -41,7 +41,7 @@ module.exports.index = async (req, res, next) => {
                 populate: {
                     path: 'shop'
                 }
-            });;
+            });
     } else {
         const products = await Product.find({}).populate({
             path: 'products',
@@ -60,7 +60,7 @@ module.exports.index = async (req, res, next) => {
                 populate: {
                     path: 'shop'
                 }
-            });;
+            });
         res.render('products/index', { products });
     }
 };
