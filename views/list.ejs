@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate.ejs') %>
+<link rel="stylesheet" href="/stylesheets/list.css">
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%=googleMapsKey%>&callback=initMap&libraries=&v=weekly"
@@ -15,8 +16,8 @@
 <ul>
     <% let sum = 0.0 %>
     <% for (let product of list.products) { %>
-    <% if (product.countedWithQuantity){ %>
-    <div class="card">
+    <% if (product.countedWithQuantity) { %>
+    <div class="card mb-1">
         <li>
             <div class="card-body">
                 <% if (product.image) { %>
@@ -43,7 +44,7 @@
 
     <% }else { %>
 
-    <div class="card">
+    <div class="card mb-1">
         <li>
             <div class="card-body">
                 <% if (product.image) { %>

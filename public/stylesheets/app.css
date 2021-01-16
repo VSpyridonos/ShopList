@@ -71,6 +71,10 @@ body {
     color: inherit;
   }
 
+  .sidebar .dropdown-item:hover {
+    background-color: skyblue;
+  }
+
   .footer {
     z-index: 2;
   }

@@ -1,0 +1,11 @@
+.nav-link:hover {
+    background-color: rgb(78, 75, 75);
+    border-color: rgb(78, 75, 75);
+    box-shadow: rgb(78, 75, 75);
+}
+
+.btn-warning:hover {
+    background-color: darkgoldenrod;
+    border-color:  darkgoldenrod;
+    box-shadow:  darkgoldenrod;
+}
