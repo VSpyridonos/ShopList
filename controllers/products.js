@@ -24,9 +24,43 @@ module.exports.index = async (req, res, next) => {
                 }
                 res.render('products/index', { products });
             }
-        });
+        }).populate({
+            path: 'products',
+            populate: {
+                path: 'product'
+            }
+        }).populate('Shop')
+            .populate({
+                path: 'products',
+                populate: {
+                    path: 'price2',
+                    model: 'Price'
+                }
+            }).populate('Price').populate({
+                path: 'price2',
+                populate: {
+                    path: 'shop'
+                }
+            });;
     } else {
-        const products = await Product.find({});
+        const products = await Product.find({}).populate({
+            path: 'products',
+            populate: {
+                path: 'product'
+            }
+        }).populate('Shop')
+            .populate({
+                path: 'products',
+                populate: {
+                    path: 'price2',
+                    model: 'Price'
+                }
+            }).populate('Price').populate({
+                path: 'price2',
+                populate: {
+                    path: 'shop'
+                }
+            });;
         res.render('products/index', { products });
     }
 };

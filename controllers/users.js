@@ -56,7 +56,7 @@ module.exports.showAccount = (req, res) => {
 }
 
 module.exports.changeAddress = async (req, res, next) => {
-    let newAddress = req.body.address;
+    let newAddress = req.body.address + ', Ιωάννινα';
     const theUser = await User.findByIdAndUpdate(req.user._id, { address: newAddress });
     await theUser.save();
     req.flash('success', "Η Διεύθυνσή σας άλλαξε με επιτυχία!");

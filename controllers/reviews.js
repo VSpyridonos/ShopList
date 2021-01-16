@@ -1,3 +1,5 @@
+const sanitizeHtml = require('sanitize-html');
+
 const Product = require('../models/product');
 const Review = require('../models/review');
 

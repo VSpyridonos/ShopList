@@ -71,12 +71,14 @@ function initMap() {
     // destinations = pinakas me ola ta destinations
     matrixOptions.destinations = dests;
 
-    let biasedUserAddress = userAddress + ' Ιωάννινα';
+    //let biasedUserAddress = userAddress + ' Ιωάννινα';
     let shopInfo2 = []
     //let results = []
 
     function codeAddress() {
-        geocoder.geocode({ address: biasedUserAddress }, function (results, status) {
+        //let biasedUserAddress = userAddress + ' Ιωάννινα';
+        geocoder.geocode({ address: userAddress }, function (results, status) {
+            //console.log(biasedUserAddress)
             if (status == 'OK') {
                 var marker = new google.maps.Marker({
                     map: map,
@@ -149,8 +151,6 @@ function initMap() {
                 }
 
 
-            } else {
-                alert('Geocode was not successful for the following reason: ' + status);
             }
 
 

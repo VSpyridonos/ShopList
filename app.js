@@ -2,7 +2,6 @@ if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
 }
 
-
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -17,16 +16,13 @@ const LocalStrategy = require('passport-local');
 const Category = require('./models/category');
 const User = require('./models/user');
 const morgan = require('morgan');
+const mongoSanitize = require('express-mongo-sanitize');
 
 const userRoutes = require('./routes/users');
 const productRoutes = require('./routes/products');
 const reviewRoutes = require('./routes/reviews');
 const listRoutes = require('./routes/list');
 const shopRoutes = require('./routes/shops');
-
-
-
-
 
 const Product = require('./models/product');
 const Price = require('./models/price');
@@ -60,6 +56,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(mongoSanitize());
 
 const sessionConfig = {
     secret: 'thisshouldbeabettersecret',
@@ -100,7 +97,24 @@ app.get('/', (req, res) => {
 
 
 app.get('/categories/:cat', async (req, res) => {
-    const products = await Product.find({ category: req.params.cat });
+    const products = await Product.find({ category: req.params.cat }).populate({
+        path: 'products',
+        populate: {
+            path: 'product'
+        }
+    }).populate('Shop')
+        .populate({
+            path: 'products',
+            populate: {
+                path: 'price2',
+                model: 'Price'
+            }
+        }).populate('Price').populate({
+            path: 'price2',
+            populate: {
+                path: 'shop'
+            }
+        });
     const chosenCategory = req.params.cat
     res.render('categories', { products, chosenCategory });
 })

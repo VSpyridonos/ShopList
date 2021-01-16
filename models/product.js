@@ -7,16 +7,10 @@ const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
     title: String,
-    price: [String],
     category: [String],
-    shopSelected: {
-        type: Schema.Types.ObjectId,
-        ref: 'Shop'
-    },
     countedWithQuantity: Boolean,
     quantity: { type: Number, default: 0 },
     weight: { type: Number, default: 0 },
-    foundIn: [String],
     price2: [
         {
             type: Schema.Types.ObjectId,

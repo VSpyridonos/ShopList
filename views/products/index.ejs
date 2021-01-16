@@ -24,7 +24,9 @@
                                 <small class="text-muted">Διαθέσιμο σε: </small>
                                 <% for (let s of product.price2) { %>
                                     <small class="text-muted">
-                                        <%= s.organization %>,
+                                        <%= s.shop.organization %><% if (product.price2.indexOf(s) !==product.price2.length - 1) { %><small
+                                                    class="text-muted">, </small>
+                                                <% } %>
                                     </small>
                                     <% } %>
                             </p>

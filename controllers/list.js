@@ -14,12 +14,6 @@ module.exports.showList = async (req, res, next) => {
         populate: {
             path: 'product'
         }
-    }).populate({
-        path: 'products',
-        populate: {
-            path: 'shopSelected',
-            model: 'Shop'
-        }
     }).populate('Shop')
         .populate({
             path: 'products',
