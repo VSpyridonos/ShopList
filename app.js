@@ -31,10 +31,9 @@ const ExpressError = require('./utilities/ExpressError');
 const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-const Category = require('./models/category');
-const User = require('./models/user');
 const morgan = require('morgan');
 const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
 
 const userRoutes = require('./routes/users');
 const productRoutes = require('./routes/products');
@@ -42,14 +41,20 @@ const reviewRoutes = require('./routes/reviews');
 const listRoutes = require('./routes/list');
 const shopRoutes = require('./routes/shops');
 
+const Category = require('./models/category');
+const User = require('./models/user');
 const Product = require('./models/product');
 const Price = require('./models/price');
 const Shop = require('./models/shop');
 const List = require('./models/list');
 
+//const dbUrl = process.env.DB_URL;
+const dbUrl = 'mongodb://localhost:27017/shopList';
+const MongoStore = require('connect-mongo')(session);
 
 
-mongoose.connect('mongodb://localhost:27017/shopList', {
+// original connect url: mongodb://localhost:27017/shopList
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -76,7 +81,18 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
 
+const store = new MongoStore({
+    url: dbUrl,
+    secret: 'thisshouldbeabettersecret',
+    touchAfter: 24 * 60 * 60
+});
+
+store.on("error", function (e) {
+    console.log("SESSION STORE ERROR", e);
+})
+
 const sessionConfig = {
+    store,
     name: 'session',
     secret: 'thisshouldbeabettersecret',
     resave: false,
@@ -90,6 +106,7 @@ const sessionConfig = {
 }
 app.use(session(sessionConfig));
 app.use(flash());
+app.use(helmet({ contentSecurityPolicy: false }));
 
 app.use(passport.initialize());
 app.use(passport.session());

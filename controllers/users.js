@@ -1,3 +1,4 @@
+const sanitizeHtml = require('sanitize-html');
 const User = require('../models/user');
 const List = require('../models/list');
 const googleMapsKey = process.env.GOOGLE_MAPS_API_KEY;
@@ -8,14 +9,14 @@ module.exports.renderRegister = (req, res) => {
 
 module.exports.register = async (req, res, next) => {
     try {
-        const { email, username, password, address } = req.body;
+        const { email, username, password } = req.body;
+        const address = sanitizeHtml(req.body.address) + ', Ιωάννινα';
         const user = new User({ email, username, address });
         const registeredUser = await User.register(user, password);
         req.login(registeredUser, err => {
             if (err) {
                 return next(err);
             } else {
-                console.log(req.user._id)
                 const list = new List();
                 list.owner = req.user._id;
                 list.save();
@@ -56,7 +57,7 @@ module.exports.showAccount = (req, res) => {
 }
 
 module.exports.changeAddress = async (req, res, next) => {
-    let newAddress = req.body.address + ', Ιωάννινα';
+    let newAddress = sanitizeHtml(req.body.address) + ', Ιωάννινα';
     const theUser = await User.findByIdAndUpdate(req.user._id, { address: newAddress });
     await theUser.save();
     req.flash('success', "Η Διεύθυνσή σας άλλαξε με επιτυχία!");

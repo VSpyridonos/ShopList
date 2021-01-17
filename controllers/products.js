@@ -1,3 +1,4 @@
+const sanitizeHtml = require('sanitize-html');
 const Product = require('../models/product');
 const Price = require('../models/price');
 const Shop = require('../models/shop');
@@ -12,7 +13,8 @@ const mapBoxToken = process.env.MAPBOX_TOKEN;
 module.exports.index = async (req, res, next) => {
     let noMatch = null;
     if (req.query.search) {
-        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        const cleanQuery = sanitizeHtml(req.query.search);
+        const regex = new RegExp(escapeRegex(cleanQuery), 'gi');
         const products = await Product.find({ title: regex }, function (err, products) {
             if (err) {
                 console.log(err)
