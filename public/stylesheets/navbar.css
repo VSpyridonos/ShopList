@@ -1,11 +1,70 @@
-.nav-link:hover {
-    background-color: rgb(78, 75, 75);
-    border-color: rgb(78, 75, 75);
-    box-shadow: rgb(78, 75, 75);
+.navbar {
+    /*background-color:#c6cfce;*/
+    background-color: #d69a1c;
 }
 
-.btn-warning:hover {
-    background-color: darkgoldenrod;
-    border-color:  darkgoldenrod;
-    box-shadow:  darkgoldenrod;
+.navbar-toggler {
+    background-color: #d69a1c;
+    border: 5px;
+    border-color: white;
+    color: white;
 }
+
+.navbar-toggler-icon {
+    color:white;
+}
+
+#navbarTogglerDemo03 {
+    color: white;
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    color: white;
+    background-color:#5d797a;
+    border-color: #5d797a;
+    box-shadow: #5d797a;
+}
+
+.navbar-brand {
+    /* color: #662a45; */
+    color:#f7f7f7;
+}
+
+.navbar-brand:hover {
+    color: #f7f7f7;
+}
+
+.fa-shopping-cart {
+    color: #c90036;
+}
+
+#listSpan {
+    color: #c90036;
+}
+
+#searchButton {
+    color: white;
+    background-color: #87233f;
+}
+
+#searchButton:hover {
+    background-color: #5e192d;
+}
+
+#listButton {
+    color: white;
+    background-color: #49a393;
+}
+
+#listButton:hover {
+    background-color:#2d635a;
+    border-color: #2d635a;
+    box-shadow: #2d635a;
+}
+
+
+

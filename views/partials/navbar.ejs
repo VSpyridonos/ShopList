@@ -1,12 +1,13 @@
 <link rel="stylesheet" href="/stylesheets/navbar.css">
 
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-dark sticky-top navbar-expand-lg">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/"><i class="fa fa-shopping-cart"></i> ShopList</a>
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/"><i class="fa fa-shopping-cart"></i> Shop<span
+                id="listSpan">List</span></a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
                 <li class="nav-item">
@@ -19,7 +20,7 @@
                     <form action="/products" class="d-flex" method="get">
                         <input class="form-control mr-2" type="text" placeholder="Αναζήτηση Προϊόντος" name="search"
                             aria-label="Αναζήτηση">
-                        <button class="btn btn-success" type="submit"><i
+                        <button id="searchButton" class="btn" type="submit"><i
                                 class="fa fa-search">&nbsp;Αναζήτηση</i></button>
                     </form>
                 </li>
@@ -42,7 +43,7 @@
                         </li>
                         <% } %>
                             <li>
-                                <a class="btn btn-warning" href="/list"><i class="fa fa-list-alt"></i>&nbsp;Η Λίστα
+                                <a id="listButton" class="btn" href="/list"><i class="fa fa-list-alt"></i>&nbsp;Η Λίστα
                                     μου</a>
                             </li>
 
