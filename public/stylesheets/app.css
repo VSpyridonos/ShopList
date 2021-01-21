@@ -2,7 +2,13 @@
     text-decoration: none !important;
 }
 
+html {
+  width: 100%;
+  background-size: contain;
+}
+
 body {
+    width: 100%;
     font-size: .875rem;
     overflow: scroll;
   }
@@ -79,6 +85,16 @@ body {
   .footer {
     z-index: 2;
   }
+
+  .dropdown-item:hover {
+    background-color: #914a5e;
+  }
   
-  
+
+  /* debugging scrollable pages */
+  /* * {
+    background: #000 !important;
+    color: #0f0 !important;
+    outline: solid #f00 1px !important;
+  } */
   
