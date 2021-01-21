@@ -45,8 +45,8 @@ function initMap() {
                 url: `${shop.site}`
             });
 
-            google.maps.event.addListener(marker, 'click', function () {
-                window.location.href = this.url;
+            google.maps.event.addListener(marker, 'dblclick', function () {
+                window.open(this.url);
             });
 
             allMarkers.push(marker);
@@ -104,7 +104,7 @@ function initMap() {
                     let i = 0;
                     for (let marker of allMarkers) {
                         marker.setTitle(`
-                         ${marker.title}\nΑπόσταση:  ${response.rows[0].elements[i].distance.text}\nΧρόνος: ${response.rows[0].elements[i].duration.text}\n\nΚάντε κλικ για να κατευθυνθείτε στον ιστότοπο του καταστήματος
+                         ${marker.title}\nΑπόσταση:  ${response.rows[0].elements[i].distance.text}\nΧρόνος: ${response.rows[0].elements[i].duration.text}\n\nΚάντε διπλό κλικ για να κατευθυνθείτε στον ιστότοπο του καταστήματος
                          `);
 
                         // Prosthetw ta stoixeia sta objects
@@ -146,27 +146,17 @@ function initMap() {
 
                         }
 
-
                     }
                 }
 
-
             }
 
-
         });
-
-
-
-
-
 
     }
 
     codeAddress();
 
-
 }
-
 
 initMap();

@@ -1,7 +1,17 @@
 <% layout('layouts/boilerplate.ejs') %>
+
+    <div class="card mb-2">
+        <h2>Κατηγορίες προϊόντων</h2>
+        <ul class="list-group">
+            <li class="list-group-item">ENA</li>
+            <li class="list-group-item">ENA</li>
+            <li class="list-group-item">ENA</li>
+            <li class="list-group-item">ENA</li>
+            <li class="list-group-item">ENA</li>
+        </ul>
+    </div>
+
     <h1>Όλα τα Προϊόντα</h1>
-
-
 
     <ul>
         <%for (let product of products) { %>
@@ -24,7 +34,8 @@
                                 <small class="text-muted">Διαθέσιμο σε: </small>
                                 <% for (let s of product.price2) { %>
                                     <small class="text-muted">
-                                        <%= s.shop.organization %><% if (product.price2.indexOf(s) !==product.price2.length - 1) { %><small
+                                        <%= s.shop.organization %>
+                                            <% if (product.price2.indexOf(s) !==product.price2.length - 1) { %><small
                                                     class="text-muted">, </small>
                                                 <% } %>
                                     </small>
