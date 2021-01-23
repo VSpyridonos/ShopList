@@ -2,10 +2,11 @@ let testShop = []
 let results = []
 
 function initMap() {
+    var infoWindow = new google.maps.InfoWindow();
     let geocoder = new google.maps.Geocoder();
     let matrixOptions = {
-        origins: [String], // technician locations
-        destinations: [String], // customer address
+        origins: [String],
+        destinations: [String],
         travelMode: 'DRIVING',
         unitSystem: google.maps.UnitSystem.METRIC
     };
@@ -45,6 +46,11 @@ function initMap() {
                 url: `${shop.site}`
             });
 
+            google.maps.event.addListener(marker, 'click', function () {
+                infoWindow.setContent(this.get('title'));
+                infoWindow.open(map, this);
+            });
+
             google.maps.event.addListener(marker, 'dblclick', function () {
                 window.open(this.url);
             });
@@ -71,12 +77,10 @@ function initMap() {
     // destinations = pinakas me ola ta destinations
     matrixOptions.destinations = dests;
 
-    //let biasedUserAddress = userAddress + ' Ιωάννινα';
     let shopInfo2 = []
-    //let results = []
 
     function codeAddress() {
-        //let biasedUserAddress = userAddress + ' Ιωάννινα';
+
         geocoder.geocode({ address: userAddress }, function (results, status) {
             //console.log(biasedUserAddress)
             if (status == 'OK') {
