@@ -9,10 +9,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
         integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-
-    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
 
 </head>
 
@@ -41,6 +39,27 @@
                     crossorigin="anonymous"></script>
 
                 <script src='/javascripts/validateForms.js'></script>
+
+                <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"
+                    data-cfasync="false"></script>
+                <script>
+                    window.cookieconsent.initialise({
+                        "palette": {
+                            "popup": {
+                                "background": "#252e39"
+                            },
+                            "button": {
+                                "background": "#14a7d0"
+                            }
+                        },
+                        "theme": "classic",
+                        "content": {
+                            "message": "Με την περιήγησή σας στο shoplist.gr, αποδέχεστε τη χρήση cookies που ενισχύουν σημαντικά την εμπειρία χρήσης.",
+                            "dismiss": "Αποδοχή",
+                            "link": "Μάθετε περισσότερα"
+                        }
+                    });
+                </script>
 
 
 </body>
