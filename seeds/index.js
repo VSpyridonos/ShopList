@@ -5,9 +5,6 @@ const Category = require('../models/category');
 const Price = require('../models/price');
 const List = require('../models/list');
 const User = require('../models/user');
-const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
-const mapBoxToken = process.env.MAPBOX_TOKEN;
-const geocoder = mbxGeocoding({ accessToken: 'pk.eyJ1IjoidnNweXIiLCJhIjoiY2toa3VvbmR3MXBrZTJzcXFzdTRobjh2eiJ9.NEuCHT7ZvhtJbjhDiLCbYg' });
 
 require('dotenv').config();
 

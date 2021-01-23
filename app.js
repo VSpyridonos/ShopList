@@ -100,7 +100,6 @@ const sessionConfig = {
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        // secure: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7,
     }
@@ -127,7 +126,6 @@ app.use('/', userRoutes);
 app.use('/products', productRoutes);
 app.use('/products/:id/reviews', reviewRoutes);
 app.use('/list', listRoutes);
-app.use('/shops', shopRoutes);
 
 app.get('/', (req, res) => {
     res.render('home');
