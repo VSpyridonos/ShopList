@@ -49,7 +49,7 @@ const Shop = require('./models/shop');
 const List = require('./models/list');
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/shopList';
-//dbUrl = 'mongodb://localhost:27017/shopList';
+//const dbUrl = 'mongodb://localhost:27017/shopList';
 const MongoStore = require('connect-mongo')(session);
 
 
