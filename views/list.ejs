@@ -143,9 +143,10 @@
 
         // Auksousa taksinomisi me vasi tin timi
         let swapped;
+        let n = organizations.length - 1;
         do {
             swapped = false;
-            for (let i = 0; i < organizations.length - 1; i++) {
+            for (let i = 0; i < n; i++) {
                 if (organizations[i].total > organizations[i + 1].total) {
                     let temp = organizations[i];
                     organizations[i] = organizations[i + 1];
@@ -153,6 +154,7 @@
                     swapped = true;
                 }
             }
+            n--;
         } while (swapped);
 
 
