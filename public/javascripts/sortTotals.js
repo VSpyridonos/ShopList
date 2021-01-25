@@ -1,4 +1,14 @@
-document.addEventListener("DOMContentLoaded", function sortTotals() {
+if (document.readyState !== 'loading') {
+    console.log('document is already ready, just execute code here');
+    sortTotals();
+} else {
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('document was not ready, place code here');
+        sortTotals();
+    });
+}
+
+function sortTotals() {
     const organizations = [
         { "name": "Μασούτης", "total": masoutisT, "hasAllProducts": masoutisHasAll },
         { "name": "myMarket", "total": myMarketT, "hasAllProducts": myMarketHasAll },
@@ -30,6 +40,4 @@ document.addEventListener("DOMContentLoaded", function sortTotals() {
         if (org.hasAllProducts) li.innerHTML = `<strong>${org.name}: ${org.total} €</strong>`;
         else li.innerHTML = `<strong>${org.name}: ${org.total} € <span style="color: red;"> &nbsp;&nbsp;*Το κατάστημα δε διαθέτει όλα τα προϊόντα της λίστας!</span></strong>`;
     }
-});
-
-//document.addEventListener("DOMContentLoaded", sortTotals);
+};
