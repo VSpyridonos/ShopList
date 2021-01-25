@@ -1,4 +1,4 @@
-function sortTotals() {
+document.addEventListener("DOMContentLoaded", function sortTotals() {
     const organizations = [
         { "name": "Μασούτης", "total": masoutisT, "hasAllProducts": masoutisHasAll },
         { "name": "myMarket", "total": myMarketT, "hasAllProducts": myMarketHasAll },
@@ -30,6 +30,6 @@ function sortTotals() {
         if (org.hasAllProducts) li.innerHTML = `<strong>${org.name}: ${org.total} €</strong>`;
         else li.innerHTML = `<strong>${org.name}: ${org.total} € <span style="color: red;"> &nbsp;&nbsp;*Το κατάστημα δε διαθέτει όλα τα προϊόντα της λίστας!</span></strong>`;
     }
-}
+});
 
-document.addEventListener("DOMContentLoaded", sortTotals);
+//document.addEventListener("DOMContentLoaded", sortTotals);
