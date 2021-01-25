@@ -9,6 +9,7 @@ const User = require('../models/user');
 require('dotenv').config();
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/shopList';
+//const dbUrl = 'mongodb://localhost:27017/shopList';
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -401,51 +402,52 @@ const seedDB = async () => {
     await pr12.save();
     await pr13.save();
 
-    p1.price2.push(pr1, pr2, pr5, pr11);
-    p2.price2.push(pr3, pr4, pr6, pr12);
-    p3.price2.push(pr9, pr10, pr13);
-    await p1.save();
-    await p2.save();
-    await p3.save();
 
+    let arrP1 = [pr1, pr2, pr5, pr11];
+    let arrP2 = [pr3, pr4, pr6, pr12];
+    let arrP3 = [pr9, pr10, pr13];
 
-
-    // const p3 = new Product({
-    //     title: 'Πατάτες',
-    //     price: ['Μασούτης: 1.99', 'My market: 2.05'],
-    //     category: ['Φρούτα & Λαχανικά'],
-    //     countedWithQuantity: false,
-    //     foundIn: ['Μασούτης', 'My market'],
-    //     image: '/home/user/Desktop/thesis/images/mila.png'
-    // })
-
-    // const pr1 = new Price({
-    //     price: 5.99,
-    //     shop: s1._id,
-    //     date: 2020 - 03 - 04
-    // })
-
-    // const pr2 = new Price({
-    //     price: 7.99,
-    //     shop: s2._id,
-    //     date: 2020 - 08 - 02
-    // })
-
-    // await p3.save();
-    // await pr1.save();
-    // await pr2.save();
-
-    // p3.price2.push(pr1);
-    // p3.price2.push(pr2);
-    // const name = p3.title
-
-    // for (let pr of p3.price2) {
-    //     let xx = await Price.findById(pr);
-    //     let zz = await Shop.findById(xx.shop)
-
-    //     const sth = await console.log(`To proion ${name} vrisketai sto ${zz.title} kai kostizei ${pr.price}`)
+    // for (let i = 0; i < arrP1.length; i++) {
+    //     console.log(arrP1[i].price);
     // }
 
+    // Vazw ta price se seira analoga me to kostos wste na emfanizontai se auksousa seira sto products/show. Meta ta vazw sto price2 tou kathe product
+    const sortAndPush = async function (arr, product) {
+        let swapped;
+
+        do {
+            swapped = false;
+            for (let i = 0; i < arr.length - 1; i++) {
+                if (arr[i].price > arr[i + 1].price) {
+                    let temp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
+                    swapped = true;
+                }
+            }
+        } while (swapped);
+
+        // Twra vazoume ta Price objects sto price2 tou kathe product
+        for (let pr of arr) product.price2.push(pr);
+
+        // Apothikeusi antikeimenou Product
+        await product.save()
+
+    }
+
+    sortAndPush(arrP1, p1);
+    sortAndPush(arrP2, p2);
+    sortAndPush(arrP3, p3);
+
+    // Palios tropos anti gia sortAndPush
+    // p1.price2.push(pr1, pr2, pr5, pr11);
+    // p2.price2.push(pr3, pr4, pr6, pr12);
+    // p3.price2.push(pr9, pr10, pr13);
+    // await p1.save();
+    // await p2.save();
+    // await p3.save();
+
+    return;
 }
 
 seedDB();
