@@ -456,8 +456,9 @@
                                 <div class="row" width="100%">
                                         <div class="col-md-2" width="100%">
                                                 <% if (product.image) { %>
-                                                        <img class="img-fluid" width="100%" height="auto"
-                                                                src="<%= product.image %> ">
+                                                        <a href="products/<%= product._id%>" class="nounderline"><img
+                                                                        class="img-fluid" width="100%" height="auto"
+                                                                        src="<%= product.image %> "></a>
                                                         <% } %>
                                         </div>
                                         <div class="col-md-8" width="100%">
@@ -472,8 +473,13 @@
                                                         <p class="card-text">
                                                                 <small class="text-muted">Διαθέσιμο σε:&nbsp;</small>
                                                                 <% for (let s of product.price2) { %>
-                                                                        <small class="text-muted"><%= s.shop.organization%><% if (product.price2.indexOf(s)!==product.price2.length - 1) { %><small class="text-muted">, </small>
-                                                         <% } %>
+                                                                        <small class="text-muted">
+                                                                                <%= s.shop.organization%>
+                                                                                        <% if (product.price2.indexOf(s)!==product.price2.length
+                                                                                                - 1) { %><small
+                                                                                                        class="text-muted">,
+                                                                                                </small>
+                                                                                                <% } %>
                                                                         </small>
                                                                         <% } %>
                                                         </p>

@@ -91,7 +91,6 @@
 </script>
 
 
-
 <br><br>
 <div class="card mb-2">
     <h2>Συνολική Τιμή στα καταστήματα</h2>
@@ -100,76 +99,19 @@
 </div>
 
 
-
-
-
 <br><br>
 <h2>Χάρτης καταστημάτων που διαθέτουν όλα τα προϊόντα της λίστας:</h2>
 <div id='map' class="my-3" style='width: 100%; height: 400px;'></div>
 
+<br><br>
+<div class="card mb-2">
+    <h2>Προτεινόμενο κατάστημα για τα ψώνια σας:</h2>
+    <ul id="totals-list" class="list-group">
+        <li class="list-group-item"><img id="recommendationImage" class="img-fluid"><h4 id="recommendationTitle"></h4></li>
+        <li class="list-group-item"><h5 id="recommendationAddress"></h5></li>
+    </ul>
+</div>
 
 
-<hr>
-<h2 class='mt-5'>Προτεινόμενο κατάστημα για τα ψώνια σας: </h2>
-<img id="recommendationImage" class="img-fluid" style="width: 50px; height: 50px;">
-<h4 id="recommendationTitle"></span>
-<h5 id="recommendationAddress"></span>
-
-
-
-
-<script src='/javascripts/showPageMap.js'> 
-</script>
-
-<!-- <script src="/javascripts/sortTotals.js"></script> -->
-<script>
-    if (document.readyState !== 'loading') {
-        console.log('document is already ready, just execute code here');
-        sortTotals();
-    } else {
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log('document was not ready, place code here');
-            sortTotals();
-        });
-    }
-
-    async function sortTotals() {
-        const organizations = [
-            { "name": "Μασούτης", "total": parseFloat(masoutisT), "hasAllProducts": masoutisHasAll },
-            { "name": "myMarket", "total": parseFloat(myMarketT), "hasAllProducts": myMarketHasAll },
-            { "name": "ΑΒ Βασιλόπουλος", "total": parseFloat(vasilopoulosT), "hasAllProducts": vasilopoulosHasAll },
-            { "name": "Σκλαβενίτης", "total": parseFloat(sklavenitisT), "hasAllProducts": sklavenitisHasAll}
-        ]
-
-        // Auksousa taksinomisi me vasi tin timi
-        let swapped;
-        let n = organizations.length - 1;
-        do {
-            swapped = false;
-            for (let i = 0; i < n; i++) {
-                if (organizations[i].total > organizations[i + 1].total) {
-                    let temp = organizations[i];
-                    organizations[i] = organizations[i + 1];
-                    organizations[i + 1] = temp;
-                    swapped = true;
-                }
-            }
-            n--;
-        } while (swapped);
-
-
-        const totalsList = document.getElementById("totals-list");
-
-        for (let org of organizations) {
-            let li = document.createElement("li");
-            li.setAttribute("class", "list-group-item");
-            totalsList.appendChild(li);
-            if (org.hasAllProducts) li.innerHTML = `<strong>${org.name}: ${org.total} €</strong>`;
-            else li.innerHTML = `<strong>${org.name}: ${org.total} € <span style="color: red;"> &nbsp;&nbsp;*Το κατάστημα δε διαθέτει όλα τα προϊόντα της λίστας!</span></strong>`;
-        }
-
-    };
-</script>
-
-
-
+<script src='/javascripts/showPageMap.js'></script>
+<script src="/javascripts/sortTotals.js"></script>

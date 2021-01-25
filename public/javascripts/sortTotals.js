@@ -1,26 +1,19 @@
-if (document.readyState !== 'loading') {
-    console.log('document is already ready, just execute code here');
-    sortTotals();
-} else {
-    document.addEventListener('DOMContentLoaded', function () {
-        console.log('document was not ready, place code here');
-        sortTotals();
-    });
-}
+document.addEventListener('DOMContentLoaded', sortTotals);
 
 function sortTotals() {
     const organizations = [
-        { "name": "Μασούτης", "total": masoutisT, "hasAllProducts": masoutisHasAll },
-        { "name": "myMarket", "total": myMarketT, "hasAllProducts": myMarketHasAll },
-        { "name": "ΑΒ Βασιλόπουλος", "total": vasilopoulosT, "hasAllProducts": vasilopoulosHasAll },
-        { "name": "Σκλαβενίτης", "total": sklavenitisT, "hasAllProducts": sklavenitisHasAll }
+        { "name": "Μασούτης", "total": parseFloat(masoutisT), "hasAllProducts": masoutisHasAll },
+        { "name": "myMarket", "total": parseFloat(myMarketT), "hasAllProducts": myMarketHasAll },
+        { "name": "ΑΒ Βασιλόπουλος", "total": parseFloat(vasilopoulosT), "hasAllProducts": vasilopoulosHasAll },
+        { "name": "Σκλαβενίτης", "total": parseFloat(sklavenitisT), "hasAllProducts": sklavenitisHasAll }
     ]
 
     // Auksousa taksinomisi me vasi tin timi
     let swapped;
+    let n = organizations.length - 1;
     do {
         swapped = false;
-        for (let i = 0; i < organizations.length - 1; i++) {
+        for (let i = 0; i < n; i++) {
             if (organizations[i].total > organizations[i + 1].total) {
                 let temp = organizations[i];
                 organizations[i] = organizations[i + 1];
@@ -28,6 +21,7 @@ function sortTotals() {
                 swapped = true;
             }
         }
+        n--;
     } while (swapped);
 
 
@@ -40,4 +34,5 @@ function sortTotals() {
         if (org.hasAllProducts) li.innerHTML = `<strong>${org.name}: ${org.total} €</strong>`;
         else li.innerHTML = `<strong>${org.name}: ${org.total} € <span style="color: red;"> &nbsp;&nbsp;*Το κατάστημα δε διαθέτει όλα τα προϊόντα της λίστας!</span></strong>`;
     }
+
 };
