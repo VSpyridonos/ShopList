@@ -447,7 +447,6 @@ const seedDB = async () => {
     // await p2.save();
     // await p3.save();
 
-    return;
 }
 
 seedDB();

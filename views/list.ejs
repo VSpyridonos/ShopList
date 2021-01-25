@@ -123,22 +123,22 @@
 
 <!-- <script src="/javascripts/sortTotals.js"></script> -->
 <script>
-        if (document.readyState !== 'loading') {
-            console.log('document is already ready, just execute code here');
+    if (document.readyState !== 'loading') {
+        console.log('document is already ready, just execute code here');
+        sortTotals();
+    } else {
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('document was not ready, place code here');
             sortTotals();
-        } else {
-            document.addEventListener('DOMContentLoaded', function () {
-                console.log('document was not ready, place code here');
-                sortTotals();
-            });
-        }
+        });
+    }
 
-    function sortTotals() {
+    async function sortTotals() {
         const organizations = [
-            { "name": "Μασούτης", "total": masoutisT, "hasAllProducts": masoutisHasAll },
-            { "name": "myMarket", "total": myMarketT, "hasAllProducts": myMarketHasAll },
-            { "name": "ΑΒ Βασιλόπουλος", "total": vasilopoulosT, "hasAllProducts": vasilopoulosHasAll },
-            { "name": "Σκλαβενίτης", "total": sklavenitisT, "hasAllProducts": sklavenitisHasAll}
+            { "name": "Μασούτης", "total": parseFloat(masoutisT), "hasAllProducts": masoutisHasAll },
+            { "name": "myMarket", "total": parseFloat(myMarketT), "hasAllProducts": myMarketHasAll },
+            { "name": "ΑΒ Βασιλόπουλος", "total": parseFloat(vasilopoulosT), "hasAllProducts": vasilopoulosHasAll },
+            { "name": "Σκλαβενίτης", "total": parseFloat(sklavenitisT), "hasAllProducts": sklavenitisHasAll}
         ]
 
         // Auksousa taksinomisi me vasi tin timi
@@ -167,6 +167,7 @@
             if (org.hasAllProducts) li.innerHTML = `<strong>${org.name}: ${org.total} €</strong>`;
             else li.innerHTML = `<strong>${org.name}: ${org.total} € <span style="color: red;"> &nbsp;&nbsp;*Το κατάστημα δε διαθέτει όλα τα προϊόντα της λίστας!</span></strong>`;
         }
+
     };
 </script>
 
