@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node app.js"
   },
   "keywords": [],
@@ -34,5 +34,8 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
     "sanitize-html": "^2.3.0"
+  },
+  "devDependencies": {
+    "mocha": "^8.2.1"
   }
 }

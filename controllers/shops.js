@@ -9,11 +9,6 @@ const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
 
-module.exports.showMap = async (req, res, next) => {
-    const shops = await Shop.find()
-    res.render('shops/map', { shops });
-};
-
 module.exports.createShop = async (req, res, next) => {
     const geoData = await geocoder.reverseGeocode({
         query: [20.843095, 39.644506],
