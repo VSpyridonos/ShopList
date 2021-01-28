@@ -18,6 +18,7 @@ module.exports.index = async (req, res, next) => {
         const products = await Product.find({ title: regex }, function (err, products) {
             if (err) {
                 console.log(err)
+                return "No products were found!"
             } else {
                 if (products.length < 1) {
                     req.flash('error', 'Δε βρέθηκαν προϊόντα για αυτήν την αναζήτηση!');
@@ -25,6 +26,7 @@ module.exports.index = async (req, res, next) => {
 
                 }
                 res.render('products/index', { products });
+                return "Search was successful!"
             }
         }).populate({
             path: 'products',
@@ -64,6 +66,7 @@ module.exports.index = async (req, res, next) => {
                 }
             });
         res.render('products/index', { products });
+        return "Showing all products"
     }
 };
 
@@ -164,9 +167,6 @@ module.exports.addProductToList = async (req, res) => {
             await list.products.unshift(currentProduct);
         }
     }
-
-    shopSelected = await Shop.findOne({ _id: req.body.shopSelect })
-    await Product.findByIdAndUpdate(currentProduct._id, { shopSelected: shopSelected });
 
     /*
     console.log("AUTO EINAI TO PROION POU VAZW STI LISTA ", currentProduct._id)
