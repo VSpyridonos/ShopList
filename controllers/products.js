@@ -17,17 +17,17 @@ module.exports.index = async (req, res, next) => {
         const regex = new RegExp(escapeRegex(cleanQuery), 'gi');
         const products = await Product.find({ title: regex }, function (err, products) {
             if (err) {
-                console.log(err)
-                return "No products were found!"
+                console.log(err);
             } else {
                 if (products.length < 1) {
                     req.flash('error', 'Δε βρέθηκαν προϊόντα για αυτήν την αναζήτηση!');
                     res.redirect('back');
 
-                }
-                res.render('products/index', { products });
-                return "Search was successful!"
+                } else res.render('products/index', { products });
+
+
             }
+
         }).populate({
             path: 'products',
             populate: {
@@ -66,7 +66,6 @@ module.exports.index = async (req, res, next) => {
                 }
             });
         res.render('products/index', { products });
-        return "Showing all products"
     }
 };
 
