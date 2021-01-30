@@ -411,7 +411,7 @@ const seedDB = async () => {
     //     console.log(arrP1[i].price);
     // }
 
-    // Vazw ta price se seira analoga me to kostos wste na emfanizontai se auksousa seira sto products/show. Meta ta vazw sto price2 tou kathe product
+    // Vazw ta price se seira analoga me to kostos wste na emfanizontai se auksousa seira sto products/show. Meta ta vazw sto price tou kathe product
     const sortAndPush = async function (arr, product) {
         let swapped;
 
@@ -427,8 +427,8 @@ const seedDB = async () => {
             }
         } while (swapped);
 
-        // Twra vazoume ta Price objects sto price2 tou kathe product
-        for (let pr of arr) product.price2.push(pr);
+        // Twra vazoume ta Price objects sto price tou kathe product
+        for (let pr of arr) product.price.push(pr);
 
         // Apothikeusi antikeimenou Product
         await product.save()
@@ -440,9 +440,9 @@ const seedDB = async () => {
     sortAndPush(arrP3, p3);
 
     // Palios tropos anti gia sortAndPush
-    // p1.price2.push(pr1, pr2, pr5, pr11);
-    // p2.price2.push(pr3, pr4, pr6, pr12);
-    // p3.price2.push(pr9, pr10, pr13);
+    // p1.price.push(pr1, pr2, pr5, pr11);
+    // p2.price.push(pr3, pr4, pr6, pr12);
+    // p3.price.push(pr9, pr10, pr13);
     // await p1.save();
     // await p2.save();
     // await p3.save();

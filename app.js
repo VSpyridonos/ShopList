@@ -144,11 +144,11 @@ app.get('/categories/:cat', async (req, res) => {
         .populate({
             path: 'products',
             populate: {
-                path: 'price2',
+                path: 'price',
                 model: 'Price'
             }
         }).populate('Price').populate({
-            path: 'price2',
+            path: 'price',
             populate: {
                 path: 'shop'
             }

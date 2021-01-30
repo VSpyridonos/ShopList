@@ -11,7 +11,7 @@ const ProductSchema = new Schema({
     countedWithQuantity: Boolean,
     quantity: { type: Number, default: 0 },
     weight: { type: Number, default: 0 },
-    price2: [
+    price: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Price'

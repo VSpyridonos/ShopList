@@ -18,11 +18,11 @@ module.exports.showList = async (req, res, next) => {
         .populate({
             path: 'products',
             populate: {
-                path: 'price2',
+                path: 'price',
                 model: 'Price'
             }
         }).populate('Price').populate({
-            path: 'price2',
+            path: 'price',
             populate: {
                 path: 'shop'
             }
@@ -49,7 +49,7 @@ module.exports.showList = async (req, res, next) => {
     let sklavenitisHasAllProducts = true;
 
     for (let product of list.products) {
-        for (let price of product.price2) {
+        for (let price of product.price) {
 
             if (product.countedWithQuantity) {
 

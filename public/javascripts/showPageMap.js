@@ -124,29 +124,33 @@ function initMap() {
                         shopInfo2.push(shopObject);
 
                         i++;
-                        let index = 0;
+
+                        let min = 1000;
                         if (i == shopInfo.length) {
                             for (let sh of shopInfo2) {
-                                let result = parseInt(sh.price) * 0.8 + parseInt(sh.duration.slice(0, 2).trim()) * 0.2;
+                                let result;
+                                if (sh.duration.slice(1, 6).trim() === 'ώρες') result = parseFloat(sh.price) * 0.8 + parseFloat(sh.duration.slice(0, 2).trim()) * 60 * 0.2;
+                                else result = parseFloat(sh.price) * 0.8 + parseFloat(sh.duration.slice(0, 2).trim()) * 0.2;
                                 results.push(result)
+
                             }
-
-                            let min = 1000;
-
+                            let index = 0;
                             for (let i = 0; i < results.length; i++) {
                                 if (results[i] < min) {
                                     min = results[i];
                                     index = i;
                                 }
                             }
+
+
+                            window.onload = function () {
+                                document.getElementById("recommendationImage").src = shopInfo2[index - 1].image;
+                                document.getElementById("recommendationTitle").innerHTML = `${shopInfo2[index - 1].title}`;
+                                document.getElementById("recommendationAddress").innerHTML = `Διεύθυνση: ${shopInfo2[index - 1].address}`;
+                            }
                         }
 
-                        window.onload = function () {
-                            document.getElementById("recommendationImage").src = shopInfo2[index].image;
-                            document.getElementById("recommendationTitle").innerHTML = `${shopInfo2[index].title}`;
-                            document.getElementById("recommendationAddress").innerHTML = `Διεύθυνση: ${shopInfo2[index].address}`;
 
-                        }
                     }
                 }
             }

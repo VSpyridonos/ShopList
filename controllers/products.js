@@ -37,11 +37,11 @@ module.exports.index = async (req, res, next) => {
             .populate({
                 path: 'products',
                 populate: {
-                    path: 'price2',
+                    path: 'price',
                     model: 'Price'
                 }
             }).populate('Price').populate({
-                path: 'price2',
+                path: 'price',
                 populate: {
                     path: 'shop'
                 }
@@ -56,11 +56,11 @@ module.exports.index = async (req, res, next) => {
             .populate({
                 path: 'products',
                 populate: {
-                    path: 'price2',
+                    path: 'price',
                     model: 'Price'
                 }
             }).populate('Price').populate({
-                path: 'price2',
+                path: 'price',
                 populate: {
                     path: 'shop'
                 }
@@ -90,7 +90,7 @@ module.exports.showProduct = async (req, res, next) => {
             path: 'author'
         }
     }).populate('author').populate({
-        path: 'price2',
+        path: 'price',
         populate: {
             path: 'shop'
         }
@@ -104,7 +104,7 @@ module.exports.showProduct = async (req, res, next) => {
     }
     const shopsPrizes = []
 
-    for (let bruh of product.price2) {
+    for (let bruh of product.price) {
         const zz = await Price.findById(bruh)
         const xz = await Shop.findById(zz.shop._id)
         shopsPrizes.push(`${xz.title}: ${zz.price}`)

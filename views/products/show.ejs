@@ -19,7 +19,7 @@
                     <form action="/list" method="POST" class="validated-form" novalidate>
                         <h3>Διαθέσιμο στα εξής καταστήματα:</h3>
                         <ul class="list-group">
-                            <% for (let sp of product.price2){ %>
+                            <% for (let sp of product.price){ %>
                                 <li class="list-group-item list-group-item-dark">
                                     <%= sp.shop.title%>: <%= sp.price%>&euro;
                                 </li>
