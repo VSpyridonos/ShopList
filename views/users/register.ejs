@@ -9,10 +9,11 @@
                         src="https://res.cloudinary.com/dlsbinpn6/image/upload/v1610702667/ShopList/neonbrand-SvhXD3kPSTY-unsplash_u4qcfq.jpg"
                         alt="">
                     <div class="card-body">
-                        <h5 class="card-title">Κάντε Εγγραφή</h5>
+                        <h5 class="card-title" style="text-align: center;">Εγγραφή</h5>
                         <form action="/register" method="POST" class="validated-form" novalidate>
                             <div class="mb-3">
-                                <label class="form-label" for="username">Όνομα Χρήστη</label>
+                                <label class="form-label" for="username">Όνομα Χρήστη<span
+                                        class="orange-asterisk">*</span></label>
                                 <input type="text" class="form-control" id="username" name="username" autofocus
                                     required>
                                 <div class="valid-feedback">
@@ -25,7 +26,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label" for="email">Email</label>
+                                <label class="form-label" for="email">Email<span
+                                        class="orange-asterisk">*</span></label>
                                 <input type="email" class="form-control" id="email" name="email" required>
                                 <div class="valid-feedback">
                                     Όλα καλά!
@@ -37,7 +39,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label" for="password">Κωδικός</label>
+                                <label class="form-label" for="password">Κωδικός<span
+                                        class="orange-asterisk">*</span></label>
                                 <input type="password" class="form-control" id="password" name="password" required>
                                 <div class="valid-feedback">
                                     Όλα καλά!

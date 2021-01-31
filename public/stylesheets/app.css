@@ -98,3 +98,7 @@ body {
     outline: solid #f00 1px !important;
   } */
   
+.orange-asterisk {
+  color: rgb(226, 103, 2);
+  font-weight: bold;
+}

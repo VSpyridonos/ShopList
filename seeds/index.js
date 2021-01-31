@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const fetch = require('node-fetch');
 const Shop = require('../models/shop');
 const Product = require('../models/product');
 const Category = require('../models/category');
@@ -8,8 +9,8 @@ const User = require('../models/user');
 
 require('dotenv').config();
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/shopList';
-//const dbUrl = 'mongodb://localhost:27017/shopList';
+//const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/shopList';
+const dbUrl = 'mongodb://localhost:27017/shopList';
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -439,13 +440,49 @@ const seedDB = async () => {
     sortAndPush(arrP2, p2);
     sortAndPush(arrP3, p3);
 
-    // Palios tropos anti gia sortAndPush
-    // p1.price.push(pr1, pr2, pr5, pr11);
-    // p2.price.push(pr3, pr4, pr6, pr12);
-    // p3.price.push(pr9, pr10, pr13);
-    // await p1.save();
-    // await p2.save();
-    // await p3.save();
+
+    // Web Crawling
+    const options = {
+        "headers": {
+            "accept": "application/json, text/plain, */*",
+            "cache-control": "no-cache",
+            "content-type": "application/json",
+            "key": "29a06020183ff11f631688a77e1b808884d1a8f0b1d78bed68f330a08bf99f6a",
+            "pragma": "no-cache",
+            "uid": "f0c71c70-ef92-44a0-9cdf-91096986180a",
+            "usl": "2021-01-31 19:25",
+            "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Mobile Safari/537.36"
+        },
+        "body": "{\"PassKey\":\"Sc@NnSh0p\",\"Itemcode\":\"566,011620\",\"ItemDescr\":\"0\",\"IfWeight\":1}",
+        "method": "POST",
+        "mode": "cors"
+    };
+
+    async function crawl() {
+        const response = await fetch("https://eshop.masoutis.gr/WcfScanNShopForWeb/OrdersService.svc/GetPromoItemWithListCouponsSubCategories/", options);
+        const json = await response.json();
+        for (let i = 0; i < json.length; i++) {
+            let prod = new Product({
+                title: json[i].ItemDescr,
+                category: ['Φρούτα & Λαχανικά', 'Φρούτα'],
+                countedWithQuantity: false,
+                image: json[i].PhotoData
+            });
+            let pri = new Price({
+                price: parseFloat(json[i].PosPrice),
+                shop: s1._id,
+                date: 2021 - 31 - 01
+            })
+            await pri.save();
+            prod.price.push(pri)
+            await prod.save();
+        }
+    }
+
+
+
+    crawl();
+    console.log("Done seeding");
 
 }
 
