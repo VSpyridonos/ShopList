@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const fetch = require('node-fetch');
+const puppeteer = require('puppeteer');
 const Shop = require('../models/shop');
 const Product = require('../models/product');
 const Category = require('../models/category');
@@ -447,7 +448,7 @@ const seedDB = async () => {
             "accept": "application/json, text/plain, */*",
             "cache-control": "no-cache",
             "content-type": "application/json",
-            "key": "29a06020183ff11f631688a77e1b808884d1a8f0b1d78bed68f330a08bf99f6a",
+            "key": "c38f43c316c2403b2e4cdf1461ff074c7cef544d0c88c5fb6def12f575980df7",
             "pragma": "no-cache",
             "uid": "f0c71c70-ef92-44a0-9cdf-91096986180a",
             "usl": "2021-01-31 19:25",
@@ -458,8 +459,30 @@ const seedDB = async () => {
         "mode": "cors"
     };
 
-    async function crawl() {
-        const response = await fetch("https://eshop.masoutis.gr/WcfScanNShopForWeb/OrdersService.svc/GetPromoItemWithListCouponsSubCategories/", options);
+
+    async function crawlHttp() {
+        //const response = await fetch("https://eshop.masoutis.gr/WcfScanNShopForWeb/OrdersService.svc/GetPromoItemWithListCouponsSubCategories/", options);
+        const response = await fetch("https://eshop.masoutis.gr/WcfScanNShopForWeb/OrdersService.svc/GetPromoItemWithListCouponsSubCategories/", {
+            "headers": {
+                "accept": "application/json, text/plain, */*",
+                "accept-language": "el-GR,el;q=0.9,en-US;q=0.8,en;q=0.7",
+                "cache-control": "no-cache",
+                "content-type": "application/json",
+                "key": "c38f43c316c2403b2e4cdf1461ff074c7cef544d0c88c5fb6def12f575980df7",
+                "pragma": "no-cache",
+                "sec-fetch-dest": "empty",
+                "sec-fetch-mode": "cors",
+                "sec-fetch-site": "same-origin",
+                "uid": "f0c71c70-ef92-44a0-9cdf-91096986180a",
+                "usl": "2021-02-02 17:38",
+                "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Mobile Safari/537.36"
+            },
+            "referrer": "https://eshop.masoutis.gr/categories/index/manabiko?item=566&subitem=011620&subdescr=freska-frouta",
+            "referrerPolicy": "strict-origin-when-cross-origin",
+            "body": "{\"PassKey\":\"Sc@NnSh0p\",\"Itemcode\":\"566,011620\",\"ItemDescr\":\"0\",\"IfWeight\":1}",
+            "method": "POST",
+            "mode": "cors"
+        });
         const json = await response.json();
         for (let i = 0; i < json.length; i++) {
             let prod = new Product({
@@ -474,14 +497,88 @@ const seedDB = async () => {
                 date: 2021 - 31 - 01
             })
             await pri.save();
-            prod.price.push(pri)
+            await prod.price.push(pri)
             await prod.save();
         }
     }
 
+    async function crawlPuppeteer() {
+        const browser = await puppeteer.launch({
+            headless: false, // GIA PRODUCTION NA TO VALW TRUE
+            defaultViewport: { width: 1920, height: 1080 }
+        });
+        const page = await browser.newPage();
+        await page.goto('https://eshop.mymarket.gr/frouta-lachanika/frouta');
+
+        await page.waitForSelector('.product-info');
+        await page.waitForSelector('.product-actions');
+
+        let productTitle = await page.evaluate(() => {
+            return Array.from(document.querySelectorAll('.product-info'), e => e.innerText.split('\n')[0]);
+        });
+
+        let productImage = await page.evaluate(() => {
+            return Array.from(document.querySelectorAll('.image-style-product-teaser'), e => e.src);
+        });
+
+        let productPrice = await page.evaluate(() => {
+            return Array.from(document.querySelectorAll('.product-actions'), e => e.innerText.split('\n')[2].slice(0, 4).replace(',', '.'));
+        });
 
 
-    crawl();
+        let numberOfProducts = productTitle.length;
+
+        for (let i = 0; i < numberOfProducts; i++) {
+
+            let title = productTitle[i]
+            let image = productImage[i];
+            let price = parseFloat(productPrice[i])
+
+
+            let splitTitle = title.split(' ');
+            let correctTitle = `${splitTitle[0]} ${splitTitle[1]} ${splitTitle[2]}`;
+            let foundProduct = await Product.findOne({ title: { '$regex': correctTitle, '$options': 'i' } });
+            console.log(foundProduct)
+            if (!foundProduct) {
+
+                let prod = new Product({
+                    title: title,
+                    category: ['Φρούτα & Λαχανικά', 'Φρούτα'],
+                    countedWithQuantity: false,
+                    image: image
+                });
+                let pri = new Price({
+                    price: price,
+                    shop: s2._id,
+                    date: 2021 - 02 - 02
+                })
+                await pri.save();
+                await prod.price.push(pri)
+                await prod.save();
+            } else {
+                console.log("NAIII")
+                let pri = new Price({
+                    price: price,
+                    shop: s2._id,
+                    date: 2021 - 02 - 02
+                })
+                await pri.save();
+                await foundProduct.price.push(pri)
+                await foundProduct.save();
+            }
+
+        }
+        let test = await Product.find({ title: { '$regex': 'Μήλα Γκόλντεν Ελληνικά', '$options': 'i' } });
+        console.log(test)
+
+        browser.close();
+    }
+
+
+
+
+    crawlHttp();
+    crawlPuppeteer();
     console.log("Done seeding");
 
 }
