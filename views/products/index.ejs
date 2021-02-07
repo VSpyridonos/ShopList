@@ -1,452 +1,484 @@
 <% layout('layouts/boilerplate.ejs') %>
 
         <div class="container-fluid">
+                <div id="product-categories">
 
-                <h1>Κατηγορίες προϊόντων</h1>
-                <ul class="flex-column">
+                        <h1>Κατηγορίες προϊόντων</h1>
+                        <ul class="flex-column">
 
-                        <li>
-                                <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Φρούτα & Λαχανικά
-                                </a>
-                                <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/categories/Φρούτα & Λαχανικά">Όλα τα
-                                                        προϊόντα</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="/categories/Φρούτα">Φρούτα</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Λαχανικά">Λαχανικά</a>
-                                        </li>
-                                </ul>
-                        </li>
+                                <li>
+                                        <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Φρούτα & Λαχανικά
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="/categories/Φρούτα & Λαχανικά">Όλα τα
+                                                                προϊόντα</a>
+                                                </li>
+                                                <li><a class="dropdown-item" href="/categories/Φρούτα">Φρούτα</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Λαχανικά">Λαχανικά</a>
+                                                </li>
+                                        </ul>
+                                </li>
 
-                        <li>
-                                <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Γαλακτοκομικά & Είδη Ψυγείου
-                                </a>
-                                <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/categories/Γαλακτοκομικά & Είδη Ψυγείου">Όλα
-                                                        τα
-                                                        προϊόντα</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Αυγά">Αυγά</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Γάλατα">Γάλατα</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Γιαούρτια">Γιαούρτια</a>
-                                        </li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Κρέμες & Επιδόρπια Ψυγείου">Κρέμες &
-                                                        Επιδόρπια
-                                                        Ψυγείου</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Βούτυρα & Μαργαρίνες">Βούτυρα &
-                                                        Μαργαρίνες</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="/categories/Χυμοί, Αναψυκτικά & Τσάι">Νερά,
-                                                        Χυμοί,
-                                                        Αναψυκτικά
-                                                        &
-                                                        Τσάι</a></li>
-                                </ul>
-                        </li>
+                                <li>
+                                        <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Γαλακτοκομικά & Είδη Ψυγείου
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Γαλακτοκομικά & Είδη Ψυγείου">Όλα
+                                                                τα
+                                                                προϊόντα</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Αυγά">Αυγά</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Γάλατα">Γάλατα</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Γιαούρτια">Γιαούρτια</a>
+                                                </li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Κρέμες & Επιδόρπια Ψυγείου">Κρέμες &
+                                                                Επιδόρπια
+                                                                Ψυγείου</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Βούτυρα & Μαργαρίνες">Βούτυρα &
+                                                                Μαργαρίνες</a>
+                                                </li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Χυμοί, Αναψυκτικά & Τσάι">Νερά,
+                                                                Χυμοί,
+                                                                Αναψυκτικά
+                                                                &
+                                                                Τσάι</a></li>
+                                        </ul>
+                                </li>
 
-                        <li>
-                                <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Τυροκομικά
-                                </a>
-                                <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/categories/Τυροκομικά">Όλα τα
-                                                        προϊόντα</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Φέτα & Λευκά Τυριά">Φέτα
-                                                        & Λευκά Τυριά</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Μαλακά Τυριά">Μαλακά
-                                                        Τυριά</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Ημίσκληρα Τυριά">Ημίσκληρα
-                                                        Τυριά</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="/categories/Σκληρά Τυριά">Σκληρά
-                                                        Τυριά</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Αλειφόμενα & Μίνι Τυριά">Αλειφόμενα &
-                                                        Μίνι
-                                                        Τυριά</a>
-                                        </li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Φυτικά Αναπληρώματα Τυριού">Φυτικά
-                                                        Αναπληρώματα
-                                                        Τυριού</a></li>
-                                </ul>
-                        </li>
+                                <li>
+                                        <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Τυροκομικά
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="/categories/Τυροκομικά">Όλα τα
+                                                                προϊόντα</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Φέτα & Λευκά Τυριά">Φέτα
+                                                                & Λευκά Τυριά</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Μαλακά Τυριά">Μαλακά
+                                                                Τυριά</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Ημίσκληρα Τυριά">Ημίσκληρα
+                                                                Τυριά</a>
+                                                </li>
+                                                <li><a class="dropdown-item" href="/categories/Σκληρά Τυριά">Σκληρά
+                                                                Τυριά</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Αλειφόμενα & Μίνι Τυριά">Αλειφόμενα &
+                                                                Μίνι
+                                                                Τυριά</a>
+                                                </li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Φυτικά Αναπληρώματα Τυριού">Φυτικά
+                                                                Αναπληρώματα
+                                                                Τυριού</a></li>
+                                        </ul>
+                                </li>
 
-                        <li>
-                                <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Αλλαντικά
-                                </a>
-                                <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/categories/Αλλαντικά">Όλα τα
-                                                        προϊόντα</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Λουκάνικα">Λουκάνικα</a>
-                                        </li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Αλλαντικά Γαλοπούλας & Κοτόπουλου">Αλλαντικά
-                                                        Γαλοπούλας & Κοτόπουλου</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Ζαμπόν, Μπέικον & Ωμοπλάτη">Ζαμπόν,
-                                                        Μπέικον &
-                                                        Ωμοπλάτη</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Πάριζα & Μορταδέλα">Πάριζα &
-                                                        Μορταδέλα</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Σαλάμια">Σαλάμια</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Παραδοσιακά Αλλαντικά">Παραδοσιακά
-                                                        Αλλαντικά</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="/categories/Σετ Αλλαντικών & Τυριών">Σετ
-                                                        Αλλαντικών &
-                                                        Τυριών</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Αναπληρώματα Αλλαντικών">Αναπληρώματα
-                                                        Αλλαντικών</a></li>
-                                </ul>
-                        </li>
+                                <li>
+                                        <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Αλλαντικά
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="/categories/Αλλαντικά">Όλα τα
+                                                                προϊόντα</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Λουκάνικα">Λουκάνικα</a>
+                                                </li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Αλλαντικά Γαλοπούλας & Κοτόπουλου">Αλλαντικά
+                                                                Γαλοπούλας & Κοτόπουλου</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Ζαμπόν, Μπέικον & Ωμοπλάτη">Ζαμπόν,
+                                                                Μπέικον &
+                                                                Ωμοπλάτη</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Πάριζα & Μορταδέλα">Πάριζα &
+                                                                Μορταδέλα</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Σαλάμια">Σαλάμια</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Παραδοσιακά Αλλαντικά">Παραδοσιακά
+                                                                Αλλαντικά</a>
+                                                </li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Σετ Αλλαντικών & Τυριών">Σετ
+                                                                Αλλαντικών &
+                                                                Τυριών</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Αναπληρώματα Αλλαντικών">Αναπληρώματα
+                                                                Αλλαντικών</a></li>
+                                        </ul>
+                                </li>
 
-                        <li>
-                                <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Φρέσκα Κρέατα
-                                </a>
-                                <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/categories/Φρέσκα Κρέατα">Όλα τα
-                                                        προϊόντα</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Φρέσκο Μοσχάρι">Φρέσκο
-                                                        Μοσχάρι</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Φρέσκο Χοιρινό">Φρέσκο
-                                                        Χοιρινό</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Φρέσκα Πουλερικά">Φρέσκα
-                                                        Πουλερικά</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Φρέσκα Παρασκευάσματα Πουλερικών">Φρέσκα
-                                                        Παρασκευάσματα Πουλερικών</a></li>
-                                </ul>
-                        </li>
+                                <li>
+                                        <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Φρέσκα Κρέατα
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="/categories/Φρέσκα Κρέατα">Όλα τα
+                                                                προϊόντα</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Φρέσκο Μοσχάρι">Φρέσκο
+                                                                Μοσχάρι</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Φρέσκο Χοιρινό">Φρέσκο
+                                                                Χοιρινό</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Φρέσκα Πουλερικά">Φρέσκα
+                                                                Πουλερικά</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Φρέσκα Παρασκευάσματα Πουλερικών">Φρέσκα
+                                                                Παρασκευάσματα Πουλερικών</a></li>
+                                        </ul>
+                                </li>
 
-                        <li>
-                                <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Φρέσκα Ψάρια & Θαλασσινά
-                                </a>
-                                <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/categories/Φρέσκα Ψάρια & Θαλασσινά">Όλα τα
-                                                        προϊόντα</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Ψάρια Ιχθυοκαλλιέργειας">Ψάρια
-                                                        Ιχθυοκαλλιέργειας</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Χταπόδια, Καλαμάρια & Σουπιές">Χταπόδια,
-                                                        Καλαμάρια & Σουπιές</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Οστρακοειδή">Οστρακοειδή</a></li>
-                                </ul>
-                        </li>
+                                <li>
+                                        <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Φρέσκα Ψάρια & Θαλασσινά
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Φρέσκα Ψάρια & Θαλασσινά">Όλα τα
+                                                                προϊόντα</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Ψάρια Ιχθυοκαλλιέργειας">Ψάρια
+                                                                Ιχθυοκαλλιέργειας</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Χταπόδια, Καλαμάρια & Σουπιές">Χταπόδια,
+                                                                Καλαμάρια & Σουπιές</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Οστρακοειδή">Οστρακοειδή</a></li>
+                                        </ul>
+                                </li>
 
-                        <li>
-                                <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Είδη Κατάψυξης
-                                </a>
-                                <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/categories/Είδη Κατάψυξης">Όλα τα
-                                                        προϊόντα</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Κατεψυγμένα Φρούτα & Λαχανικά">Κατεψυγμένα
-                                                        Φρούτα
-                                                        & Λαχανικά</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Κατεψυγμένα Ψάρια & Θαλασσινά">Κατεψυγμένα
-                                                        Ψάρια
-                                                        & Θαλασσινά</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Κατεψυγμένα Κρέατα & Πουλερικά">Κατεψυγμένα
-                                                        Κρέατα & Πουλερικά</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Κατεψυγμένες Ζύμες">Κατεψυγμένες
-                                                        Ζύμες</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Παγωτά">Παγωτά</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Παγάκια">Παγάκια</a></li>
-                                </ul>
-                        </li>
+                                <li>
+                                        <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Είδη Κατάψυξης
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="/categories/Είδη Κατάψυξης">Όλα τα
+                                                                προϊόντα</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Κατεψυγμένα Φρούτα & Λαχανικά">Κατεψυγμένα
+                                                                Φρούτα
+                                                                & Λαχανικά</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Κατεψυγμένα Ψάρια & Θαλασσινά">Κατεψυγμένα
+                                                                Ψάρια
+                                                                & Θαλασσινά</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Κατεψυγμένα Κρέατα & Πουλερικά">Κατεψυγμένα
+                                                                Κρέατα & Πουλερικά</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Κατεψυγμένες Ζύμες">Κατεψυγμένες
+                                                                Ζύμες</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Παγωτά">Παγωτά</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Παγάκια">Παγάκια</a></li>
+                                        </ul>
+                                </li>
 
-                        <li>
-                                <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Είδη Οικιακής Χρήσης
-                                </a>
-                                <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/categories/Είδη Οικιακής">Όλα τα
-                                                        προϊόντα</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Είδη Απορρυπαντικά Ρούχων">Απορρυπαντικά
-                                                        Ρούχων</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Είδη Απορρυπαντικά Πιάτων">Απορρυπαντικά
-                                                        Πιάτων</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Είδη Καθαριστικά γενικής χρήσης">Καθαριστικά
-                                                        γενικής χρήσης</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Είδη Σύνεργα Καθαρισμού">Σύνεργα
-                                                        Καθαρισμού</a>
-                                        </li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Είδη Σιδερώματος & Απλώματος">Είδη
-                                                        Σιδερώματος &
-                                                        Απλώματος</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Φύλαξη & Περιποίηση Ρούχων">Φύλαξη &
-                                                        Περιποίηση
-                                                        Ρούχων</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Περιποίηση Υποδημάτων">Περιποίηση
-                                                        Υποδημάτων</a>
-                                        </li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Αρωματικά Χώρου & Συλλέκτες Υγρασίας">Αρωματικά
-                                                        Χώρου & Συλλέκτες Υγρασίας</a></li>
+                                <li>
+                                        <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Είδη Οικιακής Χρήσης
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="/categories/Είδη Οικιακής">Όλα τα
+                                                                προϊόντα</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Είδη Απορρυπαντικά Ρούχων">Απορρυπαντικά
+                                                                Ρούχων</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Είδη Απορρυπαντικά Πιάτων">Απορρυπαντικά
+                                                                Πιάτων</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Είδη Καθαριστικά γενικής χρήσης">Καθαριστικά
+                                                                γενικής χρήσης</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Είδη Σύνεργα Καθαρισμού">Σύνεργα
+                                                                Καθαρισμού</a>
+                                                </li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Είδη Σιδερώματος & Απλώματος">Είδη
+                                                                Σιδερώματος &
+                                                                Απλώματος</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Φύλαξη & Περιποίηση Ρούχων">Φύλαξη &
+                                                                Περιποίηση
+                                                                Ρούχων</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Περιποίηση Υποδημάτων">Περιποίηση
+                                                                Υποδημάτων</a>
+                                                </li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Αρωματικά Χώρου & Συλλέκτες Υγρασίας">Αρωματικά
+                                                                Χώρου & Συλλέκτες Υγρασίας</a></li>
 
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Εντομοαπωθητικά & Εντομοκτόνα">Εντομοαπωθητικά
-                                                        &
-                                                        Εντομοκτόνα</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Εντομοαπωθητικά & Εντομοκτόνα">Εντομοαπωθητικά
+                                                                &
+                                                                Εντομοκτόνα</a></li>
 
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Πετρέλαιο & άλλα χημικά προϊόντα">Πετρέλαιο
-                                                        &
-                                                        άλλα χημικά προϊόντα</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Πετρέλαιο & άλλα χημικά προϊόντα">Πετρέλαιο
+                                                                &
+                                                                άλλα χημικά προϊόντα</a></li>
 
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Είδη Υγραερίου, Αναπτήρες & Σπίρτα">Είδη
-                                                        Υγραερίου, Αναπτήρες & Σπίρτα</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Είδη Υγραερίου, Αναπτήρες & Σπίρτα">Είδη
+                                                                Υγραερίου, Αναπτήρες & Σπίρτα</a></li>
 
-                                        <li><a class="dropdown-item" href="/categories/Είδη Θυμιάματος">Είδη
-                                                        Θυμιάματος</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Μπαταρίες, Λάμπες & Ηλεκτρολογικά Είδη">Μπαταρίες,
-                                                        Λάμπες &
-                                                        Ηλεκτρολογικά Είδη</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Τσάντες πολλαπλών χρήσεων & Καρότσια Λαϊκής">Τσάντες
-                                                        πολλαπλών χρήσεων
-                                                        & Καρότσια Λαϊκής</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Είδη Κουζίνας">Είδη
-                                                        Κουζίνας</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Είδη Μπάνιου">Είδη
-                                                        Μπάνιου</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Είδη Πάρτυ">Είδη
-                                                        Πάρτυ</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Είδη Εξωτερικού Χώρου">Είδη
-                                                        Εξωτερικού
-                                                        Χώρου</a>
-                                        </li>
-                                </ul>
-                        </li>
+                                                <li><a class="dropdown-item" href="/categories/Είδη Θυμιάματος">Είδη
+                                                                Θυμιάματος</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Μπαταρίες, Λάμπες & Ηλεκτρολογικά Είδη">Μπαταρίες,
+                                                                Λάμπες &
+                                                                Ηλεκτρολογικά Είδη</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Τσάντες πολλαπλών χρήσεων & Καρότσια Λαϊκής">Τσάντες
+                                                                πολλαπλών χρήσεων
+                                                                & Καρότσια Λαϊκής</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Είδη Κουζίνας">Είδη
+                                                                Κουζίνας</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Είδη Μπάνιου">Είδη
+                                                                Μπάνιου</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Είδη Πάρτυ">Είδη
+                                                                Πάρτυ</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Είδη Εξωτερικού Χώρου">Είδη
+                                                                Εξωτερικού
+                                                                Χώρου</a>
+                                                </li>
+                                        </ul>
+                                </li>
 
-                        <li>
-                                <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Είδη Παντοπωλείου
-                                </a>
-                                <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/categories/Είδη Παντοπωλείου">Όλα τα
-                                                        προϊόντα</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Αλεύρι & Σιμιγδάλι">Αλεύρι &
-                                                        Σιμιγδάλι</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Ζάχαρη & Υποκατάστατα Ζάχαρης">Ζάχαρη
-                                                        &
-                                                        Υποκατάστατα Ζάχαρης</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Ζυμαρικά">Ζυμαρικά</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="/categories/Ρύζια">Ρύζια</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Έτοιμες σάλτσες & Σως">Έτοιμες
-                                                        σάλτσες
-                                                        & Σως</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="/categories/Κονσέρβες & Κομπόστες">Κονσέρβες
-                                                        &
-                                                        Κομπόστες</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="/categories/Λάδια & Λίπη">Λάδια &
-                                                        Λίπη</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Μπαχαρικά, Αλάτια, Ξύδια & Ζωμοί">Μπαχαρικά,
-                                                        Αλάτια, Ξύδια & Ζωμοί</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Όσπρια">Όσπρια</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Σιτάρι, Κινόα, Σόγια & άλλα δημητριακά">Σιτάρι,
-                                                        Κινόα, Σόγια & άλλα δημητριακά</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Πουρέδες, Σούπες, Κροκέτες & Κύβοι">Πουρέδες,
-                                                        Σούπες, Κροκέτες & Κύβοι</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Υλικά Μαγειρικής & Ζαχαροπλαστικής">Υλικά
-                                                        Μαγειρικής & Ζαχαροπλαστικής</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Ξηροί Καρποί & Σνακ">Ξηροί Καρποί
-                                                        &
-                                                        Σνακ</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Γάλατα">Γλυκά</a></li>
-                                </ul>
-                        </li>
+                                <li>
+                                        <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Είδη Παντοπωλείου
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="/categories/Είδη Παντοπωλείου">Όλα τα
+                                                                προϊόντα</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Αλεύρι & Σιμιγδάλι">Αλεύρι &
+                                                                Σιμιγδάλι</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Ζάχαρη & Υποκατάστατα Ζάχαρης">Ζάχαρη
+                                                                &
+                                                                Υποκατάστατα Ζάχαρης</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Ζυμαρικά">Ζυμαρικά</a>
+                                                </li>
+                                                <li><a class="dropdown-item" href="/categories/Ρύζια">Ρύζια</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Έτοιμες σάλτσες & Σως">Έτοιμες
+                                                                σάλτσες
+                                                                & Σως</a>
+                                                </li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Κονσέρβες & Κομπόστες">Κονσέρβες
+                                                                &
+                                                                Κομπόστες</a>
+                                                </li>
+                                                <li><a class="dropdown-item" href="/categories/Λάδια & Λίπη">Λάδια &
+                                                                Λίπη</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Μπαχαρικά, Αλάτια, Ξύδια & Ζωμοί">Μπαχαρικά,
+                                                                Αλάτια, Ξύδια & Ζωμοί</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Όσπρια">Όσπρια</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Σιτάρι, Κινόα, Σόγια & άλλα δημητριακά">Σιτάρι,
+                                                                Κινόα, Σόγια & άλλα δημητριακά</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Πουρέδες, Σούπες, Κροκέτες & Κύβοι">Πουρέδες,
+                                                                Σούπες, Κροκέτες & Κύβοι</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Υλικά Μαγειρικής & Ζαχαροπλαστικής">Υλικά
+                                                                Μαγειρικής & Ζαχαροπλαστικής</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Ξηροί Καρποί & Σνακ">Ξηροί Καρποί
+                                                                &
+                                                                Σνακ</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Γάλατα">Γλυκά</a></li>
+                                        </ul>
+                                </li>
 
-                        <li>
-                                <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Είδη Πρωινού & Ροφήματα
-                                </a>
-                                <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/categories/Είδη Πρωινού & Ροφήματα">Όλα τα
-                                                        προϊόντα</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Καφέδες, Ροφήματα & Αφεψήματα">Καφέδες,
-                                                        Ροφήματα
-                                                        & Αφεψήματα</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Δημητριακά & Μπάρες Δημητριακών">Δημητριακά
-                                                        &
-                                                        Μπάρες Δημητριακών</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Μέλια & Μαρμελάδες">Μέλια
-                                                        & Μαρμελάδες</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Πραλίνες, Ταχίνι & Φυστικοβούτυρο">Πραλίνες,
-                                                        Ταχίνι & Φυστικοβούτυρο</a></li>
-                                </ul>
-                        </li>
+                                <li>
+                                        <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Είδη Πρωινού & Ροφήματα
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Είδη Πρωινού & Ροφήματα">Όλα τα
+                                                                προϊόντα</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Καφέδες, Ροφήματα & Αφεψήματα">Καφέδες,
+                                                                Ροφήματα
+                                                                & Αφεψήματα</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Δημητριακά & Μπάρες Δημητριακών">Δημητριακά
+                                                                &
+                                                                Μπάρες Δημητριακών</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Μέλια & Μαρμελάδες">Μέλια
+                                                                & Μαρμελάδες</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Πραλίνες, Ταχίνι & Φυστικοβούτυρο">Πραλίνες,
+                                                                Ταχίνι & Φυστικοβούτυρο</a></li>
+                                        </ul>
+                                </li>
 
-                        <li>
-                                <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Βρεφικές & Παιδικές Τροφές
-                                </a>
-                                <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/categories/Βρεφικές & Παιδικές Τροφές">Όλα
-                                                        τα
-                                                        προϊόντα</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Βρεφικά & Παιδικά Γάλατα">Βρεφικά
-                                                        &
-                                                        Παιδικά
-                                                        Γάλατα</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Βρεφικές & Παιδικές Κρέμες">Βρεφικές &
-                                                        Παιδικές
-                                                        Κρέμες </a></li>
-                                        <li><a class="dropdown-item" href="/categories/Βρεφικά & Παιδικά Σνακ">Βρεφικά &
-                                                        Παιδικά
-                                                        Σνακ</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Βρεφικά & Παιδικά Είδη Σίτισης">Βρεφικά
-                                                        & Παιδικά
-                                                        Είδη Σίτισης</a></li>
-                                </ul>
-                        </li>
+                                <li>
+                                        <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Βρεφικές & Παιδικές Τροφές
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Βρεφικές & Παιδικές Τροφές">Όλα
+                                                                τα
+                                                                προϊόντα</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Βρεφικά & Παιδικά Γάλατα">Βρεφικά
+                                                                &
+                                                                Παιδικά
+                                                                Γάλατα</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Βρεφικές & Παιδικές Κρέμες">Βρεφικές &
+                                                                Παιδικές
+                                                                Κρέμες </a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Βρεφικά & Παιδικά Σνακ">Βρεφικά &
+                                                                Παιδικά
+                                                                Σνακ</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Βρεφικά & Παιδικά Είδη Σίτισης">Βρεφικά
+                                                                & Παιδικά
+                                                                Είδη Σίτισης</a></li>
+                                        </ul>
+                                </li>
 
-                        <li>
-                                <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Χαρτικά, Πάνες & Σερβιέτες
-                                </a>
-                                <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/categories/Χαρτικά, Πάνες & Σερβιέτες">Όλα
-                                                        τα
-                                                        προϊόντα</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Χαρτικά">Χαρτικά</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Βρεφικές & Παιδικές Πάνες, Μωρομάντηλα">Βρεφικές
-                                                        & Παιδικές
-                                                        Πάνες, Μωρομάντηλα </a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Σερβιέτες & Πάνες Ενηλίκων">Σερβιέτες
-                                                        & Πάνες
-                                                        Ενηλίκων</a></li>
-                                </ul>
-                        </li>
+                                <li>
+                                        <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Χαρτικά, Πάνες & Σερβιέτες
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Χαρτικά, Πάνες & Σερβιέτες">Όλα
+                                                                τα
+                                                                προϊόντα</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Χαρτικά">Χαρτικά</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Βρεφικές & Παιδικές Πάνες, Μωρομάντηλα">Βρεφικές
+                                                                & Παιδικές
+                                                                Πάνες, Μωρομάντηλα </a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Σερβιέτες & Πάνες Ενηλίκων">Σερβιέτες
+                                                                & Πάνες
+                                                                Ενηλίκων</a></li>
+                                        </ul>
+                                </li>
 
-                        <li>
-                                <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Κάβα
-                                </a>
-                                <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/categories/Κάβα">Όλα τα
-                                                        προϊόντα</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Ποτά">Ποτά</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Κρασιά & Σαμπάνιες">Κρασιά &
-                                                        Σαμπάνιες</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Μπύρες & Μηλίτες">Μπύρες
-                                                        & Μηλίτες</a></li>
-                                </ul>
-                        </li>
+                                <li>
+                                        <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Κάβα
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="/categories/Κάβα">Όλα τα
+                                                                προϊόντα</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Ποτά">Ποτά</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Κρασιά & Σαμπάνιες">Κρασιά &
+                                                                Σαμπάνιες</a></li>
+                                                <li><a class="dropdown-item" href="/categories/Μπύρες & Μηλίτες">Μπύρες
+                                                                & Μηλίτες</a></li>
+                                        </ul>
+                                </li>
 
-                        <li>
-                                <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Είδη για Κατοικίδια
-                                </a>
-                                <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/categories/Είδη για Κατοικίδια">Όλα
-                                                        τα
-                                                        προϊόντα</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Τροφές & Είδη για Σκύλους">Τροφές
-                                                        &
-                                                        Είδη για
-                                                        Σκύλους</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Τροφές & Είδη για Γάτες">Τροφές &
-                                                        Είδη
-                                                        για
-                                                        Γάτες</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Τροφές & Είδη για άλλα κατοικίδια">Τροφές
-                                                        & Είδη
-                                                        για άλλα κατοικίδια</a></li>
-                                </ul>
-                        </li>
+                                <li>
+                                        <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Είδη για Κατοικίδια
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="/categories/Είδη για Κατοικίδια">Όλα
+                                                                τα
+                                                                προϊόντα</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Τροφές & Είδη για Σκύλους">Τροφές
+                                                                &
+                                                                Είδη για
+                                                                Σκύλους</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Τροφές & Είδη για Γάτες">Τροφές &
+                                                                Είδη
+                                                                για
+                                                                Γάτες</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Τροφές & Είδη για άλλα κατοικίδια">Τροφές
+                                                                & Είδη
+                                                                για άλλα κατοικίδια</a></li>
+                                        </ul>
+                                </li>
 
-                        <li>
-                                <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Είδη Υγιεινής
-                                </a>
-                                <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/categories/Είδη Υγιεινής">Όλα τα
-                                                        προϊόντα</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Φροντίδα Μαλλιών">Φροντίδα
-                                                        Μαλλιών</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="/categories/Φροντίδα Προσώπου">Φροντίδα
-                                                        Προσώπου</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Φροντίδα Σώματος">Φροντίδα
-                                                        Σώματος</a>
-                                        </li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Είδη Ξυρίσματος & After Shave">Είδη
-                                                        Ξυρίσματος &
-                                                        After Shave</a></li>
-                                        <li><a class="dropdown-item" href="/categories/Στοματική Υγιεινή">Στοματική
-                                                        Υγιεινή</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Μακιγιάζ & Βερνίκια Νυχιών">Μακιγιάζ &
-                                                        Βερνίκια
-                                                        Νυχιών</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Βρεφικά & Παιδικά Καλλυντικά">Βρεφικά
-                                                        & Παιδικά
-                                                        Καλλυντικά</a></li>
-                                        <li><a class="dropdown-item"
-                                                        href="/categories/Παραφαρμακευτικά Είδη">Παραφαρμακευτικά
-                                                        Είδη</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="/categories/Αντιηλιακά">Αντιηλιακά</a></li>
-                                </ul>
-                        </li>
+                                <li>
+                                        <a href="#" class="dropdown-toggle nounderline ml-3" data-toggle="dropdown"
+                                                aria-expanded="false">
+                                                Είδη Υγιεινής
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="/categories/Είδη Υγιεινής">Όλα τα
+                                                                προϊόντα</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Φροντίδα Μαλλιών">Φροντίδα
+                                                                Μαλλιών</a>
+                                                </li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Φροντίδα Προσώπου">Φροντίδα
+                                                                Προσώπου</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Φροντίδα Σώματος">Φροντίδα
+                                                                Σώματος</a>
+                                                </li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Είδη Ξυρίσματος & After Shave">Είδη
+                                                                Ξυρίσματος &
+                                                                After Shave</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Στοματική Υγιεινή">Στοματική
+                                                                Υγιεινή</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Μακιγιάζ & Βερνίκια Νυχιών">Μακιγιάζ &
+                                                                Βερνίκια
+                                                                Νυχιών</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Βρεφικά & Παιδικά Καλλυντικά">Βρεφικά
+                                                                & Παιδικά
+                                                                Καλλυντικά</a></li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Παραφαρμακευτικά Είδη">Παραφαρμακευτικά
+                                                                Είδη</a>
+                                                </li>
+                                                <li><a class="dropdown-item"
+                                                                href="/categories/Αντιηλιακά">Αντιηλιακά</a></li>
+                                        </ul>
+                                </li>
 
 
 
-                </ul>
+                        </ul>
 
-                <hr>
+                        <hr>
+                </div>
 
                 <h1>Όλα τα Προϊόντα</h1>
 
@@ -468,18 +500,22 @@
                                                                         <%= product.title%>
                                                                 </a></h5>
                                                         <p>
-                                                                <% for (let cat of product.category) {%> 
-                                                                <%= cat %><% if (product.category.indexOf(cat)!==product.category.length - 1) { %><small
-                                                                        class="text-muted">,&nbsp;
-                                                                </small>
-                                                                <% } %>
-                                                                <% } %> 
+                                                                <% for (let cat of product.category) {%>
+                                                                        <%= cat %>
+                                                                                <% if (product.category.indexOf(cat)!==product.category.length
+                                                                                        - 1) { %><small
+                                                                                                class="text-muted">,&nbsp;
+                                                                                        </small>
+                                                                                        <% } %>
+                                                                                                <% } %>
                                                         </p>
                                                         <p class="card-text">
                                                                 <small class="text-muted">Διαθέσιμο σε:&nbsp;</small>
                                                                 <% for (let s of product.price) { %>
                                                                         <small class="text-muted">
-                                                                                <%= s.shop.organization%><% if (product.price.indexOf(s)!==product.price.length - 1) { %><small
+                                                                                <%= s.shop.organization%>
+                                                                                        <% if (product.price.indexOf(s)!==product.price.length
+                                                                                                - 1) { %><small
                                                                                                         class="text-muted">,&nbsp;
                                                                                                 </small>
                                                                                                 <% } %>
@@ -491,7 +527,8 @@
                                                         <br>
                                                         <br>
                                                         <p class="card-text">
-                                                                <small class="text-muted">Η φωτογραφία ανήκει στην εταιρεία: <%= product.imageFrom %> </small>
+                                                                <small class="text-muted">Η φωτογραφία ανήκει στην
+                                                                        εταιρεία: <%= product.imageFrom %> </small>
                                                         </p>
 
 

@@ -7,6 +7,7 @@ const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const googleMapsKey = process.env.GOOGLE_MAPS_API_KEY;
+const fetch = require('node-fetch');
 
 module.exports.showList = async (req, res, next) => {
     const list = await List.findOne({ owner: req.user._id }).populate({
@@ -130,10 +131,17 @@ module.exports.showList = async (req, res, next) => {
     // Pinakas pou tha vazw ola ta koina katastimata twn proiontwn tis listas
     let currentUserAddress = req.user.address;
 
+    async function getWeather() {
+        const weather = await fetch(
+            "https://api.openweathermap.org/data/2.5/weather?q=ioannina&units=metric&lang=el&APPID=28c45ebeb80a0d5b9da4b07bced3e23a"
+        );
+        let response = await weather.json();
+        return response;
+    }
 
+    const currentWeather = await getWeather();
 
-
-    res.render('list', { list, masoutisTotal, myMarketTotal, vasilopoulosTotal, sklavenitisTotal, masoutisHasAllProducts, myMarketHasAllProducts, vasilopoulosHasAllProducts, sklavenitisHasAllProducts, shops, googleMapsKey, currentUserAddress });
+    res.render('list', { list, currentWeather, masoutisTotal, myMarketTotal, vasilopoulosTotal, sklavenitisTotal, masoutisHasAllProducts, myMarketHasAllProducts, vasilopoulosHasAllProducts, sklavenitisHasAllProducts, shops, googleMapsKey, currentUserAddress });
 };
 
 module.exports.updateList = async (req, res, next) => {

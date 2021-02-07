@@ -471,13 +471,13 @@ const seedDB = async () => {
                 "accept-language": "el-GR,el;q=0.9,en-US;q=0.8,en;q=0.7",
                 "cache-control": "no-cache",
                 "content-type": "application/json",
-                "key": "f922e9a8d85291dbd1af9421505d9e06d0e0ecca2951f95848302f31fd5e450c",
+                "key": "aa1ce1e4d1330b647f5b15d5807ccbd1ad6c7a4e245fc39c430953d4d98b9978",
                 "pragma": "no-cache",
                 "sec-fetch-dest": "empty",
                 "sec-fetch-mode": "cors",
                 "sec-fetch-site": "same-origin",
                 "uid": "f0c71c70-ef92-44a0-9cdf-91096986180a",
-                "usl": "2021-02-07 06:59",
+                "usl": "2021-02-07 16:10",
                 "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Mobile Safari/537.36"
             },
             "referrer": "https://eshop.masoutis.gr/categories/index/manabiko?item=566&subitem=011620&subdescr=freska-frouta",
@@ -541,7 +541,12 @@ const seedDB = async () => {
 
             let splitTitle = title.split(' ');
             let correctTitle = `${splitTitle[0]} ${splitTitle[1]} ${splitTitle[2]}`;
-            let foundProduct = await Product.findOne({ title: { '$regex': correctTitle, '$options': 'i' } });
+            let foundProduct = await Product.findOne({ title: { '$regex': correctTitle, '$options': 'i' } }).populate('Price').populate({
+                path: 'price',
+                populate: {
+                    path: 'shop'
+                }
+            });;
             if (!foundProduct) {
 
                 let prod = new Product({
@@ -560,45 +565,62 @@ const seedDB = async () => {
                 await prod.price.push(pri)
                 await prod.save();
             } else {
-                let pri = new Price({
-                    price: price,
-                    shop: s2._id,
-                    date: 2021 - 02 - 02
-                })
-                await pri.save();
-                await foundProduct.price.push(pri)
-                await foundProduct.save();
+                let exists = false;
+
+                for (let i = 0; i < foundProduct.price.length; i++) {
+                    console.log('prod: ', foundProduct.price[i].shop._id)
+                    console.log('s2_id: ', s2._id)
+                    if (foundProduct.price[i].shop._id.toString() == s2._id.toString()) {
+
+                        console.log('aaa');
+                        exists = true;
+                    }
+                }
+                console.log(exists);
+                // An den yparxei idi price apo My market sto product
+                if (!exists) {
+
+                    let pri = new Price({
+                        price: price,
+                        shop: s2._id,
+                        date: 2021 - 02 - 02
+                    })
+                    await pri.save();
+                    await foundProduct.price.push(pri)
+                    await foundProduct.save();
+
+                }
             }
 
         }
         browser.close();
     }
 
-    // fetch("https://eshop.masoutis.gr/WcfScanNShopForWeb/OrdersService.svc/GetPromoItemWithListCouponsSubCategories/", {
-    //     "headers": {
-    //       "accept": "application/json, text/plain, */*",
-    //       "accept-language": "el-GR,el;q=0.9,en-US;q=0.8,en;q=0.7",
-    //       "cache-control": "no-cache",
-    //       "content-type": "application/json",
-    //       "key": "f922e9a8d85291dbd1af9421505d9e06d0e0ecca2951f95848302f31fd5e450c",
-    //       "pragma": "no-cache",
-    //       "sec-fetch-dest": "empty",
-    //       "sec-fetch-mode": "cors",
-    //       "sec-fetch-site": "same-origin",
-    //       "uid": "f0c71c70-ef92-44a0-9cdf-91096986180a",
-    //       "usl": "2021-02-07 06:59",
-    //       "cookie": "cookiesession1=523BACBEF5NHS5EYN3CG0MQO0OB08CDD; _gid=GA1.2.2003695284.1612673900; _gat=1; _gat_gtag_UA_24166222_2=1; _ga=GA1.1.1748580548.1604251795; _ga_9NVDK8HW6S=GS1.1.1612673904.52.1.1612673944.0"
-    //     },
-    //     "referrer": "https://eshop.masoutis.gr/",
-    //     "referrerPolicy": "strict-origin-when-cross-origin",
-    //     "body": "{\"PassKey\":\"Sc@NnSh0p\",\"Itemcode\":\"0\",\"ItemDescr\":\"0\",\"IfWeight\":1}",
-    //     "method": "POST",
-    //     "mode": "cors"
-    //   });
+    //     fetch("https://eshop.masoutis.gr/WcfScanNShopForWeb/OrdersService.svc/GetPromoItemWithListCouponsSubCategories/", {
+    //   "headers": {
+    //     "accept": "application/json, text/plain, */*",
+    //     "accept-language": "el-GR,el;q=0.9,en-US;q=0.8,en;q=0.7",
+    //     "cache-control": "no-cache",
+    //     "content-type": "application/json",
+    //     "key": "aa1ce1e4d1330b647f5b15d5807ccbd1ad6c7a4e245fc39c430953d4d98b9978",
+    //     "pragma": "no-cache",
+    //     "sec-fetch-dest": "empty",
+    //     "sec-fetch-mode": "cors",
+    //     "sec-fetch-site": "same-origin",
+    //     "uid": "f0c71c70-ef92-44a0-9cdf-91096986180a",
+    //     "usl": "2021-02-07 16:10",
+    //     "cookie": "cookiesession1=523BACBEF5NHS5EYN3CG0MQO0OB08CDD; _gid=GA1.2.2003695284.1612673900; _gat=1; _gat_gtag_UA_24166222_2=1; _ga_9NVDK8HW6S=GS1.1.1612707018.53.0.1612707036.0; _ga=GA1.2.1748580548.1604251795"
+    //   },
+    //   "referrer": "https://eshop.masoutis.gr/",
+    //   "referrerPolicy": "strict-origin-when-cross-origin",
+    //   "body": "{\"PassKey\":\"Sc@NnSh0p\",\"Itemcode\":\"0\",\"ItemDescr\":\"0\",\"IfWeight\":1}",
+    //   "method": "POST",
+    //   "mode": "cors"
+    // });
 
 
-    crawlHttp();
-    crawlPuppeteer();
+    await crawlHttp();
+    await crawlPuppeteer();
     console.log("Done seeding");
 
 }

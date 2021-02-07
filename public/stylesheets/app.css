@@ -102,3 +102,19 @@ body {
   color: rgb(226, 103, 2);
   font-weight: bold;
 }
+
+@media screen and (max-width: 600px){
+  #carousel {
+    visibility: hidden;
+    clear: both;
+    display: none;
+  }
+}
+
+@media screen and (min-width: 601px){
+  #product-categories {
+    visibility: hidden;
+    clear: both;
+    display: none;
+  }
+}
