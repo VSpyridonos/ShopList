@@ -10,8 +10,8 @@ const User = require('../models/user');
 
 require('dotenv').config();
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/shopList';
-//const dbUrl = 'mongodb://localhost:27017/shopList';
+//const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/shopList';
+const dbUrl = 'mongodb://localhost:27017/shopList';
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -37,21 +37,24 @@ const seedDB = async () => {
         title: 'Νουνού Family Γάλα 3,6% 1lt.',
         category: ['Γαλακτοκομικά & Είδη Ψυγείου', 'Γάλατα'],
         countedWithQuantity: true,
-        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1605545290/ShopList/%CE%9D%CE%BF%CF%85%CE%BD%CE%BF%CF%8D_Family_%CE%93%CE%AC%CE%BB%CE%B1_3_6_1lt._hx8mfv.jpg'
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1605545290/ShopList/%CE%9D%CE%BF%CF%85%CE%BD%CE%BF%CF%8D_Family_%CE%93%CE%AC%CE%BB%CE%B1_3_6_1lt._hx8mfv.jpg',
+        imageFrom: 'Μασούτης'
 
     })
     const p2 = new Product({
         title: 'Zagorin Μήλα Ζαγοράς Πηλίου ΠΟΠ Κόκκινα',
         category: ['Φρούτα & Λαχανικά', 'Φρούτα'],
         countedWithQuantity: false,
-        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1605545316/ShopList/Zagorin_%CE%9C%CE%AE%CE%BB%CE%B1_%CE%96%CE%B1%CE%B3%CE%BF%CF%81%CE%AC%CF%82_%CE%A0%CE%B7%CE%BB%CE%AF%CE%BF%CF%85_%CE%A0%CE%9F%CE%A0_%CE%9A%CF%8C%CE%BA%CE%BA%CE%B9%CE%BD%CE%B1_cfwa3z.png'
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1605545316/ShopList/Zagorin_%CE%9C%CE%AE%CE%BB%CE%B1_%CE%96%CE%B1%CE%B3%CE%BF%CF%81%CE%AC%CF%82_%CE%A0%CE%B7%CE%BB%CE%AF%CE%BF%CF%85_%CE%A0%CE%9F%CE%A0_%CE%9A%CF%8C%CE%BA%CE%BA%CE%B9%CE%BD%CE%B1_cfwa3z.png',
+        imageFrom: 'Μασούτης'
     })
 
     const p3 = new Product({
         title: 'Μπανάνες Dole Εισαγωγής Χύμα',
         category: ['Φρούτα & Λαχανικά', 'Φρούτα'],
         countedWithQuantity: false,
-        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1605973471/ShopList/%CE%9C%CF%80%CE%B1%CE%BD%CE%AC%CE%BD%CE%B5%CF%82_Dole_%CE%95%CE%B9%CF%83%CE%B1%CE%B3%CF%89%CE%B3%CE%AE%CF%82_%CE%A7%CF%8D%CE%BC%CE%B1_nltuo9.jpg'
+        image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1605973471/ShopList/%CE%9C%CF%80%CE%B1%CE%BD%CE%AC%CE%BD%CE%B5%CF%82_Dole_%CE%95%CE%B9%CF%83%CE%B1%CE%B3%CF%89%CE%B3%CE%AE%CF%82_%CE%A7%CF%8D%CE%BC%CE%B1_nltuo9.jpg',
+        imageFrom: 'Μασούτης'
     })
 
 
@@ -468,13 +471,13 @@ const seedDB = async () => {
                 "accept-language": "el-GR,el;q=0.9,en-US;q=0.8,en;q=0.7",
                 "cache-control": "no-cache",
                 "content-type": "application/json",
-                "key": "c38f43c316c2403b2e4cdf1461ff074c7cef544d0c88c5fb6def12f575980df7",
+                "key": "f922e9a8d85291dbd1af9421505d9e06d0e0ecca2951f95848302f31fd5e450c",
                 "pragma": "no-cache",
                 "sec-fetch-dest": "empty",
                 "sec-fetch-mode": "cors",
                 "sec-fetch-site": "same-origin",
                 "uid": "f0c71c70-ef92-44a0-9cdf-91096986180a",
-                "usl": "2021-02-02 17:38",
+                "usl": "2021-02-07 06:59",
                 "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Mobile Safari/537.36"
             },
             "referrer": "https://eshop.masoutis.gr/categories/index/manabiko?item=566&subitem=011620&subdescr=freska-frouta",
@@ -489,7 +492,8 @@ const seedDB = async () => {
                 title: json[i].ItemDescr,
                 category: ['Φρούτα & Λαχανικά', 'Φρούτα'],
                 countedWithQuantity: false,
-                image: json[i].PhotoData
+                image: json[i].PhotoData,
+                imageFrom: 'Μασούτης'
             });
             let pri = new Price({
                 price: parseFloat(json[i].PosPrice),
@@ -538,14 +542,14 @@ const seedDB = async () => {
             let splitTitle = title.split(' ');
             let correctTitle = `${splitTitle[0]} ${splitTitle[1]} ${splitTitle[2]}`;
             let foundProduct = await Product.findOne({ title: { '$regex': correctTitle, '$options': 'i' } });
-            console.log(foundProduct)
             if (!foundProduct) {
 
                 let prod = new Product({
                     title: title,
                     category: ['Φρούτα & Λαχανικά', 'Φρούτα'],
                     countedWithQuantity: false,
-                    image: image
+                    image: image,
+                    imageFrom: 'My market'
                 });
                 let pri = new Price({
                     price: price,
@@ -556,7 +560,6 @@ const seedDB = async () => {
                 await prod.price.push(pri)
                 await prod.save();
             } else {
-                console.log("NAIII")
                 let pri = new Price({
                     price: price,
                     shop: s2._id,
@@ -568,13 +571,30 @@ const seedDB = async () => {
             }
 
         }
-        let test = await Product.find({ title: { '$regex': 'Μήλα Γκόλντεν Ελληνικά', '$options': 'i' } });
-        console.log(test)
-
         browser.close();
     }
 
-
+    // fetch("https://eshop.masoutis.gr/WcfScanNShopForWeb/OrdersService.svc/GetPromoItemWithListCouponsSubCategories/", {
+    //     "headers": {
+    //       "accept": "application/json, text/plain, */*",
+    //       "accept-language": "el-GR,el;q=0.9,en-US;q=0.8,en;q=0.7",
+    //       "cache-control": "no-cache",
+    //       "content-type": "application/json",
+    //       "key": "f922e9a8d85291dbd1af9421505d9e06d0e0ecca2951f95848302f31fd5e450c",
+    //       "pragma": "no-cache",
+    //       "sec-fetch-dest": "empty",
+    //       "sec-fetch-mode": "cors",
+    //       "sec-fetch-site": "same-origin",
+    //       "uid": "f0c71c70-ef92-44a0-9cdf-91096986180a",
+    //       "usl": "2021-02-07 06:59",
+    //       "cookie": "cookiesession1=523BACBEF5NHS5EYN3CG0MQO0OB08CDD; _gid=GA1.2.2003695284.1612673900; _gat=1; _gat_gtag_UA_24166222_2=1; _ga=GA1.1.1748580548.1604251795; _ga_9NVDK8HW6S=GS1.1.1612673904.52.1.1612673944.0"
+    //     },
+    //     "referrer": "https://eshop.masoutis.gr/",
+    //     "referrerPolicy": "strict-origin-when-cross-origin",
+    //     "body": "{\"PassKey\":\"Sc@NnSh0p\",\"Itemcode\":\"0\",\"ItemDescr\":\"0\",\"IfWeight\":1}",
+    //     "method": "POST",
+    //     "mode": "cors"
+    //   });
 
 
     crawlHttp();

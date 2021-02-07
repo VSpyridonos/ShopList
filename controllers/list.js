@@ -130,6 +130,9 @@ module.exports.showList = async (req, res, next) => {
     // Pinakas pou tha vazw ola ta koina katastimata twn proiontwn tis listas
     let currentUserAddress = req.user.address;
 
+
+
+
     res.render('list', { list, masoutisTotal, myMarketTotal, vasilopoulosTotal, sklavenitisTotal, masoutisHasAllProducts, myMarketHasAllProducts, vasilopoulosHasAllProducts, sklavenitisHasAllProducts, shops, googleMapsKey, currentUserAddress });
 };
 

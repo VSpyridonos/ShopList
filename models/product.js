@@ -18,16 +18,13 @@ const ProductSchema = new Schema({
         }
     ],
     image: String,
+    imageFrom: String,
     reviews: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Review'
         }
     ],
-    author: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }
 
 });
 

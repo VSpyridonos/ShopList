@@ -474,14 +474,19 @@
                                                                 <small class="text-muted">Διαθέσιμο σε:&nbsp;</small>
                                                                 <% for (let s of product.price) { %>
                                                                         <small class="text-muted">
-                                                                                <%= s.shop.organization%>
-                                                                                        <% if (product.price.indexOf(s)!==product.price.length
-                                                                                                - 1) { %><small
-                                                                                                        class="text-muted">,
+                                                                                <%= s.shop.organization%><% if (product.price.indexOf(s)!==product.price.length - 1) { %><small
+                                                                                                        class="text-muted">,&nbsp;
                                                                                                 </small>
                                                                                                 <% } %>
                                                                         </small>
                                                                         <% } %>
+                                                        </p>
+                                                        <br>
+                                                        <br>
+                                                        <br>
+                                                        <br>
+                                                        <p class="card-text">
+                                                                <small class="text-muted">Η φωτογραφία ανήκει στην εταιρεία: <%= product.imageFrom %> </small>
                                                         </p>
 
 
