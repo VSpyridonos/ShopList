@@ -468,7 +468,12 @@
                                                                         <%= product.title%>
                                                                 </a></h5>
                                                         <p>
-                                                                <%= product.category %>
+                                                                <% for (let cat of product.category) {%> 
+                                                                <%= cat %><% if (product.category.indexOf(cat)!==product.category.length - 1) { %><small
+                                                                        class="text-muted">,&nbsp;
+                                                                </small>
+                                                                <% } %>
+                                                                <% } %> 
                                                         </p>
                                                         <p class="card-text">
                                                                 <small class="text-muted">Διαθέσιμο σε:&nbsp;</small>
