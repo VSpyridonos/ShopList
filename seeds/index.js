@@ -10,8 +10,8 @@ const User = require('../models/user');
 
 require('dotenv').config();
 
-//const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/shopList';
-const dbUrl = 'mongodb://localhost:27017/shopList';
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/shopList';
+//const dbUrl = 'mongodb://localhost:27017/shopList';
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
