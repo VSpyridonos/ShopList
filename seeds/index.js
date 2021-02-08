@@ -471,13 +471,13 @@ const seedDB = async () => {
                 "accept-language": "el-GR,el;q=0.9,en-US;q=0.8,en;q=0.7",
                 "cache-control": "no-cache",
                 "content-type": "application/json",
-                "key": "aa1ce1e4d1330b647f5b15d5807ccbd1ad6c7a4e245fc39c430953d4d98b9978",
+                "key": "e9a4866152911445fc3cf9f9388fcda4c0f71779a72a6150b0b25bbf49d0f963",
                 "pragma": "no-cache",
                 "sec-fetch-dest": "empty",
                 "sec-fetch-mode": "cors",
                 "sec-fetch-site": "same-origin",
                 "uid": "f0c71c70-ef92-44a0-9cdf-91096986180a",
-                "usl": "2021-02-07 16:10",
+                "usl": "2021-02-08 16:37",
                 "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Mobile Safari/537.36"
             },
             "referrer": "https://eshop.masoutis.gr/categories/index/manabiko?item=566&subitem=011620&subdescr=freska-frouta",
@@ -506,7 +506,220 @@ const seedDB = async () => {
         }
     }
 
-    async function crawlPuppeteer() {
+
+    async function crawlSklavenitis() {
+        const browser = await puppeteer.launch({
+            headless: false,
+            defaultViewport: { width: 1920, height: 1080 }
+        });
+        const page = await browser.newPage();
+        await page.goto('https://www.sklavenitis.gr/freska-froyta-lachanika/froyta/');
+
+
+        let productTitle = await page.evaluate(() => {
+            return Array.from(document.querySelectorAll('.product__figure'), e => e.children[0].children[0].title);
+            ;
+        });
+
+        let productImage = await page.evaluate(() => {
+            return Array.from(document.querySelectorAll('.product__figure'), e => e.children[0].children[0].src);
+            ;
+        });
+
+        let productPrice = await page.evaluate(() => {
+            return Array.from(document.querySelectorAll('.price'), e => e.innerText.slice(0, 4).replace(',', '.'));
+        });
+
+        let numberOfProducts = productTitle.length;
+
+
+        for (let i = 0; i < numberOfProducts; i++) {
+
+            let title = productTitle[i];
+            let image = productImage[i];
+            let price = parseFloat(productPrice[i]);
+
+            let splitTitle = title.split(' ');
+            let correctTitle = `${splitTitle[0]} ${splitTitle[1]} ${splitTitle[2]}`;
+            let foundProduct = await Product.findOne({ title: { '$regex': correctTitle, '$options': 'i' } }).populate('Price').populate({
+                path: 'price',
+                populate: {
+                    path: 'shop'
+                }
+            });;
+            if (!foundProduct) {
+
+                let prod = new Product({
+                    title: title,
+                    category: ['Φρούτα & Λαχανικά', 'Φρούτα'],
+                    countedWithQuantity: false,
+                    image: image,
+                    imageFrom: 'Σκλαβενίτης'
+                });
+                let pri = new Price({
+                    price: price,
+                    shop: s19._id,
+                    date: 2021 - 02 - 08
+                })
+                await pri.save();
+                await prod.price.push(pri)
+                await prod.save();
+            } else {
+                let exists = false;
+
+                for (let i = 0; i < foundProduct.price.length; i++) {
+                    console.log('prod: ', foundProduct.price[i].shop._id)
+                    console.log('s2_id: ', s2._id)
+                    if (foundProduct.price[i].shop._id.toString() == s2._id.toString()) {
+
+                        console.log('aaa');
+                        exists = true;
+                    }
+                }
+                console.log(exists);
+                // An den yparxei idi price apo Sklaveniti sto product
+                if (!exists) {
+
+                    let pri = new Price({
+                        price: price,
+                        shop: s2._id,
+                        date: 2021 - 02 - 02
+                    })
+                    await pri.save();
+                    await foundProduct.price.push(pri)
+                    await foundProduct.save();
+
+                }
+            }
+
+        }
+
+
+        browser.close();
+    }
+
+    async function crawlVasilopoulos() {
+        let browser = await puppeteer.launch({
+            headless: false,
+            defaultViewport: { width: 1920, height: 1080 }
+        });
+        let page = await browser.newPage();
+
+        let titlesArray = [];
+        let imagesArray = [];
+        let pricesArray = [];
+
+        for (let pageNumber = 0; pageNumber < 3; pageNumber++) {
+            await page.goto(`https://www.ab.gr/click2shop/Oporopoleio/Froyta/c/001001?q=%3Arelevance&pageNumber=${pageNumber}`);
+
+
+            let productTitle = await page.evaluate(() => {
+                return Array.from(document.querySelectorAll('.js-responsive-image-replaced'), e => e.alt);
+            });
+
+            let productImage = await page.evaluate(() => {
+                return Array.from(document.querySelectorAll('.js-responsive-image-replaced'), e => e.src);
+            });
+
+            let productPrice = await page.evaluate(() => {
+                return Array.from(document.querySelectorAll('.ProductProperties'), e => e.children[0].children[0].innerText);
+            });
+
+            let numberOfProducts = productTitle.length;
+
+
+            for (let i = 0; i < numberOfProducts; i++) {
+
+                titlesArray.push(productTitle[i]);
+                imagesArray.push(productImage[i]);
+
+                let correctPrice;
+                if (productPrice[i].indexOf("€") > 0) correctPrice = productPrice[i].slice(0, productPrice[i].indexOf("€")).replace(',', '.');
+                else correctPrice = productPrice[i].slice(0, productPrice[i].indexOf('Ε')).replace(',', '.');
+
+                pricesArray.push(correctPrice);
+
+
+
+            }
+        }
+
+
+
+        for (let i = 0; i < titlesArray.length; i++) {
+
+            let title = titlesArray[i];
+            let image = imagesArray[i];
+            let price = parseFloat(pricesArray[i]);
+
+            let splitTitle = title.split(' ');
+            let correctTitle = `${splitTitle[0]} ${splitTitle[1]} ${splitTitle[2]}`;
+            let foundProduct = await Product.findOne({ title: { '$regex': correctTitle, '$options': 'i' } }).populate('Price').populate({
+                path: 'price',
+                populate: {
+                    path: 'shop'
+                }
+            });;
+            if (!foundProduct) {
+
+                let prod = new Product({
+                    title: title,
+                    category: ['Φρούτα & Λαχανικά', 'Φρούτα'],
+                    countedWithQuantity: false,
+                    image: image,
+                    imageFrom: 'ΑΒ Βασιλόπουλος'
+                });
+                let pri = new Price({
+                    price: price,
+                    shop: s14._id,
+                    date: 2021 - 02 - 08
+                })
+                await pri.save();
+                await prod.price.push(pri)
+                await prod.save();
+            } else {
+                let exists = false;
+
+                for (let i = 0; i < foundProduct.price.length; i++) {
+                    console.log('prod: ', foundProduct.price[i].shop._id)
+                    console.log('s2_id: ', s2._id)
+                    if (foundProduct.price[i].shop._id.toString() == s2._id.toString()) {
+
+                        console.log('aaa');
+                        exists = true;
+                    }
+                }
+                console.log(exists);
+                // An den yparxei idi price apo AB Vasilopoulo sto product
+                if (!exists) {
+
+                    let pri = new Price({
+                        price: price,
+                        shop: s2._id,
+                        date: 2021 - 02 - 02
+                    })
+                    await pri.save();
+                    await foundProduct.price.push(pri)
+                    await foundProduct.save();
+
+                }
+            }
+
+        }
+
+
+        browser.close();
+    }
+
+
+
+
+
+
+
+
+
+    async function crawlMyMarket() {
         const browser = await puppeteer.launch({
             headless: false, // GIA PRODUCTION NA TO VALW TRUE
             defaultViewport: { width: 1920, height: 1080 }
@@ -526,17 +739,20 @@ const seedDB = async () => {
         });
 
         let productPrice = await page.evaluate(() => {
-            return Array.from(document.querySelectorAll('.product-actions'), e => e.innerText.split('\n')[2].slice(0, 4).replace(',', '.'));
+            return Array.from(document.querySelectorAll('.product-actions-row'), e => e.children[0].children[0].innerText.slice(0, 4).replace(',', '.'));
+            //return Array.from(document.querySelectorAll('.product-actions'), e => e.innerText.split('\n')[2].slice(0, 4).replace(',', '.'));
         });
+
+        for (let t of productPrice) console.log(t);
 
 
         let numberOfProducts = productTitle.length;
 
-        for (let i = 0; i < numberOfProducts; i++) {
+        for (let i = 0, j = 0; i < numberOfProducts; i++, j += 2) {
 
             let title = productTitle[i]
             let image = productImage[i];
-            let price = parseFloat(productPrice[i])
+            let price = parseFloat(productPrice[j]);
 
 
             let splitTitle = title.split(' ');
@@ -548,7 +764,6 @@ const seedDB = async () => {
                 }
             });;
             if (!foundProduct) {
-
                 let prod = new Product({
                     title: title,
                     category: ['Φρούτα & Λαχανικά', 'Φρούτα'],
@@ -556,6 +771,10 @@ const seedDB = async () => {
                     image: image,
                     imageFrom: 'My market'
                 });
+
+                // An i eikona einai base64, vale tin default eikona gia ta frouta
+                if (image.slice(0, 4) === 'data') prod.image = 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1612798073/ShopList/default_fruit_xhyovz.jpg';
+
                 let pri = new Price({
                     price: price,
                     shop: s2._id,
@@ -620,7 +839,9 @@ const seedDB = async () => {
 
 
     await crawlHttp();
-    await crawlPuppeteer();
+    await crawlSklavenitis();
+    await crawlVasilopoulos();
+    await crawlMyMarket();
     console.log("Done seeding");
 
 }
