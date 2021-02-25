@@ -47,6 +47,7 @@ const Product = require('./models/product');
 const Price = require('./models/price');
 const Shop = require('./models/shop');
 const List = require('./models/list');
+const Count = require('./models/count');
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/shopList';
 //const dbUrl = 'mongodb://localhost:27017/shopList';

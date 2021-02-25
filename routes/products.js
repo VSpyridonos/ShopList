@@ -11,6 +11,7 @@ const Shop = require('../models/shop');
 const Price = require('../models/price');
 const Review = require('../models/review');
 const User = require('../models/user');
+const Count = require('../models/count');
 const { isLoggedIn } = require('../middleware');
 const multer = require('multer');
 const { storage } = require('../cloudinary');

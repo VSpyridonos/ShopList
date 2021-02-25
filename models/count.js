@@ -3,25 +3,21 @@ const Shop = require('./shop')
 const Price = require('./price');
 const Review = require('./review');
 const User = require('./user');
-const Count = require('./count');
 const Schema = mongoose.Schema;
 
 
-const ListSchema = new Schema({
+const CountSchema = new Schema({
     owner: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    products: [{
+    product:
+    {
         type: Schema.Types.ObjectId,
         ref: 'Product'
-    }],
-    selectedPrice: {
-        type: Schema.Types.ObjectId,
-        ref: 'Price'
-    },
-    totalPrice: Number
-
+    }
+    ,
+    count: { type: Number, default: 0 }
 });
 
-module.exports = mongoose.model('List', ListSchema);
+module.exports = mongoose.model('Count', CountSchema);

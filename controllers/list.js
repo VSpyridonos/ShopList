@@ -2,12 +2,14 @@ const Product = require('../models/product');
 const Price = require('../models/price');
 const Shop = require('../models/shop');
 const User = require('../models/user');
-const List = require('../models/list')
+const List = require('../models/list');
+const Count = require('../models/count');
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const googleMapsKey = process.env.GOOGLE_MAPS_API_KEY;
 const fetch = require('node-fetch');
+const product = require('../models/product');
 
 module.exports.showList = async (req, res, next) => {
     const list = await List.findOne({ owner: req.user._id }).populate({
@@ -49,58 +51,71 @@ module.exports.showList = async (req, res, next) => {
     let vasilopoulosHasAllProducts = true;
     let sklavenitisHasAllProducts = true;
 
-    for (let product of list.products) {
-        for (let price of product.price) {
+    let productCounter = 0;
+    const allCounts = await Count.find({ owner: req.user._id });
 
+
+    for (let product of list.products) {
+        const foundCount = await Count.findOne({ owner: req.user._id, product: product.id });
+        //console.log(foundCount)
+        for (let price of product.price) {
             if (product.countedWithQuantity) {
 
+                product.quantity = foundCount.count;
 
                 if (String(price.shop) == String(masoutis._id)) {
 
-                    masoutisTotal += price.price * product.quantity;
+                    masoutisTotal += price.price * foundCount.count;
                     masoutisCounter++;
 
                 } else if (String(price.shop) == String(myMarket._id)) {
 
-                    myMarketTotal += price.price * product.quantity;
+                    myMarketTotal += price.price * foundCount.count;
                     myMarketCounter++;
 
                 } else if (String(price.shop) == String(vasilopoulos._id)) {
 
-                    vasilopoulosTotal += price.price * product.quantity;
+                    vasilopoulosTotal += price.price * foundCount.count;
                     vasilopoulosCounter++;
 
                 } else if (String(price.shop) == String(sklavenitis._id)) {
 
-                    sklavenitisTotal += price.price * product.quantity;
+                    sklavenitisTotal += price.price * foundCount.count;
                     sklavenitisCounter++;
                 }
 
             } else {
 
+                product.weight = foundCount.count;
+
+
                 if (String(price.shop) == String(masoutis._id)) {
 
-                    masoutisTotal += price.price * product.weight;
+                    masoutisTotal += price.price * foundCount.count;
                     masoutisCounter++;
 
                 } else if (String(price.shop) == String(myMarket._id)) {
 
-                    myMarketTotal += price.price * product.weight;
+                    myMarketTotal += price.price * foundCount.count;
                     myMarketCounter++;
 
                 } else if (String(price.shop) == String(vasilopoulos._id)) {
 
-                    vasilopoulosTotal += price.price * product.weight;
+                    vasilopoulosTotal += price.price * foundCount.count;
                     vasilopoulosCounter++;
 
                 } else if (String(price.shop) == String(sklavenitis._id)) {
 
-                    sklavenitisTotal += price.price * product.weight;
+                    sklavenitisTotal += price.price * foundCount.count;
                     sklavenitisCounter++;
                 }
             }
+
         }
+        product.save();
+        productCounter++;
     }
+
 
     if (masoutisCounter === list.products.length) {
         masoutisHasAllProducts = true;
@@ -153,28 +168,45 @@ module.exports.openUrl = (req, res) => {
 }
 
 module.exports.increaseQuantity = async (req, res, next) => {
-    const product = await Product.findByIdAndUpdate(req.params.id, { $inc: { quantity: 1 } });
+    //const product = await Product.findByIdAndUpdate(req.params.id, { $inc: { quantity: 1 } });
+    const product = await Product.findById(req.params.id);
+    const count = await Count.findOne({ owner: req.user._id, product: product.id });
+    count.count += 1;
+    await count.save();
 
     res.redirect('/list');
 }
 
 module.exports.increaseWeightByALittle = async (req, res, next) => {
-    const product = await Product.findByIdAndUpdate(req.params.id, { $inc: { weight: 0.1 } });
+    // const product = await Product.findByIdAndUpdate(req.params.id, { $inc: { weight: 0.1 } });
+    const product = await Product.findById(req.params.id);
+    const count = await Count.findOne({ owner: req.user._id, product: product.id });
+    count.count += 0.1;
+    await count.save();
 
     res.redirect('/list');
 }
 
 module.exports.increaseWeightByALot = async (req, res, next) => {
-    const product = await Product.findByIdAndUpdate(req.params.id, { $inc: { weight: 1.0 } });
+    // const product = await Product.findByIdAndUpdate(req.params.id, { $inc: { weight: 1.0 } });
+    const product = await Product.findById(req.params.id);
+    const count = await Count.findOne({ owner: req.user._id, product: product.id });
+    count.count += 1.0;
+    await count.save();
 
     res.redirect('/list');
 }
 
 module.exports.decreaseQuantity = async (req, res, next) => {
-    const product = await Product.findById(req.params.id)
-    if (product.quantity >= 2) {
-        product.quantity--;
-        await product.save();
+    const product = await Product.findById(req.params.id);
+    const count = await Count.findOne({ owner: req.user._id, product: product.id });
+    // if (product.quantity >= 2) {
+    //     product.quantity--;
+    //     await product.save();
+    // }
+    if (count.count >= 2) {
+        count.count--;
+        await count.save();
     }
     // const product = await Product.findByIdAndUpdate(id, { $inc: { quantity: -1 } });
 
@@ -182,20 +214,36 @@ module.exports.decreaseQuantity = async (req, res, next) => {
 }
 
 module.exports.decreaseWeightByALittle = async (req, res, next) => {
-    const product = await Product.findById(req.params.id)
-    if (product.weight >= 0.2) {
-        product.weight -= 0.1;
-        await product.save();
+    const product = await Product.findById(req.params.id);
+    const count = await Count.findOne({ owner: req.user._id, product: product.id });
+    // if (product.quantity >= 2) {
+    //     product.quantity--;
+    //     await product.save();
+    // }
+    if (count.count >= 0.2) {
+        count.count -= 0.1;
+        await count.save();
     }
+    // if (product.weight >= 0.2) {
+    //     product.weight -= 0.1;
+    //     await product.save();
+    // }
 
     res.redirect('/list');
 }
 
 module.exports.decreaseWeightByALot = async (req, res, next) => {
-    const product = await Product.findById(req.params.id)
-    if (product.weight >= 1.0) {
-        product.weight -= 1.0;
-        await product.save();
+    // const product = await Product.findById(req.params.id)
+    // if (product.weight >= 1.0) {
+    //     product.weight -= 1.0;
+    //     await product.save();
+    // }
+    const product = await Product.findById(req.params.id);
+    const count = await Count.findOne({ owner: req.user._id, product: product.id });
+
+    if (count.count >= 1.0) {
+        count.count -= 1.0;
+        await count.save();
     }
 
     res.redirect('/list');

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Shop = require('./shop')
 const Price = require('./price');
 const Review = require('./review');
+const Count = require('./count');
 const Schema = mongoose.Schema;
 
 
@@ -24,8 +25,7 @@ const ProductSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Review'
         }
-    ],
-
+    ]
 });
 
 // Όταν διαγραφεί ένα προϊόν, θα διαγραφούν και όλες οι αξιλογήσεις του

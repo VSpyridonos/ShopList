@@ -4,6 +4,7 @@ const Price = require('../models/price');
 const Shop = require('../models/shop');
 const List = require('../models/list');
 const User = require('../models/user');
+const Count = require('../models/count');
 const { cloudinary } = require("../cloudinary");
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken = process.env.MAPBOX_TOKEN;
@@ -139,30 +140,69 @@ module.exports.addProductToList = async (req, res) => {
 
 
     const list = await List.findOne({ owner: req.user._id });
+    let foundCount = await Count.findOne({ owner: req.user._id, product: currentProduct.id });
+    //console.log(foundCount)
     //console.log('this is my list: ', list);
     // An metrietai me posotita
     if (currentProduct.countedWithQuantity) {
 
         // An yparxei idi to proion sti lista auksanw posotita
         if (list.products.includes(currentProduct._id)) {
-            await Product.findByIdAndUpdate(currentProduct._id, { quantity: parseInt(req.body.quantity) + parseInt(currentProduct.quantity) })
+            //await Product.findByIdAndUpdate(currentProduct._id, { quantity: parseInt(req.body.quantity) + parseInt(currentProduct.quantity) });
+            //await Product.findByIdAndUpdate(currentProduct._id, { count: parseInt(req.body.quantity) + parseInt(currentProduct.count) })
+            //let foundProduct = await Product.findById(currentProduct._id)
+            // currentUser.populate({
+            //     path: 'count',
+            //     populate: {
+            //         path: 'product'
+            //     }
+            // });
+
+            foundCount.count += parseInt(req.body.quantity);
+            foundCount.save();
+            // foundProduct.count.count = parseInt(req.body.quantity) + parseInt(foundProduct.count.count)
+            // foundProduct.save();
 
             // Alliws to eisagw sti lista
         } else {
-            await Product.findByIdAndUpdate(currentProduct._id, { quantity: req.body.quantity });
+            //await Product.findByIdAndUpdate(currentProduct._id, { quantity: req.body.quantity });
+            //await Product.findByIdAndUpdate(currentProduct._id, { count: parseInt(req.body.quantity) })
+            // let foundProduct = await Product.findById(currentProduct._id)
+            // let foundCount = await Count.findOne(currentProduct._id)
+            // foundProduct.count.count = parseInt(req.body.quantity);
+            // foundProduct.save();
+            //await list.products.unshift(currentProduct);
+            foundCount.count += parseInt(req.body.quantity);
+            foundCount.save();
             await list.products.unshift(currentProduct);
         }
 
         // An metrietai me kila, paromoia diadikasia me apo panw
     } else {
-        await Product.findByIdAndUpdate(currentProduct._id, { weight: req.body.weight })
+        //await Product.findByIdAndUpdate(currentProduct._id, { weight: req.body.weight })
         // An yparxei idi to proion sti lista auksanw kila
         if (list.products.includes(currentProduct._id)) {
-            await Product.findByIdAndUpdate(currentProduct._id, { weight: (parseFloat(req.body.weight) + parseFloat(currentProduct.weight)).toFixed(2) })
+            //await Product.findByIdAndUpdate(currentProduct._id, { weight: (parseFloat(req.body.weight) + parseFloat(currentProduct.weight)).toFixed(2) })
+            //await Product.findByIdAndUpdate(currentProduct._id, { count: (parseFloat(req.body.weight) + parseInt(currentProduct.count)).toFixed(2) })
+            // let foundProduct = await Product.findById(currentProduct._id)
+            // foundProduct.count.count = (parseFloat(req.body.weight) + parseInt(foundProduct.count.count)).toFixed(2);
+            // foundProduct.save();
+            foundCount.count += parseFloat(req.body.weight);
+            foundCount.count.toFixed(2);
+            foundCount.save();
 
             // Alliws to eisagw sti lista
         } else {
-            await Product.findByIdAndUpdate(currentProduct._id, { weight: req.body.weight });
+            //await Product.findByIdAndUpdate(currentProduct._id, { weight: req.body.weight });
+            //await Product.findByIdAndUpdate(currentProduct._id, { count: req.body.weight });
+            // let foundProduct = await Product.findById(currentProduct._id)
+            // foundProduct.count.count = parseFloat(req.body.weight);
+            // foundProduct.save();
+
+            foundCount.count += parseFloat(req.body.weight);
+            foundCount.count.toFixed(2);
+            foundCount.save();
+            //await list.products.unshift(currentProduct);
             await list.products.unshift(currentProduct);
         }
     }

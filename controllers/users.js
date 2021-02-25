@@ -1,6 +1,8 @@
 const sanitizeHtml = require('sanitize-html');
 const User = require('../models/user');
+const Count = require('../models/count');
 const List = require('../models/list');
+const Product = require('../models/product');
 const googleMapsKey = process.env.GOOGLE_MAPS_API_KEY;
 
 module.exports.renderRegister = (req, res) => {
@@ -11,8 +13,11 @@ module.exports.register = async (req, res, next) => {
     try {
         const { email, username, password } = req.body;
         const address = sanitizeHtml(req.body.address) + ', Ιωάννινα';
-        const user = new User({ email, username, address });
+        const count = []
+        const user = new User({ email, username, address, count });
         const registeredUser = await User.register(user, password);
+        const products = await Product.find({});
+        //console.log(products);
         req.login(registeredUser, err => {
             if (err) {
                 return next(err);
@@ -20,6 +25,13 @@ module.exports.register = async (req, res, next) => {
                 const list = new List();
                 list.owner = req.user._id;
                 list.save();
+                // const products = await products.find({});
+                for (let prod of products) {
+                    let newCount = new Count({ 'owner': req.user._id, 'product': prod });
+                    newCount.save();
+                    user.count.push(newCount);
+                }
+                user.save();
                 req.flash('success', 'Καλωσήρθατε στο ShopList!');
                 res.redirect('/products');
             }

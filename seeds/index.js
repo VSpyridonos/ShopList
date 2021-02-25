@@ -7,6 +7,7 @@ const Category = require('../models/category');
 const Price = require('../models/price');
 const List = require('../models/list');
 const User = require('../models/user');
+const Count = require('../models/count');
 
 require('dotenv').config();
 
@@ -32,6 +33,7 @@ const seedDB = async () => {
     await Price.deleteMany({});
     await List.deleteMany({});
     await User.deleteMany({});
+    await Count.deleteMany({});
 
     const p1 = new Product({
         title: 'Νουνού Family Γάλα 3,6% 1lt.',
@@ -56,7 +58,6 @@ const seedDB = async () => {
         image: 'https://res.cloudinary.com/dlsbinpn6/image/upload/v1605973471/ShopList/%CE%9C%CF%80%CE%B1%CE%BD%CE%AC%CE%BD%CE%B5%CF%82_Dole_%CE%95%CE%B9%CF%83%CE%B1%CE%B3%CF%89%CE%B3%CE%AE%CF%82_%CE%A7%CF%8D%CE%BC%CE%B1_nltuo9.jpg',
         imageFrom: 'Μασούτης'
     })
-
 
 
     // MASOUTIS
