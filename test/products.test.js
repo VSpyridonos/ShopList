@@ -1,4 +1,4 @@
-const { index } = require('../controllers/products');
+const { index, showProduct } = require('../controllers/products');
 const chai = require('chai');
 const assert = require('chai').assert;
 const chaiHttp = require("chai-http");
@@ -10,7 +10,10 @@ const sinon = require('sinon');
 const Product = require('../models/product');
 const { router } = require('../routes/products');
 const supertest = require('supertest');
+const puppeteer = require('puppeteer');
 const { app } = require('../app');
+//const sinonChai = require('sinon-chai');
+//const { mockReq, mockRes } = require('sinon-express-mock');
 
 
 
@@ -65,7 +68,7 @@ const { app } = require('../app');
 
 describe("GET /products", function () {
     it("it should have status code 200", function (done) {
-        supertest('http://localhost:3000')
+        supertest("http://localhost:3000")
             .get("/products")
             .expect(200)
             .end(function (err, res) {
@@ -78,8 +81,34 @@ describe("GET /products", function () {
 
 describe("GET product by searching", function () {
     it("it should have status code 200", function (done) {
-        supertest('http://localhost:3000')
+        supertest("http://localhost:3000")
             .get("/products?search=Zagorin")
+            .expect(200)
+            .end(function (err, res) {
+                if (err) done(err);
+                done();
+            });
+    });
+
+});
+
+describe("GET a specific product category", function () {
+    it("it should have status code 200", function (done) {
+        supertest("http://localhost:3000")
+            .get(`/categories/${encodeURI('Αλλαντικά')}`)
+            .expect(200)
+            .end(function (err, res) {
+                if (err) done(err);
+                done();
+            });
+    });
+
+});
+
+describe("GET a specific product category", function () {
+    it("it should have status code 200", function (done) {
+        supertest("http://localhost:3000")
+            .get(`/categories/${encodeURI('Αλλαντικά')}`)
             .expect(200)
             .end(function (err, res) {
                 if (err) done(err);

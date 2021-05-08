@@ -11,8 +11,8 @@ const Count = require('../models/count');
 
 require('dotenv').config();
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/shopList';
-//const dbUrl = 'mongodb://localhost:27017/shopList';
+//const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/shopList';
+const dbUrl = 'mongodb://localhost:27017/shopList';
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -446,6 +446,7 @@ const seedDB = async () => {
     sortAndPush(arrP3, p3);
 
 
+
     // Web Crawling
     const options = {
         "headers": {
@@ -472,13 +473,13 @@ const seedDB = async () => {
                 "accept-language": "el-GR,el;q=0.9,en-US;q=0.8,en;q=0.7",
                 "cache-control": "no-cache",
                 "content-type": "application/json",
-                "key": "e9a4866152911445fc3cf9f9388fcda4c0f71779a72a6150b0b25bbf49d0f963",
+                "key": "9aab3469ecc263819edf05d8d1d032ae6e3edb904fdc1578462f11e5aa9b7c28",
                 "pragma": "no-cache",
                 "sec-fetch-dest": "empty",
                 "sec-fetch-mode": "cors",
                 "sec-fetch-site": "same-origin",
                 "uid": "f0c71c70-ef92-44a0-9cdf-91096986180a",
-                "usl": "2021-02-08 16:37",
+                "usl": "2021-02-26 00:21",
                 "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Mobile Safari/537.36"
             },
             "referrer": "https://eshop.masoutis.gr/categories/index/manabiko?item=566&subitem=011620&subdescr=freska-frouta",
