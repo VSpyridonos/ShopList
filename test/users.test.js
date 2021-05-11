@@ -47,7 +47,7 @@ describe('the login function', function () {
         this.timeout(0);
         const browser = await puppeteer.launch({
             headless: false,
-            slowMo: 80,
+            //slowMo: 80,
             defaultViewport: { width: 1920, height: 1080 }
         });
         const page = await browser.newPage();
@@ -61,6 +61,8 @@ describe('the login function', function () {
         await page.click('#login-button');
         await page.waitForNavigation();
         let currentPage = await page.evaluate(() => location.href)
+        browser.close();
         await assert.equal(currentPage, 'http://localhost:3000/');
+
     });
 });
