@@ -23,7 +23,7 @@
                 <% if (product.image) { %>
                 <img class="img-fluid" style="max-width: 80px; max-height: 80px;" src="<%= product.image %> ">
                 <% } %>
-                <%= product.title %>, Ποσότητα: <%= product.quantity %> τεμάχια
+                <span id="product-title"><%= product.title %></span>, Ποσότητα: <%= product.quantity %> τεμάχια
                 <div class="btn-group">
 
                     <a class="btn btn-sm btn-success my-1" href='/list/increaseQuantity/<%=product._id %>'

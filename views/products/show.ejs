@@ -89,7 +89,7 @@
         <label class="form-label" for="body">Κείμενο αξιολόγησης:</label>
         <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3"></textarea>
     </div>
-    <button class="btn btn-info mb-5">Υποβολή Αξιολόγησης</button>
+    <button id="submit-review-button" class="btn btn-info mb-5">Υποβολή Αξιολόγησης</button>
     </form>
     <% } %>
 
@@ -108,7 +108,7 @@
                     </p>
                     <% if (currentUser && currentUser.equals(review.author)) { %>
                         <form action="/products/<%=product._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
-                            <button class="btn btn-sm btn-danger">Διαγραφή Αξιολόγησης</button>
+                            <button id="delete-review-button" class="btn btn-sm btn-danger">Διαγραφή Αξιολόγησης</button>
                         </form>
                         <% } %>
                 </div>
