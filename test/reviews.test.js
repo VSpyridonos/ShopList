@@ -1,17 +1,25 @@
+const { index, showProduct } = require('../controllers/products');
 const chai = require('chai');
+const assert = require('chai').assert;
 const chaiHttp = require("chai-http");
-const review = require('../models/review');
+const expect = chai.expect;
 chai.use(chaiHttp);
+const should = chai.should();
+const { render } = require('ejs');
+const sinon = require('sinon');
+const Product = require('../models/product');
+const { router } = require('../routes/products');
 const supertest = require('supertest');
 const puppeteer = require('puppeteer');
+const { app } = require('../app');
 
 
-e2e
-describe('the createReview function', function () {
+// e2e
+describe('the create and delete review function', function () {
     it("create a review and then delete it", async function () {
         this.timeout(0);
         const browser = await puppeteer.launch({
-            headless: false,
+            headless: true,
             //slowMo: 80,
             defaultViewport: { width: 1920, height: 1080 }
         });
@@ -30,25 +38,22 @@ describe('the createReview function', function () {
             'http://localhost:3000/products'
         );
 
+
         await Promise.all([
             page2.waitForNavigation(),
             page2.click('a#product-link'),
-            // page2.click('label[title="Amazing"]'),
-            // page2.click('textarea#body'),
-            document.querySelector('textarea#body').innerText = 'memes',     // allakse to document den to anagnwrizei
-            page2.type('textarea#body', 'Sample review text'),
-            page2.click('button#submit-review-button'),
+            page2.$$eval('textarea', textarea => textarea.innerText = 'Sample review text'),     // allakse to document den to anagnwrizei
+
         ]);
 
-        await page.waitForTimeout(3000);
+        await page2.waitForFunction("document.querySelector('button#submit-review-button') && document.querySelector('button#submit-review-button').style.visibility != 'hidden'");
+        await page2.click('button#submit-review-button');
 
-        await Promise.all([
-            document.querySelector('textarea#body').innerText = 'memes',
-            page2.click('button#submit-review-button'),
-        ]);
+        let reviewFromWhole = await page2.$$eval('h6', textarea => textarea.map((n) => n.innerText));
+        await assert.equal(reviewFromWhole.toString().substring(5, 12), 'vasilis');
 
-        let reviewFrom = await document.getElementsByTagName("h6")[0][textContent].trim().split(' ')[1];
-        await assert.equal(reviewFrom, 'vasilis');
+        await page2.waitForFunction("document.querySelector('button#delete-review-button') && document.querySelector('button#delete-review-button').style.visibility != 'hidden'");
+        await page2.click('button#delete-review-button');
 
         await browser.close();
 

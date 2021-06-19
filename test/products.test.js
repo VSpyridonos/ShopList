@@ -106,56 +106,56 @@ describe("GET a specific product category", function () {
 });
 
 
-//e2e
-describe('the add product to list function', function () {
-    it("should add a product to the list and confirm it is displayed", async function () {
-        this.timeout(0);
-        const browser = await puppeteer.launch({
-            headless: false,
-            //slowMo: 80,
-            defaultViewport: { width: 1920, height: 1080 }
-        });
-        const page = await browser.newPage();
-        await page.goto(
-            'http://localhost:3000/login'
-        );
-        await page.click('input#username');
-        await page.type('input#username', 'vasilis');
-        await page.click('input#password');
-        await page.type('input#password', 'vasilis');
-        await page.click('#login-button');
-        await page.waitForNavigation();
-        const page2 = await browser.newPage();
-        await page2.goto(
-            'http://localhost:3000/products'
-        );
+// e2e
+// describe('the add product to list function', function () {
+//     it("should add a product to the list and confirm it is displayed", async function () {
+//         this.timeout(0);
+//         const browser = await puppeteer.launch({
+//             headless: false,
+//             //slowMo: 80,
+//             defaultViewport: { width: 1920, height: 1080 }
+//         });
+//         const page = await browser.newPage();
+//         await page.goto(
+//             'http://localhost:3000/login'
+//         );
+//         await page.click('input#username');
+//         await page.type('input#username', 'vasilis');
+//         await page.click('input#password');
+//         await page.type('input#password', 'vasilis');
+//         await page.click('#login-button');
+//         await page.waitForNavigation();
+//         const page2 = await browser.newPage();
+//         await page2.goto(
+//             'http://localhost:3000/products'
+//         );
 
-        await Promise.all([
-            page2.waitForNavigation(),
-            page2.click('a#product-link')
-        ]);
+//         await Promise.all([
+//             page2.waitForNavigation(),
+//             page2.click('a#product-link')
+//         ]);
 
-        let product = await page2.$$eval('h2.card-title', (h2) => h2.map((n) => n.innerText));
-        let productUrl = page2.url();
+//         let product = await page2.$$eval('h2.card-title', (h2) => h2.map((n) => n.innerText));
+//         let productUrl = page2.url();
 
-        const page3 = await browser.newPage();
-        await page3.goto(productUrl);
+//         const page3 = await browser.newPage();
+//         await page3.goto(productUrl);
 
-        await Promise.all([
-            page3.waitForNavigation(),
-            page3.click('button#add-to-list-button')
-        ]);
+//         await Promise.all([
+//             page3.waitForNavigation(),
+//             page3.click('button#add-to-list-button')
+//         ]);
 
-        const page4 = await browser.newPage();
-        await page4.goto(
-            'http://localhost:3000/list'
-        );
+//         const page4 = await browser.newPage();
+//         await page4.goto(
+//             'http://localhost:3000/list'
+//         );
 
-        let productNameOnList = await page4.$$eval('span#product-title', (span) => span.map((n) => n.innerText));
-        await assert.equal(product.toString().trim(), productNameOnList);
+//         let productNameOnList = await page4.$$eval('span#product-title', (span) => span.map((n) => n.innerText));
+//         await assert.equal(product.toString().trim(), productNameOnList);
 
-        await browser.close();
+//         await browser.close();
 
-    });
-});
+//     });
+// });
 
