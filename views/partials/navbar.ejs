@@ -29,7 +29,7 @@
             <ul class="navbar-nav ml-auto">
                 <% if(!currentUser) {%>
                     <li>
-                        <a class="nav-link active" href="/login"><i class="fa fa-sign-in"></i>&nbsp;Σύνδεση</a>
+                        <a id="login-link" class="nav-link active" href="/login"><i class="fa fa-sign-in"></i>&nbsp;Σύνδεση</a>
                     </li>
                     <li>
                         <a class="nav-link active" href="/register"><i class="fa fa-pencil"></i>&nbsp;Εγγραφή</a>
@@ -39,7 +39,7 @@
                             <a class="nav-link active" href="/account"><i class="fa fa-user"></i>&nbsp;Λογαριασμός</a>
                         </li>
                         <li>
-                            <a class="nav-link active" href="/logout"> <i
+                            <a id="logout-link" class="nav-link active" href="/logout"> <i
                                     class="fa fa-sign-out"></i>&nbsp;Αποσύνδεση</a>
                         </li>
                         <% } %>

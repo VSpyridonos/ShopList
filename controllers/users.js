@@ -17,7 +17,6 @@ module.exports.register = async (req, res, next) => {
         const user = new User({ email, username, address, count });
         const registeredUser = await User.register(user, password);
         const products = await Product.find({});
-        //console.log(products);
         req.login(registeredUser, err => {
             if (err) {
                 return next(err);
@@ -25,7 +24,6 @@ module.exports.register = async (req, res, next) => {
                 const list = new List();
                 list.owner = req.user._id;
                 list.save();
-                // const products = await products.find({});
                 for (let prod of products) {
                     let newCount = new Count({ 'owner': req.user._id, 'product': prod });
                     newCount.save();
@@ -33,7 +31,7 @@ module.exports.register = async (req, res, next) => {
                 }
                 user.save();
                 req.flash('success', 'Καλωσήρθατε στο ShopList!');
-                res.redirect('/products');
+                res.redirect('/');
             }
         })
 
