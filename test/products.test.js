@@ -56,10 +56,10 @@ describe("GET a specific product category", function () {
 
 // e2e
 describe('the addProductToList and edit product quantity functions', function () {
-    it("should add a product to the list and confirm it is displayed", async function () {
+    it("should add a product to the list, confirm it is displayed, increase its quantity and confirm it was increased", async function () {
         this.timeout(0);
         const browser = await puppeteer.launch({
-            headless: false,
+            headless: true,
             //slowMo: 80,
             defaultViewport: { width: 1920, height: 1080 }
         });
@@ -100,7 +100,14 @@ describe('the addProductToList and edit product quantity functions', function ()
         );
 
         let productNameOnList = await page4.$$eval('span#product-title', (span) => span.map((n) => n.innerText));
+        let oldProductQuantitySpan = await page4.$$eval('span#product-quantity', (span) => span.map((n) => n.innerText));
+        let oldProductQuantity = parseInt(oldProductQuantitySpan.toString().split(' ')[1]);
+        await page4.click('a#increase-quantity-button');
+        let newProductQuantitySpan = await page4.$$eval('span#product-quantity', (span) => span.map((n) => n.innerText));
+        let newProductQuantity = parseInt(newProductQuantitySpan.toString().split(' ')[1]);
+
         await assert.equal(product.toString().trim(), productNameOnList);
+        await assert.equal(oldProductQuantity + 1, newProductQuantity);
 
         await browser.close();
 
