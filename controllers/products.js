@@ -220,7 +220,7 @@ module.exports.addProductToList = async (req, res) => {
     await list.save();
 
     //console.log('AUTO EINAI TO', req.body.quantity);
-    res.redirect(`/products`)
+    res.redirect(`/products`);
 }
 
 function escapeRegex(text) {
