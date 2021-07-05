@@ -18,7 +18,7 @@ let response = {
     }
 };
 
-
+// Test 06
 describe("the renderRegister function", function () {
     it("should render the users/register view name", function () {
         renderRegister(request, response);
@@ -26,6 +26,7 @@ describe("the renderRegister function", function () {
     });
 });
 
+// Test 07
 describe("the renderLogin function", function () {
     it("should render the users/login view name", function () {
         renderLogin(request, response);
@@ -33,6 +34,7 @@ describe("the renderLogin function", function () {
     });
 });
 
+// Test 08
 describe("the showAccount function", function () {
     it("should render the users/account view name", function () {
         showAccount(request, response);
@@ -41,7 +43,8 @@ describe("the showAccount function", function () {
 });
 
 
-//e2e
+
+// Test 09
 describe('the login function', function () {
     it("should let the user login", async function () {
         this.timeout(0);
@@ -67,6 +70,7 @@ describe('the login function', function () {
     });
 });
 
+// Test 10
 describe('the register function', function () {
     it("should let the user register", async function () {
         this.timeout(0);
@@ -94,6 +98,7 @@ describe('the register function', function () {
     });
 });
 
+// Test 11
 describe('the showAccount function', function () {
     it("should let the user access and edit their account details", async function () {
         this.timeout(0);
@@ -133,6 +138,7 @@ describe('the showAccount function', function () {
     });
 });
 
+// Test 12
 describe('the logout function', function () {
     it("should let the logged-in user logout", async function () {
         this.timeout(0);

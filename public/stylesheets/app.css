@@ -11,6 +11,7 @@ body {
     width: 100%;
     font-size: .875rem;
     overflow: scroll;
+    overflow-x:hidden;
   }
   
   .feather {

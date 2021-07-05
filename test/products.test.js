@@ -13,7 +13,7 @@ const supertest = require('supertest');
 const puppeteer = require('puppeteer');
 const { app } = require('../app');
 
-
+// Test 02
 describe("GET /products", function () {
     it("it should have status code 200", function (done) {
         supertest("http://localhost:3000")
@@ -27,6 +27,7 @@ describe("GET /products", function () {
 
 });
 
+// Test 03
 describe("GET product by searching", function () {
     it("it should have status code 200", function (done) {
         supertest("http://localhost:3000")
@@ -40,6 +41,7 @@ describe("GET product by searching", function () {
 
 });
 
+// Test 04
 describe("GET a specific product category", function () {
     it("it should have status code 200", function (done) {
         supertest("http://localhost:3000")
@@ -54,7 +56,7 @@ describe("GET a specific product category", function () {
 });
 
 
-// e2e
+// Test 05
 describe('the addProductToList and edit product quantity functions', function () {
     it("should add a product to the list, confirm it is displayed, increase its quantity and confirm it was increased", async function () {
         this.timeout(0);

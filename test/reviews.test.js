@@ -14,7 +14,7 @@ const puppeteer = require('puppeteer');
 const { app } = require('../app');
 
 
-// e2e
+// Test 01
 describe('the create and delete review function', function () {
     it("create a review and then delete it", async function () {
         this.timeout(0);
